@@ -24,6 +24,7 @@ return require('packer').startup(function(use)
     end,
   }
   use { "ahmedkhalf/project.nvim" }
+  use { "glepnir/dashboard-nvim" }
 
   -- Testing
   use { "vim-test/vim-test" }

@@ -23,4 +23,8 @@ return require('packer').startup(function(use)
       require'tabline'.setup {enable = false}
     end,
   }
+  use { "ahmedkhalf/project.nvim" }
+
+  -- Telescope extensions
+  use { "nvim-telescope/telescope-file-browser.nvim" }
 end)

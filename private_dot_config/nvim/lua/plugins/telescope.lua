@@ -1,4 +1,4 @@
-require('telescope').setup{
+require('telescope').setup {
   defaults = {
     mappings = {
       i = {
@@ -7,7 +7,16 @@ require('telescope').setup{
     }
   },
   pickers = {
+    find_files = {
+      theme = "dropdown",
+    }
   },
   extensions = {
   }
+}
+
+require("telescope").load_extension "file_browser"
+
+require("project_nvim").setup {
+  require("telescope").load_extension "projects"
 }

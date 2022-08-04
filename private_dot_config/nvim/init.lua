@@ -3,6 +3,7 @@ require('settings')
 require('plugins/nvim-tree')
 require('plugins/hardline')
 require('plugins/telescope')
+require('coc/init')
 require('keymap')
 
 -- Plugin 'leafgarland/typescript-vim'

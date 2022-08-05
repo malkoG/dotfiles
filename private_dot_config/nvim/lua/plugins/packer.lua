@@ -24,7 +24,10 @@ return require('packer').startup(function(use)
     end,
   }
   use { "ahmedkhalf/project.nvim" }
+
+  -- Developer Experience
   use { "glepnir/dashboard-nvim" }
+  use { "gpanders/editorconfig.nvim" }
 
   -- Testing
   use { "malkoG/vim-test", branch = 'master' }

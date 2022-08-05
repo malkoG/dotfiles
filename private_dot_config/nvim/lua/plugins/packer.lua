@@ -29,6 +29,9 @@ return require('packer').startup(function(use)
   use { "glepnir/dashboard-nvim" }
   use { "gpanders/editorconfig.nvim" }
 
+	-- Git utility
+	use { "APZelos/blamer.nvim" }
+
   -- Testing
   use { "malkoG/vim-test", branch = 'master' }
   use {

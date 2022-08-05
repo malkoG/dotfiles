@@ -44,6 +44,9 @@ return require('packer').startup(function(use)
     }
   }
 
+	-- languages (elixir)
+	use	{ "elixir-editors/vim-elixir" }
+
   -- Telescope extensions
   use { "nvim-telescope/telescope-file-browser.nvim" }
 end)

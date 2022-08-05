@@ -10,7 +10,9 @@ vim.g.coc_global_extensions = {
   'coc-tsserver',
   'coc-yaml',
   'coc-pairs',
-  'coc-pyright' -- python
+  'coc-pyright', -- python
+	'coc-jedi',
+	'coc-elixir'
 }
 
 vim.cmd [[ source ~/.config/nvim/lua/coc/config.vim ]]

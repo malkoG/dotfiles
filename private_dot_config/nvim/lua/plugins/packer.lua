@@ -31,6 +31,7 @@ return require('packer').startup(function(use)
 
 	-- Git utility
 	use { "APZelos/blamer.nvim" }
+	use { "tpope/vim-fugitive" }
 
   -- Testing
   use { "malkoG/vim-test", branch = 'master' }

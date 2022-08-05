@@ -27,7 +27,7 @@ return require('packer').startup(function(use)
   use { "glepnir/dashboard-nvim" }
 
   -- Testing
-  use { "vim-test/vim-test" }
+  use { "malkoG/vim-test", branch = 'master' }
   use {
   	"nvim-neotest/neotest",
   	requires = {

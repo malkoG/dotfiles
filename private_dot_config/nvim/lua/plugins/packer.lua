@@ -29,6 +29,9 @@ return require('packer').startup(function(use)
   use { "glepnir/dashboard-nvim" }
   use { "gpanders/editorconfig.nvim" }
 
+	use { 'nvim-treesitter/nvim-treesitter' }
+	use { 'nvim-treesitter/nvim-treesitter-context' } -- sticky scroll
+
 	-- Git utility
 	use { "APZelos/blamer.nvim" }
 	use { "tpope/vim-fugitive" }

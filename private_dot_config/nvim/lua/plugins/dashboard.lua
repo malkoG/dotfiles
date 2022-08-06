@@ -3,8 +3,8 @@ local db = require('dashboard')
 db.custom_center = {
   {
 	icon = '  ',
-    desc = 'Recently latest session                  ',
-    action ='SessionLoad'
+    desc = 'Recent projects                         ',
+    action ='Telescope projects'
     -- shortcut = 'SPC s l',
   },
   {

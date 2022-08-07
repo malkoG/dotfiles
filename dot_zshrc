@@ -499,4 +499,7 @@ if [ -f '/home/kodingwarrior/tmp/google-cloud-sdk/path.zsh.inc' ]; then . '/home
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/kodingwarrior/tmp/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/kodingwarrior/tmp/google-cloud-sdk/completion.zsh.inc'; fi
 
-export PYENV_VERSION=3.8.12
+
+export FLYCTL_INSTALL="$HOME/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+

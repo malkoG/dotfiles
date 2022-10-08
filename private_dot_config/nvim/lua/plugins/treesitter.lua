@@ -11,6 +11,7 @@ require'nvim-treesitter.configs'.setup {
 		"typescript",
 		"python",
 		"elixir",
+		"kotlin",
 	},
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -29,4 +30,29 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+}
+
+require 'treesitter-context'.setup {
+	patterns = {
+		default = {
+			'class',
+			'function',
+			'method',
+			'for',
+			'while',
+			'if',
+			'switch',
+			'case',
+			-- elixir 
+			'defmodule',
+			'def',
+			'defprotocol',
+			'defmacro',
+			'defp',
+			'describe',
+			'test',
+			-- kotin
+			'fun'
+		}
+	}
 }

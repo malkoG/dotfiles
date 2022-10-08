@@ -50,6 +50,9 @@ return require('packer').startup(function(use)
 	-- languages (elixir)
 	use	{ "elixir-editors/vim-elixir" }
 
+	-- languages (kotlin)
+	use { "udalov/kotlin-vim" }
+
   -- Telescope extensions
   use { "nvim-telescope/telescope-file-browser.nvim" }
 end)

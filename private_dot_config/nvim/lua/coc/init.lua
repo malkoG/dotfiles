@@ -12,7 +12,8 @@ vim.g.coc_global_extensions = {
   'coc-pairs',
   'coc-pyright', -- python
 	'coc-jedi',
-	'coc-elixir'
+	'coc-elixir',
+	'coc-kotlin'
 }
 
 vim.cmd [[ source ~/.config/nvim/lua/coc/config.vim ]]

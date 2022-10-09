@@ -29,8 +29,18 @@ return require('packer').startup(function(use)
   use { "glepnir/dashboard-nvim" }
   use { "gpanders/editorconfig.nvim" }
 
-	use { 'nvim-treesitter/nvim-treesitter' }
-	use { 'nvim-treesitter/nvim-treesitter-context' } -- sticky scroll
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		config = function()
+		  require("plugins.treesitter")
+		end,
+	}
+	use {
+		'nvim-treesitter/nvim-treesitter-context',
+		config = function()
+		 require("plugins.treesitter-context")
+		end,
+	} -- sticky scroll
 
 	-- Git utility
 	use { "APZelos/blamer.nvim" }
@@ -47,6 +57,36 @@ return require('packer').startup(function(use)
     }
   }
 
+	-- Snippet generation
+	use {
+		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
+		opt = true,
+		config = function()
+		  require("config.snip").setup()
+			require("config.cmp").setup()
+			require('config.snippets')
+		end,
+		wants = { "LuaSnip" },
+		requires = {
+		  "hrsh7th/cmp-buffer",
+		  "hrsh7th/cmp-path",
+		  "hrsh7th/cmp-nvim-lua",
+		  "ray-x/cmp-treesitter",
+		  "hrsh7th/cmp-cmdline",
+		  "saadparwaiz1/cmp_luasnip",
+		  "hrsh7th/cmp-nvim-lsp",
+		  "hrsh7th/cmp-nvim-lsp-signature-help",
+		  {
+		    "L3MON4D3/LuaSnip",
+		    wants = { "friendly-snippets", "vim-snippets" },
+			},
+			"rafamadriz/friendly-snippets",
+			"honza/vim-snippets",
+		},
+		disable = false,
+	}
+
 	-- languages (elixir)
 	use	{ "elixir-editors/vim-elixir" }
 
@@ -55,4 +95,5 @@ return require('packer').startup(function(use)
 
   -- Telescope extensions
   use { "nvim-telescope/telescope-file-browser.nvim" }
+
 end)

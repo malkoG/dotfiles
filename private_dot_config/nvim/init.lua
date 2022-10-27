@@ -8,3 +8,4 @@ require('plugins/blamer')
 require('coc/init')
 require('keymap')
 
+require('zettelkasten')

@@ -25,6 +25,12 @@ return require('packer').startup(function(use)
   }
   use { "ahmedkhalf/project.nvim" }
 
+	-- Zettelkasten
+	use {
+		'renerocksai/telekasten.nvim',
+		requires = { 'renerocksai/calendar-vim' },
+	}
+
   -- Developer Experience
   use { "glepnir/dashboard-nvim" }
   use { "gpanders/editorconfig.nvim" }

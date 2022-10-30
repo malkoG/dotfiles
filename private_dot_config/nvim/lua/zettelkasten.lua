@@ -1,4 +1,10 @@
+
+
 local wiki_path = "/home/kodingwarrior/kodingwarrior.github.io/src/_wiki"
+if os.getenv('ZETTELKASTEN_TARGET') == 'private_wiki' then
+	wiki_path = "/home/kodingwarrior/kojima-wiki"
+end
+
 
 local home = vim.fn.expand(wiki_path)
 -- NOTE for Windows users:

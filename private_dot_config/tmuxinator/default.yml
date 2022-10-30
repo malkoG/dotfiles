@@ -1,0 +1,13 @@
+# /home/kodingwarrior/.config/tmuxinator/default.yml
+
+name: default
+root: ~/
+
+windows:
+  - editor:
+      layout: main-vertical
+      pre: cd ~/kojima-wiki/ &&
+        export ZETTELKASTEN_TARGET="private_wiki" &&
+        tmux setenv ZETTELKASTEN_TARGET $ZETTELKASTEN_TARGET
+      panes:
+        - vim

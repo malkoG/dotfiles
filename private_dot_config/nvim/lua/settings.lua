@@ -7,3 +7,4 @@ local opt = vim.opt         	-- global/buffer/windows-scoped options
 opt.number = true
 opt.shiftwidth = 4
 opt.tabstop = 4
+

@@ -9,3 +9,6 @@ require('coc/init')
 require('keymap')
 
 require('zettelkasten')
+
+vim.opt.termguicolors = true
+vim.cmd("colorscheme melange")

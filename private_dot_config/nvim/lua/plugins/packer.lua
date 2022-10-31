@@ -25,6 +25,9 @@ return require('packer').startup(function(use)
   }
   use { "ahmedkhalf/project.nvim" }
 
+	-- Theme
+	use { "savq/melange" }
+
 	-- Zettelkasten
 	use {
 		'renerocksai/telekasten.nvim',

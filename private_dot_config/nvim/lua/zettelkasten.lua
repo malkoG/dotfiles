@@ -110,7 +110,7 @@ require('telekasten').setup({
     -- - prefer_new_note: use `new_note` template
     -- - smart: if day or week is detected in title, use daily / weekly templates (default)
     -- - always_ask: always ask before creating a note
-    template_handling = "smart",
+    template_handling = "always_ask",
 
     -- path handling:
     --   this applies to:
@@ -133,7 +133,7 @@ require('telekasten').setup({
     --     - same_as_current: put all new notes in the dir of the current note if
     --                        present or else in home
     --                        except for notes/with/subdirs/in/title.
-    new_note_location = "smart",
+    new_note_location = "prefer_home",
 
     -- should all links be updated when a file is renamed
     rename_update_links = true,

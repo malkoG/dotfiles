@@ -34,6 +34,9 @@ return require('packer').startup(function(use)
 		requires = { 'renerocksai/calendar-vim' },
 	}
 
+	-- Productivity
+	use { 'wakatime/vim-wakatime' }
+
   -- Developer Experience
   use { "glepnir/dashboard-nvim" }
   use { "gpanders/editorconfig.nvim" }

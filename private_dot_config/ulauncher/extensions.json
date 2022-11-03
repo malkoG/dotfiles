@@ -1,0 +1,16 @@
+{
+	"com.github.compilelife.ulauncher-searchfile": {
+        "url": "https://github.com/compilelife/ulauncher-searchfile", 
+        "last_commit_time": "2018-07-31T01:15:44Z", 
+        "last_commit": "af69a3f041c20cf3d07368e35da63ae35fc3dc74", 
+        "id": "com.github.compilelife.ulauncher-searchfile", 
+        "updated_at": "2018-08-13T16:51:08.917382"
+    }, 
+    "com.github.rolfkoenders.ulauncher-myip": {
+        "url": "https://github.com/RolfKoenders/ulauncher-myip", 
+        "last_commit_time": "2017-12-06T23:01:27Z", 
+        "last_commit": "f40929056c53d7bd866e3825b9b98b4955f82121", 
+        "id": "com.github.rolfkoenders.ulauncher-myip", 
+        "updated_at": "2018-08-07T17:25:12.693955"
+    }
+}

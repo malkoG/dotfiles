@@ -24,6 +24,10 @@ return require('packer').startup(function(use)
     end,
   }
   use { "ahmedkhalf/project.nvim" }
+	use {
+		'romgrk/barbar.nvim',
+		requires = {'kyazdani42/nvim-web-devicons'}
+	}
 
 	-- Theme
 	use { "savq/melange" }

@@ -8,3 +8,5 @@ opt.number = true
 opt.shiftwidth = 4
 opt.tabstop = 4
 
+-- git-gutter settings
+g.gitgutter_set_sign_backgrounds = 1

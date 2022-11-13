@@ -1,0 +1,14 @@
+# /home/kodingwarrior/.config/tmuxinator/youtuber.yml
+
+name: default
+root: ~/
+
+windows:
+  - streaming-editor:
+      layout: main-vertical
+      panes:
+        - vim 
+  - youtube-background:
+      layout: main-vertical
+      panes:
+        - screenkey

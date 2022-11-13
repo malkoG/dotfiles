@@ -10,4 +10,4 @@ windows:
         export ZETTELKASTEN_TARGET="private_wiki" &&
         tmux setenv ZETTELKASTEN_TARGET $ZETTELKASTEN_TARGET
       panes:
-        - vim
+        - vim .

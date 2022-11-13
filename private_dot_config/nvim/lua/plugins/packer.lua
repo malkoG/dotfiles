@@ -62,6 +62,17 @@ return require('packer').startup(function(use)
 	use { "APZelos/blamer.nvim" }
 	use { "tpope/vim-fugitive" }
 	use { "airblade/vim-gitgutter" }
+	use {
+		'pwntester/octo.nvim',
+		requires = {
+			'nvim-lua/plenary.nvim',
+			'nvim-telescope/telescope.nvim',
+			'kyazdani42/nvim-web-devicons',
+		},
+		config = function ()
+			require"octo".setup()
+		end
+	}
 
   -- Testing
   use { "malkoG/vim-test", branch = 'master' }

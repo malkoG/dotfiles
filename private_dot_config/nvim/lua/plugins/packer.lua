@@ -31,6 +31,7 @@ return require('packer').startup(function(use)
 
 	-- Theme
 	use { "savq/melange" }
+	use { "tribela/vim-transparent" }
 
 	-- Zettelkasten
 	use {

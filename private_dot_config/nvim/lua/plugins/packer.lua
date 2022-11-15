@@ -83,6 +83,15 @@ return require('packer').startup(function(use)
 		end
 	}
 
+	-- Made by malkoG
+	use {
+		"~/neovim-plugin/mastodon.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"rcarriga/nvim-notify",
+		}
+	}
+
   -- Testing
   use { "malkoG/vim-test", branch = 'master' }
   use {

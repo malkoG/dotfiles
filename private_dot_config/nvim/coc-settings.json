@@ -1,3 +1,9 @@
 {
-	"elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh"
+  "codeLens.enable": true,
+  "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
+
+  "solargraph.useBundler": true,
+  "solargraph.formatting": true,
+  "solargraph.diagnostics": true,
+  "solargraph.checkGemVersion": true
 }

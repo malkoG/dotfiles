@@ -59,6 +59,25 @@ return require('packer').startup(function(use)
 		end,
 	} -- sticky scroll
 
+	-- persistent database for yanks
+	use({
+		"gbprod/yanky.nvim",
+		requires = { "kkharji/sqlite.lua" },
+		config = function()
+			require("yanky").setup({
+			  ring = {
+				  history_length = 100,
+					storage = "sqlite",
+					sync_with_numbered_registers = true,
+					cancel_event = "update",
+				},
+				system_clipboard = {
+					sync_with_ring = true,
+				},
+      })
+		end
+	})
+
 	-- Git utility
 	use { "APZelos/blamer.nvim" }
 	use { "tpope/vim-fugitive" }

@@ -162,6 +162,17 @@ return require('packer').startup(function(use)
 	-- languages (kotlin)
 	use { "udalov/kotlin-vim" }
 
+	-- languages (dart/flutter)
+	use {
+		'akinsho/flutter-tools.nvim',
+		config = function()
+			require("flutter-tools").setup{}
+		end,
+		requires = {
+			'nvim-lua/plenary.nvim',
+		}
+	}
+
   -- Telescope extensions
   use { "nvim-telescope/telescope-file-browser.nvim" }
 

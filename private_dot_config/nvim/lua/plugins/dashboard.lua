@@ -2,34 +2,34 @@ local db = require('dashboard')
 -- linux
 db.custom_center = {
   {
-	icon = '  ',
+    icon = '  ',
     desc = 'Recent projects                         ',
     action ='Telescope projects'
     -- shortcut = 'SPC s l',
   },
   {
     icon = '  ',
-	desc = 'Recently opened files                   ',
+    desc = 'Recently opened files                   ',
     action =  'DashboardFindHistory'
     -- shortcut = 'SPC f h',
   },
 
   {
-	icon = '  ',
+    icon = '  ',
     desc = 'Find  File                              ',
     action = 'Telescope find_files find_command=rg,--hidden,--files',
     -- shortcut = 'SPC f f',
   },
   {
-	icon = '  ',
+    icon = '  ',
     desc ='File Browser                            ',
     action =  'Telescope file_browser',
     -- shortcut = 'SPC f b',
   },
   {
-	icon = '  ',
+    icon = '  ',
     desc = 'Find  word                              ',
     action = 'Telescope live_grep',
-	-- shortcut = 'SPC f w',
+    -- shortcut = 'SPC f w',
   }
 }

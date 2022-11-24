@@ -84,9 +84,9 @@ function M.setup()
       { name = "emoji" },
       { name = "calc" },
     },
-		window = {
-			documentation = cmp.config.window.bordered(),
-		},
+    window = {
+      documentation = cmp.config.window.bordered(),
+    },
     -- documentation = {
     --  border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     --  winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",

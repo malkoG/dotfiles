@@ -18,23 +18,23 @@ local dynamicn = ls.dynamic_node
 local date = function() return {os.date('%Y-%m-%d')} end
 
 ls.add_snippets(nil, {
-    all = {
-        snip({
-            trig = "date",
-            namr = "Date",
-            dscr = "Date in the form of YYYY-MM-DD",
-        }, {
-            func(date, {}),
-        }),
-    },
+  all = {
+    snip({
+      trig = "date",
+      namr = "Date",
+      dscr = "Date in the form of YYYY-MM-DD",
+    }, {
+      func(date, {}),
+    }),
+  },
 
-		kotlin = {
-				snip({
-						trig = "main-ps",
-						namr = "main function for PS",
-						dscr = "main function definition for Problem Solving",
-				}, {
-						text("fun main(args: Array<String>) = with(Scanner(System.`in`)) {}")
-				})
-		}
+  kotlin = {
+    snip({
+      trig = "main-ps",
+      namr = "main function for PS",
+      dscr = "main function definition for Problem Solving",
+    }, {
+      text("fun main(args: Array<String>) = with(Scanner(System.`in`)) {}")
+    })
+  }
 })

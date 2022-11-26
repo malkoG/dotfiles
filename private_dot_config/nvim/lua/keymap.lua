@@ -35,6 +35,9 @@ vim.api.nvim_create_autocmd('FileType', {
     map('i', "<leader>[", "<cmd>:lua require('telekasten').insert_link({ i=true })<CR>", default_opts)
     map('i', "<leader>zt", "<cmd>:lua require('telekasten').toggle_todo({ i=true })<CR>", default_opts)
     map('i', "<leader>#", "<cmd>lua require('telekasten').show_tags({i = true})<CR>", default_opts)
+
+    -- custom tricky commands
+    map('n', "<leader>Zt", ":lua require('telescope.builtin').live_grep(); vim.api.nvim_feedkeys('TODO', 'n', true);<CR>", default_opts)
   end
 })
 

@@ -1,3 +1,5 @@
+local telescope_builtin = require('telescope.builtin')
+
 local map = vim.api.nvim_set_keymap
 local default_opts = { noremap = true, silent = true }
 local opts = default_opts
@@ -11,6 +13,12 @@ map('n', '<leader>n', ':NvimTreeFindFile<CR>', default_opts) -- search file
 
 -- Testing
 map('n', '<leader>t', ':TestNearest<CR>', default_opts)
+
+-- Telescope
+vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', telescope_builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', telescope_builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', telescope_builtin.help_tags, {})
 
 
 -- Telekasten

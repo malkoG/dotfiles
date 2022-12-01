@@ -58,6 +58,7 @@ return require('packer').startup(function(use)
      require("plugins.treesitter-context")
     end,
   } -- sticky scroll
+  use { "danilamihailov/beacon.nvim" }
 
   -- persistent database for yanks
   use({

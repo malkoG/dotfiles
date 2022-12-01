@@ -1,3 +1,9 @@
+local nvimbattery = {
+  function()
+    return require("battery").get_status_line()
+  end,
+}
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -38,7 +44,9 @@ require('lualine').setup {
     lualine_z = {}
   },
   tabline = {},
-  winbar = {},
+  winbar = {
+    lualine_z = {nvimbattery}
+  },
   inactive_winbar = {},
   extensions = {}
 }

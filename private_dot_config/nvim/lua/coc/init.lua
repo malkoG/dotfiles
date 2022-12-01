@@ -3,6 +3,7 @@ vim.g.coc_global_extensions = {
   'coc-emmet',
   'coc-eslint',
   'coc-html',
+  '@yaegassy/coc-tailwindcss3',
   'coc-json',
   'coc-lua',
   'coc-prettier',

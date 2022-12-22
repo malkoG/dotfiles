@@ -140,7 +140,10 @@ return require('packer').startup(function(use)
     requires = {
       "nvim-lua/plenary.nvim",
       "rcarriga/nvim-notify",
-    }
+    },
+    config = function()
+      require("mastodon").setup()
+    end
   }
 
   -- Testing

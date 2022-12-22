@@ -134,6 +134,15 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- for neovim plugin development
+  use {
+    'folke/neodev.nvim',
+    requires = { "neovim/nvim-lspconfig" },
+    config = function()
+      require('neodev').setup({})
+    end
+  }
+
   -- Made by malkoG
   use {
     "~/neovim-plugin/mastodon.nvim",

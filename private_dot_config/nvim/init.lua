@@ -5,6 +5,9 @@ require('plugins/telescope')
 require('plugins/lualine')
 require('plugins/dashboard')
 require('plugins/blamer')
+
+require('ftplugins.purescript')
+
 require('coc/init')
 require('keymap')
 

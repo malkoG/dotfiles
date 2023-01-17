@@ -24,6 +24,7 @@ function M.setup()
           luasnip = "[Snip]",
           nvim_lua = "[Lua]",
           treesitter = "[Treesitter]",
+          nvim_lsp = "[LSP]",
         })[entry.source.name]
         return vim_item
       end,
@@ -83,6 +84,7 @@ function M.setup()
       { name = "spell" },
       { name = "emoji" },
       { name = "calc" },
+      { name = 'nvim_lsp', keyword_length = 3 },
     },
     window = {
       documentation = cmp.config.window.bordered(),

@@ -198,7 +198,7 @@ return require('packer').startup(function(use)
   -- languages (ruby)
   use { "tpope/vim-rails" }
   use { "vim-ruby/vim-ruby" }
-
+  use { "weizheheng/ror.nvim" }
 
   -- languages (elixir)
   use { "elixir-editors/vim-elixir" }

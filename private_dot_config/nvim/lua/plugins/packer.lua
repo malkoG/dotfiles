@@ -59,6 +59,20 @@ return require('packer').startup(function(use)
 
   -- Productivity
   use { 'wakatime/vim-wakatime' }
+  use { 'github/copilot.vim' }
+  use {
+    "jackMort/ChatGPT.nvim",
+    config = function()
+      require("chatgpt").setup({
+        -- optional configuration
+      })
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  }
 
   -- Developer Experience
   use { "glepnir/dashboard-nvim" }

@@ -237,4 +237,13 @@ return require('packer').startup(function(use)
 
   -- Telescope extensions
   use { "nvim-telescope/telescope-file-browser.nvim" }
+
+
+  -- Infrastructure
+  use {
+    "skanehira/denops-docker.vim",
+    requires = {
+      "vim-denops/denops.vim",
+    }
+  }
 end)

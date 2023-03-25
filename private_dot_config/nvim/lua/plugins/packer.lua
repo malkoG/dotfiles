@@ -241,6 +241,9 @@ return require('packer').startup(function(use)
   -- languages (fennel)
   use { "bakpakin/fennel.vim" }
 
+  -- languages (typescript)
+  use { 'nikvdp/ejs-syntax' }
+
   -- languages (purescript)
   use { "purescript-contrib/purescript-vim" }
   use { "vmchale/dhall-vim" }

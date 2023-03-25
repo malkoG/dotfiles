@@ -25,6 +25,12 @@ return require('packer').startup(function(use)
   }
   use { "ahmedkhalf/project.nvim" }
   use {
+    "terrortylor/nvim-comment",
+    config = function()
+      require("nvim_comment").setup()
+    end
+  }
+  use {
     'romgrk/barbar.nvim',
     requires = {'kyazdani42/nvim-web-devicons'}
   }

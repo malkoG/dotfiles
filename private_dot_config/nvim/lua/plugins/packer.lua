@@ -97,6 +97,7 @@ return require('packer').startup(function(use)
     end,
   } -- sticky scroll
   use { "danilamihailov/beacon.nvim" }
+  use { "cappyzawa/trim.nvim" }
 
   -- persistent database for yanks
   use({

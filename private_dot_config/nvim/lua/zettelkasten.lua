@@ -1,8 +1,9 @@
 
+local home_path = os.getenv('HOME')
 
-local wiki_path = "/home/kodingwarrior/kodingwarrior.github.io/src/_wiki"
+local wiki_path = home_path .. "/kodingwarrior.github.io/src/_wiki"
 if os.getenv('ZETTELKASTEN_TARGET') == 'private_wiki' then
-  wiki_path = "/home/kodingwarrior/kojima-wiki"
+  wiki_path = home_path .. "/kojima-wiki"
 end
 
 

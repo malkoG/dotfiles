@@ -76,7 +76,8 @@ return require('packer').startup(function(use)
     requires = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
+      "nvim-telescope/telescope.nvim",
+      "~/neovim-plugin/vault.nvim"
     }
   }
 
@@ -173,6 +174,13 @@ return require('packer').startup(function(use)
     },
     config = function()
       require("mastodon").setup()
+    end
+  }
+  use {
+    "~/neovim-plugin/vault.nvim",
+    config = function()
+      -- With this configuration, you can setup your environment varaibles safely without exposing them to the world
+      require("vault").setup({})
     end
   }
 

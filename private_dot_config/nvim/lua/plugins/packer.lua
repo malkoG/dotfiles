@@ -197,11 +197,13 @@ return require('packer').startup(function(use)
     end
   }
   use {
-    "~/neovim-plugin/vault.nvim",
-    config = function()
-      -- With this configuration, you can setup your environment varaibles safely without exposing them to the world
-      require("vault").setup({})
-    end
+    "~/neovim-plugin/aladin.nvim",
+    requires = {
+      "Olical/aniseed",
+      "nvim-lua/plenary.nvim",
+      'nvim-telescope/telescope.nvim',
+    },
+    run = "make",
   }
 
   -- Testing

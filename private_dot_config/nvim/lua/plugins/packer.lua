@@ -1,6 +1,19 @@
 vim.cmd [[packadd packer.nvim]]
 
+local home_path = os.getenv("HOME")
+
 return require('packer').startup(function(use)
+  use {
+    "~/neovim-plugin/vault.nvim",
+    config = function()
+      -- With this configuration, you can setup your environment varaibles safely without exposing them to the world
+      require("vault").setup({
+        key_path = home_path .. "/.local/share/vault.key",
+        encrypted_file_path = home_path .. "/.local/share/vault.json.enc"
+      })
+    end
+  }
+
   use {
     'kyazdani42/nvim-tree.lua',
     requires = {

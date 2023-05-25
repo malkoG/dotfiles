@@ -281,6 +281,9 @@ return require('packer').startup(function(use)
   use { "purescript-contrib/purescript-vim" }
   use { "vmchale/dhall-vim" }
 
+  -- languages (rescript)
+  use { 'rescript-lang/vim-rescript' }
+
   -- Telescope extensions
   use { "nvim-telescope/telescope-file-browser.nvim" }
 

@@ -5,5 +5,15 @@
   "solargraph.useBundler": true,
   "solargraph.formatting": true,
   "solargraph.diagnostics": true,
-  "solargraph.checkGemVersion": true
+  "solargraph.checkGemVersion": true,
+  "snippets.ultisnips.pythonPrompt": false,
+  "languageserver": {
+    "rescript": {
+      "enable": true,
+      "module": "~/.local/share/nvim/site/pack/packer/start/vim-rescript/server/out/server.js",
+      "args": ["--node-ipc"],
+      "filetypes": ["rescript"],
+      "rootPatterns": ["bsconfig.json"]
+    }
+  }
 }

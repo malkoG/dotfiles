@@ -15,5 +15,7 @@
       "filetypes": ["rescript"],
       "rootPatterns": ["bsconfig.json"]
     }
-  }
+  },
+
+  "dart.lineLength": 120
 }

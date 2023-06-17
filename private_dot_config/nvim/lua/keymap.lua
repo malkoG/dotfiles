@@ -6,6 +6,10 @@ local opts = default_opts
 
 local augroup = vim.api.nvim_create_augroup('user_cmds', {clear = true})
 
+-- Copilot
+vim.g.copilot_no_tab_map = true
+map('i', '<C-J>', '<Plug>copilot#Accept("\\<CR>")', default_opts)
+
 -- nvim-tree
 map('n', '<C-n>', ':NvimTreeToggle<CR>', default_opts)       -- open/close
 map('n', '<leader>r', ':NvimTreeRefresh<CR>', default_opts)  -- refresh

@@ -87,6 +87,17 @@ map('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', opts)
 map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)
 map('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', opts)
 map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
+
+-- ror.nvim
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {'ruby'},
+  group = augroup,
+  desc = 'Only works on ruby files',
+  callback = function(event)
+    map("n", "<Leader>rc", ":lua require('ror.commands').list_commands()<CR>", opts)
+  end
+})
+
 -- Utility functions for Note taking
 vim.api.nvim_create_autocmd('FileType', {
   pattern = {'markdown'},

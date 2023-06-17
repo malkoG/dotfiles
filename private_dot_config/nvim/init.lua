@@ -3,7 +3,6 @@ require('settings')
 require('plugins/nvim-tree')
 require('plugins/telescope')
 require('plugins/lualine')
-require('plugins/dashboard')
 require('plugins/blamer')
 
 require('ftplugins.purescript')

@@ -94,15 +94,20 @@ return require('packer').startup(function(use)
     }
   }
   use {
-    "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    'phaazon/mind.nvim',
+    branch = 'v2.2',
+    requires = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require("todo-comments").setup({})
+      require'mind'.setup({
+        persistence = {
+          state_path = "/home/kodingwarrior/Dropbox/mind-vault/mind.json",
+          data_dir = "/home/kodingwarrior/Dropbox/mind-vault/data",
+        }
+      })
     end
   }
 
   -- Developer Experience
-  use { "glepnir/dashboard-nvim" }
   use { "gpanders/editorconfig.nvim" }
 
   use {

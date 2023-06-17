@@ -13,7 +13,17 @@ require'nvim-treesitter.configs'.setup {
     "kotlin",
     "fennel",
   },
-
+  textobjects = {
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<leader>n"] = "@function.outer",
+      },
+      swap_previous = {
+        ["<leader>N"] = "@function.outer",
+      },
+    },
+  },
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
 

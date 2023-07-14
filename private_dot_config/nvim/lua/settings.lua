@@ -5,6 +5,7 @@ local g = vim.g           -- global variables
 local opt = vim.opt           -- global/buffer/windows-scoped options
 
 opt.number = true
+opt.relativenumber = true
 opt.shiftwidth = 4
 opt.tabstop = 4
 opt.colorcolumn = "120"

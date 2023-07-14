@@ -65,4 +65,23 @@ table.insert(
 	}
 )
 
+-- Moving cursor within prompt
+local cursor_related_keymaps = {
+	-- Make Option-Left equivalent to Alt-b which many line editors interpret as backward-word
+	{ key = "LeftArrow", mods = "OPT", action = wezterm.action { SendString = "\x1bb" } },
+	-- Make Option-Right equivalent to Alt-f; forward-word
+	{ key = "RightArrow", mods = "OPT", action = wezterm.action { SendString= "\x1bf" } },
+}
+
+for _, keymap in ipairs(cursor_related_keymaps) do
+	table.insert(
+		keymaps,
+		{
+			key = keymap.key,
+			mods = keymap.mods,
+			action = keymap.action
+		}
+	)
+end
+
 return keymaps

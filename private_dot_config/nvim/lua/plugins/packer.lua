@@ -130,6 +130,15 @@ return require('packer').startup(function(use)
   use { "danilamihailov/beacon.nvim" }
   use { "cappyzawa/trim.nvim" }
 
+  -- for super fast code navigation
+  use {
+    "ggandor/leap.nvim",
+    requries = { "tpope/vim-repeat" },
+    config = function()
+      require('leap').add_default_mappings()
+    end
+  }
+
   -- persistent database for yanks
   use({
     "gbprod/yanky.nvim",

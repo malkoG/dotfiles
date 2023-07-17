@@ -26,7 +26,6 @@ require('lualine').setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {require'tabline'.tabline_buffers},
     lualine_x = {
       'encoding',
       'fileformat',

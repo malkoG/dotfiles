@@ -12,6 +12,7 @@ require'nvim-treesitter.configs'.setup {
     "elixir",
     "kotlin",
     "fennel",
+    "hcl",
   },
   textobjects = {
     swap = {

@@ -24,6 +24,9 @@ vim.keymap.set('n', '<leader>fg', telescope_builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', telescope_builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', telescope_builtin.help_tags, {})
 
+vim.keymap.set('n', '<leader>fl', telescope_builtin.git_commits, {})
+vim.keymap.set('n', '<leader>fL', telescope_builtin.git_bcommits, {})
+vim.keymap.set('n', '<leader>fB', telescope_builtin.git_branches, {})
 
 -- Telekasten
 vim.api.nvim_create_autocmd('FileType', {

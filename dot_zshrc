@@ -508,3 +508,5 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 
 export RUST_BACKTRACE="full"
 
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+

@@ -503,3 +503,6 @@ if [ -f '/home/kodingwarrior/tmp/google-cloud-sdk/completion.zsh.inc' ]; then . 
 export FLYCTL_INSTALL="$HOME/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
+export DENO_INSTALL="/home/kodingwarrior/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+

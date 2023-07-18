@@ -510,3 +510,5 @@ export RUST_BACKTRACE="full"
 
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 
+export PATH="$PATH":"/usr/share/idea/bin"
+

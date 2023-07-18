@@ -107,6 +107,12 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- Assists developing treesitter-based tools
+  use {
+    "nvim-treesitter/playground",
+    requires = "nvim-treesitter/nvim-treesitter"
+  }
+
   -- Developer Experience
   use { "gpanders/editorconfig.nvim" }
 

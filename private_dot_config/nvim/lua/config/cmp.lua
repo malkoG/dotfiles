@@ -25,6 +25,7 @@ function M.setup()
           nvim_lua = "[Lua]",
           treesitter = "[Treesitter]",
           nvim_lsp = "[LSP]",
+          emoji = "[Emoji]",
         })[entry.source.name]
         return vim_item
       end,

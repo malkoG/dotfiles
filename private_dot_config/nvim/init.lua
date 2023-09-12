@@ -10,6 +10,9 @@ require('ftplugins.purescript')
 local scheduler = require('utilities.scheduler')
 
 vim.g.slotted_schedules = {
+	{ message = "Beginning Morning Routine", hour = 07, minute = 30 },
+	{ message = "Finishing Morning Routine", hour = 09, minute = 30 },
+
   { message = "Beginning Slot 1", hour = 10, minute = 00 },
   { message = "Finishing Slot 1", hour = 13, minute = 30 },
 

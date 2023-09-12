@@ -18,6 +18,8 @@ vim.g.slotted_schedules = {
 
   { message = "Beginning Slot 3", hour = 19, minute = 30 },
   { message = "Finishing Slot 3", hour = 23, minute = 00 },
+
+	{ message = "Time to Bed!!!!", hour = 00, minute = 30 },
 }
 
 scheduler.notify_schedule()

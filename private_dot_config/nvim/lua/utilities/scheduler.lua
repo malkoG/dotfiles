@@ -26,9 +26,11 @@ M.notify_schedule = function()
         vim.notify(schedule.message, vim.log.levels.INFO)
       end
     end
+
+    vim.defer_fn(notify, 1500)
   end
 
-  vim.defer_fn(notify, 1000)
+  notify()
 end
 
 return M

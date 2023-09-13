@@ -37,6 +37,7 @@ return require('packer').startup(function(use)
     end,
   }
   use { "ahmedkhalf/project.nvim" }
+  use { "nvim-pack/nvim-spectre" }
   use {
     "terrortylor/nvim-comment",
     config = function()

@@ -16,6 +16,8 @@
       "rootPatterns": ["bsconfig.json"]
     }
   },
-
+  "coc.preferences.formatOnSaveFiletypes": [
+	"dart"
+  ],
   "dart.lineLength": 120
 }

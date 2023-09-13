@@ -22,6 +22,9 @@ vim.g.slotted_schedules = {
   { message = "Beginning Slot 3", hour = 19, minute = 30 },
   { message = "Finishing Slot 3", hour = 23, minute = 00 },
 
+  { message = "Beginning Streaming", hour = 22, minute = 30 },
+  { message = "Finishing Streaming", hour = 23, minute = 45 },
+
 	{ message = "Time to Bed!!!!", hour = 00, minute = 30 },
 }
 

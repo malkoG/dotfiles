@@ -77,6 +77,7 @@ function M.setup()
       }),
     },
     sources = {
+      { name = 'nvim_lsp', keyword_length = 3 },
       { name = "treesitter" },
       { name = "buffer" },
       { name = "luasnip" },
@@ -85,7 +86,6 @@ function M.setup()
       { name = "spell" },
       { name = "emoji" },
       { name = "calc" },
-      { name = 'nvim_lsp', keyword_length = 3 },
     },
     window = {
       documentation = cmp.config.window.bordered(),

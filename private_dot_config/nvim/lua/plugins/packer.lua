@@ -96,19 +96,6 @@ return require('packer').startup(function(use)
   use ({
     "Bryley/neoai.nvim",
     requires = { "MunifTanjim/nui.nvim" },
-    cmd = {
-      "NeoAI",
-      "NeoAIOpen",
-      "NeoAIClose",
-      "NeoAIToggle",
-      "NeoAIContext",
-      "NeoAIContextOpen",
-      "NeoAIContextClose",
-      "NeoAIInject",
-      "NeoAIInjectCode",
-      "NeoAIInjectContext",
-      "NeoAIInjectContextCode",
-    },
     config = function()
       require("neoai").setup({
         -- Below are the default options, feel free to override what you would like changed

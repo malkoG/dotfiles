@@ -12,3 +12,5 @@ opt.colorcolumn = "120"
 
 -- git-gutter settings
 g.gitgutter_set_sign_backgrounds = 1
+
+vim.cmd [[ source ~/.config/nvim/lua/copilot.vim ]]

@@ -271,6 +271,13 @@ return require('packer').startup(function(use)
     end
   }
 
+  use {
+    'rcarriga/nvim-notify',
+    config = function()
+      require('notify').setup({ top_down = false })
+    end
+  }
+
   -- Made by malkoG
   use {
     "~/neovim-plugin/mastodon.nvim",

@@ -1,0 +1,20 @@
+# /home/kodingwarrior/.config/tmuxinator/dotfiles.yml
+
+name: dotfiles
+root: ~/
+
+windows:
+  - neovim:
+      layout: main-vertical
+      pre: cd ~/.config/nvim/
+      panes:
+        - vim .
+  - wezterm:
+      layout: main-vertical
+      pre: cd ~/.config/wezterm
+      panes:
+        - vim .
+  - chezmoi:
+      layout: main-vertical
+      panes:
+        - chezmoi cd

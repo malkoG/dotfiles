@@ -1,0 +1,21 @@
+# /home/kodingwarrior/.config/tmuxinator/blogging.yml
+
+name: blogging
+root: ~/
+
+windows:
+  - wiki-editor:
+      layout: main-vertical
+      pre: cd ~/kodingwarrior.github.io/
+      panes:
+        - vim .
+  - wiki-builder:
+      layout: main-vertical
+      pre: cd ~/kodingwarrior.github.io/
+      panes:
+        - bundle exec bridgetown dev
+  - cheatsheet:
+      layout: main-vertical
+      pre: cd ~/kodingwarrior.github.io/
+      panes:
+        - vi src/_wiki/workbench/cheatsheet.md

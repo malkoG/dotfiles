@@ -379,6 +379,12 @@ ZSH_THEME="agnoster"
 # An empty array have no effect
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
+if [ "$(uname)" = "Darwin" ]; then
+	export ANDROID_HOME=$HOME/Library/Android/Sdk
+elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
+	export ANDROID_HOME=$HOME/Android/Sdk
+fi
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -464,7 +470,6 @@ alias d="deletemark"
 alias p="showmarks"
 alias l="showmarks"
 
-export ANDROID_HOME=$HOME/Android/Sdk
 
 [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
 

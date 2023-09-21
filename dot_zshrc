@@ -520,4 +520,6 @@ export PATH="$PATH":"/usr/share/idea/bin"
 
 if [ "$(uname)" = "Darwin" ]; then
 	source ~/credentials.sh
+elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
+	source ~/credentials.sh
 fi

@@ -518,3 +518,6 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 export PATH="$PATH":"/usr/share/idea/bin"
 
+if [ "$(uname)" = "Darwin" ]; then
+	source ~/credentials.sh
+fi

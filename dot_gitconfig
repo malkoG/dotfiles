@@ -1,0 +1,7 @@
+[user]
+	name = malkoG
+	email = rijgndqw012@gmail.com
+[safe]
+	directory = $HOME/.oh-my-zsh
+[pull]
+	rebase = true

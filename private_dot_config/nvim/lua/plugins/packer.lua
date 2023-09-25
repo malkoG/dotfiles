@@ -1,6 +1,10 @@
 vim.cmd [[packadd packer.nvim]]
 
 local home_path = os.getenv("HOME")
+local discord_presence_mode = os.getenv("DISCORD_PRESENCE_MODE")
+if discord_presence_mode == nil then
+  discord_presence_mode = "office"
+end
 
 return require('packer').startup(function(use)
   use {
@@ -166,6 +170,27 @@ return require('packer').startup(function(use)
         }
       })
     end
+  }
+
+  -- Discord Rich Presence
+  use {
+	"andweeb/presence.nvim",
+	config = function()
+	  require("presence").setup({
+		main_image = "neovim",
+		neovim_image_text = "King god general majesty editor",
+		debounce_timeout = 100,
+		show_button = discord_presence_mode == "home",
+
+		editing_text = "" .. (discord_presence_mode == "home" and "Editing %s" or ""),
+		file_explorer_text = "" .. (discord_presence_mode == "home" and "Browsing %s" or ""),
+		git_commit_text = "" .. (discord_presence_mode == "home" and "Committing changes" or ""),
+		plugin_manager_text = "" .. (discord_presence_mode == "home" and "Managing plugins" or ""),
+		reading_text = "" .. (discord_presence_mode == "home" and "Reading %s" or ""),
+		workspace_text = "" .. (discord_presence_mode == "home" and "Working on %s" or ""),
+		line_number_text = "" .. (discord_presence_mode == "home" and "Line %s out of %s" or ""),
+	  })
+	end
   }
 
   -- Assists developing treesitter-based tools

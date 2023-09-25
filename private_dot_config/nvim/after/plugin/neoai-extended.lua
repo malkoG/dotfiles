@@ -17,6 +17,23 @@ local inject_commit_message = function()
   )
 end
 
+local textify_commit_message = function()
+	vim.ui.select( 
+		{ "korean", "english" },
+		{
+			prompt = "Select language: ",
+		},
+		function(language)
+			if language ~= nil then 
+				local prompt = require('utilities.prompt-engineering').generate_modified_commit_message(language)
+				local start_line = vim.fn.line("'<")
+				local end_line = vim.fn.line("'>")
+				require("neoai").context_inject(prompt, nil, start_line, end_line)
+			end
+		end
+	)
+end
+
 local inject_docstring = function()
   local docstring_formats = { 
 	["python"] =  "reST" ,
@@ -65,6 +82,7 @@ local inject_docstring = function()
 end
 
 vim.api.nvim_create_user_command("InjectCommitMessage", inject_commit_message, {})
+vim.api.nvim_create_user_command("TextifyCommitMessage", textify_commit_message, { range = true })
 vim.api.nvim_create_user_command("InjectDocstring", inject_docstring, { range = true })
 
 

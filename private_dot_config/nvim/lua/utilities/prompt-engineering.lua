@@ -18,6 +18,43 @@ M.generate_commit_message = function(language)
   return prompt
 end
 
+M.generate_modified_commit_message = function(language)
+  local buffer = vim.api.nvim_get_current_buf()
+  local lines = vim.api.nvim_buf_get_lines(buffer, 0, -1, false)
+
+  local start_line = vim.fn.line("'<")
+  local end_line = vim.fn.line("'>")
+
+  local lines_to_modify = {}
+  for i = start_line, end_line do
+    table.insert(lines_to_modify, lines[i])
+  end
+
+  local prompt = [[
+      Here is an incomplete commit message that you need to modify:
+
+      ```
+  ]] .. table.concat(lines_to_modify, "\n") .. [[
+
+      ```
+
+      Using the following git diff generate a consise and
+      clear and appropriate git commit message, with a short title summary
+      that is 75 characters or less
+  ]] .. " and you should generate commit message in " .. language .. [[:
+  ]] .. [[
+  ```
+  ]] .. vim.fn.system("git diff --cached")
+  .. [[
+  ```
+
+  * You SHOULD give me commit message immediately.
+  * You DON'T NEED TO explain unnecessary things.
+  ]]
+
+  return prompt
+end
+
 M.generate_docstring = function(language, docstring_format)
   local buffer = vim.api.nvim_get_current_buf()
   local filetype = vim.api.nvim_buf_get_option(buffer, "filetype")

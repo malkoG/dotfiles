@@ -182,13 +182,13 @@ return require('packer').startup(function(use)
 		debounce_timeout = 100,
 		show_button = discord_presence_mode == "home",
 
-		editing_text = "" .. (discord_presence_mode == "home" and "Editing %s" or ""),
-		file_explorer_text = "" .. (discord_presence_mode == "home" and "Browsing %s" or ""),
+		editing_text = "" .. (discord_presence_mode == "home" and "Editing %s" or "Editing secret project"),
+		file_explorer_text = "" .. (discord_presence_mode == "home" and "Browsing %s" or "Browsing secret file"),
 		git_commit_text = "" .. (discord_presence_mode == "home" and "Committing changes" or ""),
 		plugin_manager_text = "" .. (discord_presence_mode == "home" and "Managing plugins" or ""),
-		reading_text = "" .. (discord_presence_mode == "home" and "Reading %s" or ""),
-		workspace_text = "" .. (discord_presence_mode == "home" and "Working on %s" or ""),
-		line_number_text = "" .. (discord_presence_mode == "home" and "Line %s out of %s" or ""),
+		reading_text = "" .. (discord_presence_mode == "home" and "Reading %s" or ":blobawesome:"),
+		workspace_text = "" .. (discord_presence_mode == "home" and "Working on %s" or "Working on secret project"),
+		line_number_text = "" .. (discord_presence_mode == "home" and "Line %s out of %s" or ":blobsad:"),
 	  })
 	end
   }

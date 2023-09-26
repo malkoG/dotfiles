@@ -56,6 +56,17 @@ vim.api.nvim_create_autocmd('FileType', {
   end
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {'http'},
+  group = augroup,
+  desc = 'Only works on http files',
+  callback = function(event)
+	map('n', "<leader>t", "<Plug>RestNvim", default_opts)
+	map('n', "<leader>tp", "<Plug>RestNvimPreview", default_opts)
+	map('n', "<leader>tt", "<Plug>RestNvimLast", default_opts)
+  end
+})
+
 -- Barbar related keymaps
 
 -- Move to previous/next

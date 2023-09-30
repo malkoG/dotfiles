@@ -358,7 +358,13 @@ return require('packer').startup(function(use)
       "rcarriga/nvim-notify",
     },
     config = function()
-      require("mastodon").setup()
+      require("mastodon").setup({
+        -- keymaps = {
+        --   ["system-wide-keymaps"] = {
+        --     ["home-timeline"] = "<space>mh"
+        --   }
+        -- }
+      })
     end
   }
   use {

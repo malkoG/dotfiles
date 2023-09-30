@@ -73,6 +73,9 @@ return require('packer').startup(function(use)
 
   -- Theme
   use { "savq/melange" }
+  use { "catppuccin/nvim", as = "catppuccin" }
+  use { "folke/tokyonight.nvim" }
+  use { 'AlexvZyl/nordic.nvim' }
   use { "tribela/vim-transparent" }
 
   -- Zettelkasten

@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local actions = require("actions")
 local keymaps = require("keymaps")
 
 return {

@@ -84,4 +84,22 @@ for _, keymap in ipairs(cursor_related_keymaps) do
 	)
 end
 
+table.insert(
+	keymaps,
+	{
+		key = "Z",
+		mods = 'SHIFT|CTRL',
+		action = wezterm.action.EmitEvent 'decrease-opacity',
+	}
+)
+
+table.insert(
+	keymaps,
+	{
+		key = 'X',
+		mods = 'SHIFT|CTRL',
+		action = wezterm.action.EmitEvent 'increase-opacity',
+	}
+)
+
 return keymaps

@@ -7,6 +7,7 @@ windows:
   - editor:
       layout: main-vertical
       pre: cd ~/kojima-wiki/ &&
+        export NEOVIM_THEME=nordic &&
         export ZETTELKASTEN_TARGET="private_wiki" &&
         tmux setenv ZETTELKASTEN_TARGET $ZETTELKASTEN_TARGET
       panes:

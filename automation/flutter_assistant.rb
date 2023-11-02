@@ -48,6 +48,35 @@ module FlutterAssistant
         end
       end
 
+      module PubspecUtils
+        class << self
+          def pubspec_path
+            "#{File.expand_path('.')}/pubspec.yaml"
+          end
+
+          def load_pubspec_file
+            YAML.load(File.read(pubspec_path))
+          end
+
+          def increment_build_number(pubspec)
+            version = pubspec["version"] || "1.0.0+1"
+            
+            version_name, build_number = version.split('+')
+            next_build_number = build_number.to_i + 1
+
+            updated_version = "#{version_name}+#{next_build_number}"
+
+            pubspec.merge!({"version" => updated_version})
+            pubspec
+          end
+
+          def increment_version!(pubspec)
+            result = increment_build_number(pubspec)
+            File.write(pubspec_path, YAML.dump(result))
+          end
+        end
+      end
+
       extend Dry::CLI::Registry
 
       class Version < Dry::CLI::Command

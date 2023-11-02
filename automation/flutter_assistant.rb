@@ -1,5 +1,6 @@
-require 'shellwords'
 require 'fileutils'
+require 'yaml'
+require 'shellwords'
 require 'optparse'
 
 require 'dry/cli'

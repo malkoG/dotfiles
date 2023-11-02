@@ -67,6 +67,14 @@ module FlutterAssistant
         end
       end
 
+      class ExaminePubspec < Dry::CLI::Command
+        desc "examine pubspec.yaml file"
+
+        def call(*)
+          pp load_pubspec_file
+        end
+      end
+
       module Android
         class GenerateKeystore < Dry::CLI::Command
           desc "Generate keystore file"
@@ -99,6 +107,7 @@ module FlutterAssistant
 
       register "apply_logo", ApplyLogo
       register "version", Version, aliases: ["v", "-v", "--version"]
+      register "examine_pubspec", ExaminePubspec
 
       register "android" do |prefix|
         prefix.register "generate_keystore", Android::GenerateKeystore

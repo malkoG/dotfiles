@@ -7,6 +7,12 @@ require 'dry/cli'
 module FlutterAssistant
   module CLI
     module Commands
+      def self.run(line, level: "info")
+        Logger.log("Running `#{line}`", level:)
+
+        `#{line}`
+      end
+
       module Logger
         class << self
           def log(line, level:)

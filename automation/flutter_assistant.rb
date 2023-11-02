@@ -7,6 +7,41 @@ require 'dry/cli'
 module FlutterAssistant
   module CLI
     module Commands
+      module Logger
+        class << self
+          def log(line, level:)
+            color = 
+              case level
+              when "info" then :white
+              when "error" then :red
+              when "debug" then :bright_cyan
+              else
+                ""
+              end
+
+            puts "[#{level}] #{colorize(line, color)}"
+          end
+
+          def colorize(line, color)
+            ansi_code = 
+              case color
+              when :black then "\e[30m"
+              when :red then "\e[31m"
+              when :blue then "\e[34m"
+              when :white then "\e[37m"
+              when :bright_cyan then "\e[1m\e[36m"
+              else
+                ""
+              end
+
+            return line if ansi_code.empty?
+
+            reset_character = "\e[0m"
+            ansi_code + line + reset_character
+          end
+        end
+      end
+
       extend Dry::CLI::Registry
 
       class Version < Dry::CLI::Command

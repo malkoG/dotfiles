@@ -58,6 +58,15 @@ module FlutterAssistant
         end
       end
 
+      class ApplyLogo < Dry::CLI::Command
+        desc "apply logo automatically based on `flutter_launcher_icons.yaml`"
+
+        def call(*)
+          Logger.log('Applying logo', level: 'debug')
+          Commands.run('flutter pub run flutter_launcher_icons')
+        end
+      end
+
       module Android
         class GenerateKeystore < Dry::CLI::Command
           desc "Generate keystore file"
@@ -88,6 +97,7 @@ module FlutterAssistant
         end
       end
 
+      register "apply_logo", ApplyLogo
       register "version", Version, aliases: ["v", "-v", "--version"]
 
       register "android" do |prefix|

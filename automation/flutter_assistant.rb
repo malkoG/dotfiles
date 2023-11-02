@@ -142,6 +142,27 @@ module FlutterAssistant
             FileUtils.cd(target_path)
           end
         end
+
+        class Release < Dry::CLI::Command
+          desc "Build flutter app in release mode"
+
+          option :build_type, required: true, default: "apk"
+          example [ 
+            "--build_type=apk # blah",
+            "--build_type=aab # blah"
+          ]
+
+          def call(build_type:, **)
+            pubspec = PubspecUtils.load_pubspec_file
+            Logger.log("Upgrading build number. (current version is #{pubspec['version']})", level: "debug")
+            PubspecUtils.increment_version!(pubspec)
+
+            pubspec = PubspecUtils.load_pubspec_file
+            Logger.log("Upgraded build number. (current version is #{pubspec['version']})", level: "debug")
+
+            Commands.run('flutter build apk --release')
+          end
+        end
       end
 
       register "apply_logo", ApplyLogo
@@ -150,6 +171,7 @@ module FlutterAssistant
 
       register "android" do |prefix|
         prefix.register "generate_keystore", Android::GenerateKeystore
+        prefix.register "release",  Android::Release
       end
     end
   end

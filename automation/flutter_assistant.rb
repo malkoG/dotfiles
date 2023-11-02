@@ -110,16 +110,23 @@ module FlutterAssistant
 
           argument :project_name, required: true, desc: "Current project's name"
 
-          example ["FooBar", "foo_bar", "fooBar"]
+          example [
+            "FooBar   # supports PascalCase", 
+            "foo_bar  # supports snake_case", 
+            "fooBar   # supports camelCase"
+          ]
 
           def call(project_name:, **)
             original_path = File.expand_path(".").to_s
             target_path = File.expand_path("./android/app").to_s
             FileUtils.cd(target_path)
+            Logger.log("Moved to #{target_path}", level: "debug")
+
             downscored_name = project_name.downcase
             kebabcased_name = downscored_name.gsub('_', '-')
             command = Shellwords.join(['keytool', '-genkey', '-v', '-keystore', "#{kebabcased_name}-release.jks", '-alias', downscored_name, '-keyalg', 'RSA', '-keysize', '2048', '-validity', '10000'])
-            `#{command}`
+
+            Commands.run(command)
 
             properties = <<~KEYSTORE
               storePassword=
@@ -129,6 +136,8 @@ module FlutterAssistant
             KEYSTORE
 
             File.write("#{target_path}/key.properties", properties)
+            Logger.log("Generating key.properties", level: "debug")
+
             FileUtils.cd(target_path)
           end
         end

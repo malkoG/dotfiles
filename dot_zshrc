@@ -523,3 +523,14 @@ if [ "$(uname)" = "Darwin" ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
 	source ~/credentials.sh
 fi
+
+# ============================
+# Custom aliases for my own use 
+# most of these have their own prefix
+#
+# fl - automation script for flutter
+export FLUTTER_AUTOMATION='ruby ~/automation/flutter_assistant.rb'
+alias flp="$FLUTTER_AUTOMATION examine_pubspec"
+alias fll="$FLUTTER_AUTOMATION apply_logo"
+alias fladr="$FLUTTER_AUTOMATION android release"
+# ============================

@@ -101,7 +101,12 @@ module FlutterAssistant
         desc "examine pubspec.yaml file"
 
         def call(*)
-          pp load_pubspec_file
+          pp PubspecUtils.load_pubspec_file
+
+          socket_address = ENV['NVIM_SOCKET_REMOTE_ADDRESS'] || ""
+          unless socket_address.empty?
+            Commands.run("nvr --servername #{socket_address} --remote-tab pubspec.yaml")
+          end
         end
       end
 

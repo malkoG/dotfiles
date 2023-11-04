@@ -224,6 +224,14 @@ return require('packer').startup(function(use)
   } -- sticky scroll
   use { "danilamihailov/beacon.nvim" }
   use { "cappyzawa/trim.nvim" }
+  use {
+    "folke/paint.nvim",
+    requires = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      local rules = require("config.painting_rules")
+      require("paint").setup(rules)
+    end
+  }
 
   use {
     "rest-nvim/rest.nvim",

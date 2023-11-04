@@ -1,6 +1,6 @@
 # /home/kodingwarrior/.config/tmuxinator/youtuber.yml
 
-name: default
+name: youtuber
 root: ~/
 
 windows:

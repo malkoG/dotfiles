@@ -1,0 +1,14 @@
+# /home/kodingwarrior/.config/tmuxinator/slides.yml
+
+name: slides
+root: ~/slides
+
+windows:
+  - slides-editor:
+      layout: main-vertical
+      panes:
+        - vim .
+  - slides-builder:
+      layout: main-vertical
+      panes:
+        - yarn start

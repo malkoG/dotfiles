@@ -16,6 +16,8 @@ local choice = ls.choice_node
 local dynamicn = ls.dynamic_node
 
 local date = function() return {os.date('%Y-%m-%d')} end
+local yesterday = function() return { os.date('%Y-%m-%d', os.time() - 60 * 60 * 24) } end
+local tomorrow = function() return { os.date('%Y-%m-%d', os.time() + 60 * 60 * 24) } end
 
 ls.add_snippets(nil, {
   all = {
@@ -25,6 +27,20 @@ ls.add_snippets(nil, {
       dscr = "Date in the form of YYYY-MM-DD",
     }, {
       func(date, {}),
+    }),
+    snip({
+      trig = "yesterday",
+      namr = "Yesterday",
+      dscr = "Yesterday in the form of YYYY-MM-DD",
+    }, {
+      func(yesterday, {}),
+    }),
+    snip({
+      trig = "tomorrow",
+      namr = "Tomorrow",
+      dscr = "Tomorrow in the form of YYYY-MM-DD",
+    }, {
+      func(tomorrow, {}),
     }),
   },
 

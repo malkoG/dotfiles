@@ -166,6 +166,7 @@ module FlutterAssistant
             Logger.log("Upgraded build number. (current version is #{pubspec['version']})", level: "debug")
 
             Commands.run('flutter build apk --release')
+            Commands.run('cd build/app/outputs/flutter-apk && open .')
           end
         end
       end

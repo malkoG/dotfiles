@@ -146,5 +146,7 @@ fi
 export FLUTTER_AUTOMATION='ruby ~/automation/flutter_assistant.rb'
 alias flp="$FLUTTER_AUTOMATION examine_pubspec"
 alias fll="$FLUTTER_AUTOMATION apply_logo"
+alias flbr="$FLUTTER_AUTOMATION execute_build_runner"
+
 alias fladr="$FLUTTER_AUTOMATION android release"
 # ============================

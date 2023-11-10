@@ -97,6 +97,14 @@ module FlutterAssistant
         end
       end
 
+      class ExecuteBuildRunner < Dry::CLI::Command
+        desc "execute flutter's build_runner command"
+
+        def call(*)
+          Commands.run('flutter pub run build_runner watch --delete-conflicting-outputs')
+        end
+      end
+
       class ExaminePubspec < Dry::CLI::Command
         desc "examine pubspec.yaml file"
 
@@ -174,6 +182,7 @@ module FlutterAssistant
       register "apply_logo", ApplyLogo
       register "version", Version, aliases: ["v", "-v", "--version"]
       register "examine_pubspec", ExaminePubspec
+      register "execute_build_runner", ExecuteBuildRunner
 
       register "android" do |prefix|
         prefix.register "generate_keystore", Android::GenerateKeystore

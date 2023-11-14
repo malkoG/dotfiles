@@ -13,6 +13,9 @@ local text = ls.text_node
 local insert = ls.insert_node
 local func = ls.function_node
 local choice = ls.choice_node
+local lambda = require("luasnip.extras").lambda
+local postfix = require("luasnip.extras.postfix").postfix
+
 local dynamicn = ls.dynamic_node
 
 local date = function() return {os.date('%Y-%m-%d')} end
@@ -42,6 +45,16 @@ ls.add_snippets(nil, {
     }, {
       func(tomorrow, {}),
     }),
+  },
+
+  markdown = {
+    postfix({
+      trig = ".kb",
+      namr = ".kb",
+      dscr = "Generates kbd element for given textContent"
+    }, {
+      lambda("<kbd>" .. lambda.POSTFIX_MATCH .. "</kbd>")
+    })
   },
 
   kotlin = {

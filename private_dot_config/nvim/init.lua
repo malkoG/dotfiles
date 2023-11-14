@@ -32,6 +32,7 @@ scheduler.notify_schedule()
 
 require('coc/init')
 require('keymap')
+require('abbreviation')
 
 require('zettelkasten')
 

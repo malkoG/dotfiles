@@ -6,6 +6,8 @@ keymap("i", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
 keymap("s", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
 
 local ls = require("luasnip")
+local prelude = require("utilities.prelude")
+
 -- some shorthands...
 local snip = ls.snippet
 local node = ls.snippet_node
@@ -21,6 +23,11 @@ local dynamicn = ls.dynamic_node
 local date = function() return {os.date('%Y-%m-%d')} end
 local yesterday = function() return { os.date('%Y-%m-%d', os.time() - 60 * 60 * 24) } end
 local tomorrow = function() return { os.date('%Y-%m-%d', os.time() + 60 * 60 * 24) } end
+
+local ruby_snippets = {}
+local ruby_snippets_at_work = require("config.at_work.ruby")
+
+ruby_snippets = prelude.concat(ruby_snippets, ruby_snippets_at_work)
 
 ls.add_snippets(nil, {
   all = {
@@ -46,6 +53,8 @@ ls.add_snippets(nil, {
       func(tomorrow, {}),
     }),
   },
+
+  ruby = ruby_snippets,
 
   markdown = {
     postfix({

@@ -19,5 +19,18 @@
   "coc.preferences.formatOnSaveFiletypes": [
 	"dart"
   ],
-  "dart.lineLength": 120
+  "dart.lineLength": 120,
+
+  "-----comment----": "enables tailwindcss language server even though editing .erb files",
+  "tailwindCSS.includeLanguages": {
+  	"eelixir": "html",
+  	"elixir": "html",
+  	"eruby": "html",
+  	"html.twig": "html"
+  },
+  "-----comment----": "enables tailwind's autocompletion inside of erb tag ",
+  "tailwindCSS.experimental.classRegex": [
+    "\\bclass:\\s*'([^']*)'",
+    "\\bclass:\\s*\"([^\"]*)\"" 
+  ],
 }

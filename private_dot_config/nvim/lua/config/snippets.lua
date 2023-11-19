@@ -29,6 +29,16 @@ local ruby_snippets_at_work = require("config.at_work.ruby")
 
 ruby_snippets = prelude.concat(ruby_snippets, ruby_snippets_at_work)
 
+local markdown_snippets = {
+  postfix({
+    trig = ".kb",
+    namr = ".kb",
+    dscr = "Generates kbd element for given textContent"
+  }, {
+    lambda("<kbd>" .. lambda.POSTFIX_MATCH .. "</kbd>")
+  })
+}
+
 ls.add_snippets(nil, {
   all = {
     snip({
@@ -56,15 +66,8 @@ ls.add_snippets(nil, {
 
   ruby = ruby_snippets,
 
-  markdown = {
-    postfix({
-      trig = ".kb",
-      namr = ".kb",
-      dscr = "Generates kbd element for given textContent"
-    }, {
-      lambda("<kbd>" .. lambda.POSTFIX_MATCH .. "</kbd>")
-    })
-  },
+  markdown = markdown_snippets,
+  telekasten = markdown_snippets,
 
   kotlin = {
     snip({

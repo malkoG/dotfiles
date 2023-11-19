@@ -6,6 +6,9 @@ local opts = default_opts
 
 local augroup = vim.api.nvim_create_augroup('user_cmds', {clear = true})
 
+-- terminal
+map('n', '<C-w>V', ':vsplit term://zsh<CR>', opts)
+
 -- Copilot
 vim.g.copilot_no_tab_map = true
 map('i', '<C-J>', '<Plug>copilot#Accept("\\<CR>")', default_opts)

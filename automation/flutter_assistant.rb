@@ -173,8 +173,13 @@ module FlutterAssistant
             pubspec = PubspecUtils.load_pubspec_file
             Logger.log("Upgraded build number. (current version is #{pubspec['version']})", level: "debug")
 
-            Commands.run('flutter build apk --release')
-            Commands.run('cd build/app/outputs/flutter-apk && open .')
+            if build_type == "apk"
+              Commands.run('flutter build apk --release')
+              Commands.run('cd build/app/outputs/flutter-apk && open .')
+            elsif build_type == "appbundle"
+              Commands.run('flutter build appbundle --release')
+              Commands.run('cd build/app/outputs/bundle/release && open .')
+            end
           end
         end
       end

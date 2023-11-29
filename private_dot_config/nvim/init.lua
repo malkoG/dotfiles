@@ -5,6 +5,7 @@ require('plugins/telescope')
 require('plugins/lualine')
 require('plugins/blamer')
 
+require('ftplugins.stimulus')
 require('ftplugins.purescript')
 
 local scheduler = require('utilities.scheduler')

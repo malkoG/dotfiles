@@ -21,6 +21,12 @@
   ],
   "dart.lineLength": 120,
 
+  "emmet.includeLanguages": {
+	  "eelixir": "html",
+	  "elixir": "html",
+	  "htmldjango": "html",
+	  "eruby": "html"
+  },
   "-----comment----": "enables tailwindcss language server even though editing .erb files",
   "tailwindCSS.includeLanguages": {
   	"eelixir": "html",

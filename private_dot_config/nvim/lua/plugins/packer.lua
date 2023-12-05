@@ -18,6 +18,8 @@ return require('packer').startup(function(use)
   --   end
   -- }
 
+  use { 'wbthomason/packer.nvim' }
+
   use {
     'kyazdani42/nvim-tree.lua',
     requires = {

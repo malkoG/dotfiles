@@ -138,6 +138,8 @@ elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
 	source ~/credentials.sh
 fi
 
+export PATH="$PATH":"$HOME/.maestro/bin"
+
 # ============================
 # Custom aliases for my own use 
 # most of these have their own prefix

@@ -324,17 +324,6 @@ return require('packer').startup(function(use)
   use { "APZelos/blamer.nvim" }
   use { "tpope/vim-fugitive" }
   use { "airblade/vim-gitgutter" }
-  use {
-    'pwntester/octo.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'kyazdani42/nvim-web-devicons',
-    },
-    config = function ()
-      require"octo".setup()
-    end
-  }
 
   -- for neovim plugin development
   use {
@@ -468,13 +457,4 @@ return require('packer').startup(function(use)
 
   -- Telescope extensions
   use { "nvim-telescope/telescope-file-browser.nvim" }
-
-
-  -- Infrastructure
-  use {
-    "skanehira/denops-docker.vim",
-    requires = {
-      "vim-denops/denops.vim",
-    }
-  }
 end)

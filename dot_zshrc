@@ -31,29 +31,6 @@ eval "$(pyenv virtualenv-init -)"
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-
-### Alias commands 
-
-if command -v lsd &>/dev/null; then
-  alias l="lsd -Ah"
-  alias la="lsd -Ah"
-  alias ll="lsd -Alh"
-  alias lla="lsd -lAh"
-  alias lt="l -Ah --tree"
-elif command -v exa &>/dev/null; then
-  alias l="exa -s type"
-  alias la="exa -s type -a"
-  alias ll="exa -s type -l"
-  alias llg="exa -s type -l --git"
-  alias lla="exa -s type -la"
-  alias lt="exa -s type --tree -l"
-else
-  alias l="ls -Ah"
-  alias la="ls -Ah"
-  alias ll="ls -lAh"
-  alias lla="ls -lAh"
-fi
-
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -175,3 +152,30 @@ alias flbr="$FLUTTER_AUTOMATION execute_build_runner"
 
 alias fladr="$FLUTTER_AUTOMATION android release"
 # ============================
+#
+#
+#
+
+######
+# Alias commands 
+######
+if command -v lsd &>/dev/null; then 
+  unalias lsd
+  alias l="lsd -Ah"
+  alias la="lsd -Ah"
+  alias ll="lsd -Alh"
+  alias lla="lsd -lAh"
+  alias lt="l -Ah --tree"
+elif command -v exa &>/dev/null; then
+  alias l="exa -s type"
+  alias la="exa -s type -a"
+  alias ll="exa -s type -l"
+  alias llg="exa -s type -l --git"
+  alias lla="exa -s type -la"
+  alias lt="exa -s type --tree -l"
+else
+  alias l="ls -Ah"
+  alias la="ls -Ah"
+  alias ll="ls -lAh"
+  alias lla="ls -lAh"
+fi

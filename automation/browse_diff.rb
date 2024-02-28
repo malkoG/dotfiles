@@ -1,4 +1,6 @@
-git_logs = `git log --oneline | gum choose --limit 100`
+file = ARGV[0]
+
+git_logs = `git log --oneline #{file} | gum choose --limit 100`
 
 # See https://abhij.it/ruby-difference-between-system-exec-and-backticks/
 git_logs.each_line do |line|

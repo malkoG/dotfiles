@@ -139,6 +139,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
 fi
 
 export PATH="$PATH":"$HOME/.maestro/bin"
+export PATH="$HOME/go/bin:${PATH}"
 
 # ============================
 # Custom aliases for my own use 

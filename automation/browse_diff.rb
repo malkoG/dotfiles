@@ -9,3 +9,10 @@ git_logs.each_line do |line|
   puts("=====")
   gets
 end
+
+checklist = []
+git_logs.each_line do |line|
+  checklist << "- [ ] #{line}"
+end
+
+puts checklist.join

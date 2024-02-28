@@ -17,7 +17,12 @@
 
 [diff]
     colorMoved = default
+
 [safe]
 	directory = $HOME/.oh-my-zsh
+
 [pull]
 	rebase = true
+
+[alias]
+	navigate = !ruby ~/automation/browse_diff.rb 

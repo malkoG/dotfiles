@@ -184,3 +184,22 @@ fi
 if command -v rg &>/dev/null; then
   alias rg="rg --hidden --smart-case --context=3"
 fi
+
+alias esoteric="cat ~/.config/esoteric/lifehack_kungfu_scroll.sh |
+  perl -ne 'print if !/^(#|$)/' |
+  perl -pe 's/(## .+)/\e[0;32m\1\e[0m/' |
+  fzf --preview='echo {} | perl -pe \"s/^(.+)\s*(## .+)/\\2\n\\1/; s/;;/\n##/g;\"' \
+	  --preview-window='down:~10:wrap' \
+	  --min-height 15 \
+	  --height ~20% \
+	  --exit-0 \
+	  --sync \
+	  --no-clear \
+	  --print0 \
+	  --scheme=history |
+	  perl -pe 's/## .+?$//'"
+
+alias esoteric_eval='eval "\$(esoteric | cat -)";'
+alias es=esoteric
+alias eeval=esoteric_eval
+

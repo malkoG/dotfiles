@@ -2,9 +2,9 @@
 # Tmuxinator
 ####
 
-tmuxintor start default
-tmuxintor start dotfiles
-tmuxintor start blogging
+tmuxinator start default
+tmuxinator start dotfiles
+tmuxinator start blogging
 
 ####
 # Django

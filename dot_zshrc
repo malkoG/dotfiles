@@ -161,7 +161,6 @@ alias fladr="$FLUTTER_AUTOMATION android release"
 # Alias commands 
 ######
 if command -v lsd &>/dev/null; then 
-  unalias lsd
   alias l="lsd -Ah"
   alias la="lsd -Ah"
   alias ll="lsd -Alh"
@@ -185,21 +184,241 @@ if command -v rg &>/dev/null; then
   alias rg="rg --hidden --smart-case --context=3"
 fi
 
-alias esoteric="cat ~/.config/esoteric/lifehack_kungfu_scroll.sh |
-  perl -ne 'print if !/^(#|$)/' |
-  perl -pe 's/(## .+)/\e[0;32m\1\e[0m/' |
-  fzf --preview='echo {} | perl -pe \"s/^(.+)\s*(## .+)/\\2\n\\1/; s/;;/\n##/g;\"' \
-	  --preview-window='down:~10:wrap' \
-	  --min-height 15 \
-	  --height ~20% \
-	  --exit-0 \
-	  --sync \
-	  --no-clear \
-	  --print0 \
-	  --scheme=history |
-	  perl -pe 's/## .+?$//'"
 
-alias esoteric_eval='eval "\$(esoteric | cat -)";'
-alias es=esoteric
-alias eeval=esoteric_eval
+################################
+# Zinit
+################################
+zinit_home="${HOME}/.local/zsh/zinit"
+
+declare -A ZINIT
+ZINIT[HOME_DIR]="${zinit_home}"
+ZINIT[BIN_DIR]="${zinit_home}/bin"
+ZINIT[ZMODULES_DIR]="${zinit_home}/zmodules"
+ZINIT[ZCOMPDUMP_PATH]="${HOME}/.local/zcompdump"
+
+if [[ -s "${zinit_home}/bin/zinit.zsh" ]]
+then
+  source "${zinit_home}/bin/zinit.zsh"
+
+  if [[ "$_ZSH_INIT_MINIMAL" != true ]]; then
+    autoload -Uz _zinit
+    (( ${+_comps} )) && _comps[zinit]=_zinit
+  fi
+
+  # https://github.com/ohmyzsh/ohmyzsh/blob/master/lib
+  zinit snippet OMZ::lib/clipboard.zsh
+  zinit snippet OMZ::lib/completion.zsh
+  zinit snippet OMZ::lib/history.zsh
+  zinit snippet OMZ::lib/key-bindings.zsh
+
+  zinit light zsh-users/zsh-autosuggestions
+  zinit light zsh-users/zsh-completions
+  zinit light zsh-users/zsh-syntax-highlighting
+
+  # zinit snippet 'https://github.com/asdf-vm/asdf/blob/master/completions/_asdf'
+  zinit snippet 'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh'
+  zinit light chitoku-k/fzf-zsh-completions
+
+  zinit snippet 'https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh'
+else
+  command -v git &>/dev/null \
+    && git clone --depth=5 https://github.com/zdharma-continuum/zinit "${zinit_home}/bin"
+fi
+
+################################
+# fzf
+################################
+
+export FZF_DEFAULT_OPTS="--extended --cycle --reverse --height=40% --ansi"
+export FZF_COMPLETION_OPTS=""
+export FZF_COMPLETION_TRIGGER=""
+
+bindkey '^F' fzf-completion
+
+#### command complete
+
+# _fzf_dir_completion
+#   fd .
+# }
+
+_fzf_complete_make() {
+  _fzf_complete -m --preview 'echo {}' --preview-window down:3:wrap --min-height 15 -- "$@" < <(
+    command make help
+  )
+}
+_fzf_complete_make_post() {
+  awk '{print $1}'
+}
+
+#### history
+_fzf_select_history_widget() {
+  BUFFER="$(history | perl -e 'print reverse <>' |
+    perl -pe 's/^\s*\d+\*?\s+//' |
+    awk '!a[$0]++ && length<256' |
+    fzf --height=40% --scheme=history --no-sort --query "$LBUFFER" |
+    sed 's/\\n/\n/')"
+  CURSOR=$#BUFFER             # cursor move to line end
+  zle reset-prompt
+}
+
+zle -N _fzf_select_history_widget
+bindkey '^R' _fzf_select_history_widget
+
+#### lifehack kungfu
+_fzf_default_completion() {
+  BUFFER="$(
+    cat ~/.config/lifehack_kungfu/scroll.sh |
+      perl -ne 'print if !/^(#|$)/' |
+      perl -pe 's/(## .+)/\e[0;32m\1\e[0m/' |
+      fzf --preview='echo {} | perl -pe "s/^(.+)\s*(## .+)/\\2\n\\1/; s/;;/\n##/g;"' \
+          --preview-window='down:~10:wrap' \
+          --min-height 15 \
+          --height ~80% \
+          --scheme=history \
+          --query "$LBUFFER" |
+      perl -pe 's/## .+?$//'
+  )"
+  CURSOR=$#BUFFER
+  zle reset-prompt
+}
+zle -N _fzf_default_completion
+export fzf_default_completion=_fzf_default_completion
+
+#### lifehack kungfu pipe
+_fzf_pipe_complete_post() { perl -pe 's/## .+?$//' }
+_fzf_pipe_complete() {
+  _fzf_complete -m --scheme=history --preview 'echo {} | perl -pe "s/^(.+)(\s+## .+)/\\2\n\\1/"' --preview-window down:3:wrap --min-height 15 -- "$@" < <(
+    cat ~/.config/lifehack_kungfu/scroll.sh |
+      perl -ne 'print if !/^(#|$)/ && /^\|/' |
+      perl -pe 's/(## .+)/\e[0;32m\1\e[0m/'
+  )
+}
+
+#### lifehack kungfu sub
+_fzf_sub_complete_post() { perl -pe 's/## .+?$//' }
+_fzf_sub_complete() {
+  _fzf_complete -m --scheme=history --preview 'echo {} | perl -pe "s/^(.+)(\s+## .+)/\\2\n\\1/"' --preview-window down:3:wrap --min-height 15 -- "$@" < <(
+    cat ~/.config/lifehack_kungfu/scroll.sh |
+      perl -ne 'print if !/^(#|$)/ && /^\$\(/' |
+      perl -pe 's/(## .+)/\e[0;32m\1\e[0m/'
+  )
+}
+
+#### command complete
+_fzf_command_complete_g_post() { awk '{ print $2 }' }
+_fzf_command_complete_g() {
+  _fzf_complete -m --preview 'echo {}' --preview-window down:3:wrap --min-height 15 -- "$@" < <(
+    command git status --short
+  )
+}
+
+_fzf_command_complete_gb_post() { perl -pe 's/^\*//' | awk '{print $2}' }
+_fzf_command_complete_gb() {
+  _fzf_complete -m --preview 'echo {}' --tac --preview-window down:3:wrap --min-height 15 -- "$@" < <(
+    git for-each-ref --sort=committerdate refs/heads/ --color=always \
+      --format="%(HEAD) %(color:green)%(committerdate:short)%(color:reset) %09 %(color:yellow)%(refname:short)%(color:reset) %09 %(authorname) %09 %(contents:subject)" \
+      | column -t -s $'\t'
+  )
+}
+
+_fzf_command_complete_di_post() { awk '{ print $3 }' }
+_fzf_command_complete_di() {
+  _fzf_complete -m --preview 'echo {} | awk "{print $3}" | xargs docker image inspect' --preview-window right:40%:wrap --min-height 15 -- "$@" < <(
+    command docker images
+  )
+}
+
+_fzf_command_complete_dc_post() { awk '{ print $1 }' }
+_fzf_command_complete_dc() {
+  _fzf_complete -m --preview 'echo {}' --preview-window down:3:wrap --min-height 15 -- "$@" < <(
+    command docker container ls
+  )
+}
+
+_fzf_command_complete_rise_dir() {
+  _fzf_complete -m --preview 'ls {}' --preview-window down:3:wrap --min-height 15 -- "$@" < <(
+    perl -e "
+        chomp(\$dir = qx(pwd));
+        chomp(\$dir = qx(dirname \$dir)) for (1..2);
+        print qq(\$dir\n) and chomp(\$dir = qx(dirname \$dir)) while \$dir ne qq(/)"
+  )
+}
+
+_fzf_my_completion_hook() {
+  local prefix lbuf
+  prefix=$1
+  lbuf=$2
+
+  if [[ "$prefix" == "|" ]]; then
+    prefix="" eval _fzf_pipe_complete ${(q)lbuf}
+  elif [[ "$prefix" == "\$(" ]]; then
+    prefix="" eval _fzf_sub_complete ${(q)lbuf}
+  elif [[ "$prefix" == .. ]]; then
+    prefix="" eval _fzf_command_complete_rise_dir ${(q)lbuf}
+  elif [[ "$prefix" == :* ]]; then
+    # TODO: typing -> :g -> c-f 동작이 불편, : 말고 다른 단어가 필요. gst+c-f?
+    #    - :l + c-f => current ls
+    if eval "type _fzf_command_complete_${prefix#*:} > /dev/null"; then
+      prefix="" eval _fzf_command_complete_${prefix#*:} ${(q)lbuf}
+    else
+      return 1
+    fi
+  else
+    return 1 # default fail
+  fi
+}
+
+#### overwrite completion
+# https://github.com/junegunn/fzf/blob/master/shell/completion.zsh#L264
+fzf-completion() {
+  local tokens cmd prefix trigger tail matches lbuf d_cmds
+  setopt localoptions noshwordsplit noksh_arrays noposixbuiltins
+
+  # http://zsh.sourceforge.net/FAQ/zshfaq03.html
+  # http://zsh.sourceforge.net/Doc/Release/Expansion.html#Parameter-Expansion-Flags
+  tokens=(${(z)LBUFFER})
+  if [ ${#tokens} -lt 1 ]; then
+    zle ${fzf_default_completion:-expand-or-complete}
+    return
+  fi
+
+  cmd=$(__fzf_extract_command "$LBUFFER")
+
+  # Explicitly allow for empty trigger.
+  trigger=${FZF_COMPLETION_TRIGGER-'**'}
+  [ -z "$trigger" -a ${LBUFFER[-1]} = ' ' ] && tokens+=("")
+
+  # When the trigger starts with ';', it becomes a separate token
+  if [[ ${LBUFFER} = *"${tokens[-2]-}${tokens[-1]}" ]]; then
+    tokens[-2]="${tokens[-2]-}${tokens[-1]}"
+    tokens=(${tokens[0,-2]})
+  fi
+
+  lbuf=$LBUFFER
+  tail=${LBUFFER:$(( ${#LBUFFER} - ${#trigger} ))}
+
+  # Trigger sequence given
+  # if [ ${#tokens} -gt 1 -a "$tail" = "$trigger" ]; then
+  if [[ ${#tokens} -gt 1 && ( "$tail" == "$trigger" || "$tail" == :* ) ]]; then
+    d_cmds=(${=FZF_COMPLETION_DIR_COMMANDS:-cd pushd rmdir})
+
+    [ -z "$trigger"      ] && prefix=${tokens[-1]} || prefix=${tokens[-1]:0:-${#trigger}}
+    [ -n "${tokens[-1]}" ] && lbuf=${lbuf:0:-${#tokens[-1]}}
+
+    if _fzf_my_completion_hook "$prefix" "$lbuf"; then
+      zle reset-prompt
+    elif eval "type _fzf_complete_${cmd} > /dev/null"; then
+      prefix="$prefix" eval _fzf_complete_${cmd} ${(q)lbuf}
+      zle reset-prompt
+    elif [ ${d_cmds[(i)$cmd]} -le ${#d_cmds} ]; then
+      _fzf_dir_completion "$prefix" "$lbuf"
+    else
+      _fzf_path_completion "$prefix" "$lbuf"
+    fi
+  # Fall back to default completion
+  else
+    zle ${fzf_default_completion:-expand-or-complete}
+  fi
+}
+
 

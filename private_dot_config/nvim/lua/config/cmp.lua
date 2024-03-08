@@ -26,6 +26,7 @@ function M.setup()
           treesitter = "[Treesitter]",
           nvim_lsp = "[LSP]",
           emoji = "[Emoji]",
+          mermaid = "[Mermaid]",
         })[entry.source.name]
         return vim_item
       end,
@@ -80,6 +81,7 @@ function M.setup()
       { name = 'nvim_lsp', keyword_length = 3 },
       { name = "treesitter" },
       { name = "buffer" },
+      { name = "mermaid" },
       { name = "luasnip" },
       { name = "nvim_lua" },
       { name = "path" },

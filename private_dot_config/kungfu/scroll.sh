@@ -52,3 +52,17 @@ flutter run
 
 BRIDGETOWN__DISABLE_BUILDERS=true bundle exec bridgetown dev
 
+
+#### 
+# Todoist
+####
+
+todoist --namespace --color l
+todoist q "Task name"
+todoist list | grep daily
+keyword="task"; task_number="$(todoist list | grep $keyword | ruby -ane 'puts "#{$F[0]})"')"; todoist c $task_number;
+
+# already existing filter 
+todoist list -f "##Inbox | ##개인개발 | ##커뮤니티활동" 
+todoist list -f "due:+7days | overdue"
+todoist list -f "due:+14days | overdue"

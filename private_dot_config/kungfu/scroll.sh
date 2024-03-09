@@ -1,3 +1,5 @@
+vi ~/.config/kungfu/scroll.sh # Editing this file
+
 ####
 # Tmuxinator
 ####

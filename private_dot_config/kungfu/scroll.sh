@@ -43,3 +43,10 @@ flutter build apk --release
 flutter build appbundle --release
 flutter build ios --release
 flutter run 
+
+####
+# Blogging 
+####
+
+BRIDGETOWN__DISABLE_BUILDERS=true bundle exec bridgetown dev
+

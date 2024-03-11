@@ -1,0 +1,22 @@
+[env]
+
+[plugins]
+
+[tasks."yarn:latest"]
+description = 'set yarn version to latest'
+run = "yarn set version latest"
+
+[tasks."lint:eslint"] # using a ":" means we need to add quotes
+run = "eslint ."
+[tasks."lint:prettier"]
+run = "prettier --check ."
+[tasks.lint]
+depends = ["lint:*"]
+
+[tasks."todoist"]
+description = "Open todoist api client wrapper cli"
+run = "./tasks/3rdparty/todoist"
+
+[settings]
+experimental = true
+

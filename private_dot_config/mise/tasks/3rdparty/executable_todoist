@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+# mise description="Connect to Todoist API"
+
+require 'optparse'
+require 'csv'
+require 'json'
+
+def fetch_todolist
+  `todoist --color --namespace --csv l`
+end
+
+def select_todolist(csv)
+  `echo '#{csv}' | gum choose --limit 100`
+end
+
+def complete_todos(csv)
+  rows = select_todolist(csv)
+  rows.each_line do |line| 
+    todo_id, priority, deadline, project, label, task_name = line.split(',')
+    system("todoist c #{todo_id}")
+    puts "Completed [#{todo_id}] #{project} #{task_name}"
+  end
+end
+
+
+options = {}
+OptionParser.new do |opts|
+  # opts.on('-sTAG', '--search=TAG', 'Search image tag perfix') { options[:search] = _1 }
+end.parse!
+
+subcommand = ARGV.pop
+
+exit(0) if subcommand.nil?
+
+case subcommand
+when "bulk_update"
+  todolist = fetch_todolist
+  rows = select_todolist(todoist)
+  rows.each_line do |line|
+    todo_id, priority, deadline, project, label, task_name = line.split(',')
+    # content
+    # priority 
+    # date 
+    system("todoist m #{todo_id} --content #{content} --priority #{priority} --date #{date}")
+    puts "Modifies [#{todo_id}] #{project} #{task_name}"
+  end
+when "bulk_complete"
+  todolist = fetch_todolist
+  complete_todos(todolist)
+end
+

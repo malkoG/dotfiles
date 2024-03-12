@@ -162,20 +162,11 @@ return require('packer').startup(function(use)
       })
     end,
   })
-
-  use {
-    'phaazon/mind.nvim',
-    branch = 'v2.2',
-    requires = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require'mind'.setup({
-        persistence = {
-          state_path = "/home/kodingwarrior/Dropbox/mind-vault/mind.json",
-          data_dir = "/home/kodingwarrior/Dropbox/mind-vault/data",
-        }
-      })
-    end
-  }
+  use ({
+    'chomosuke/typst-preview.nvim',
+    tag = 'v0.1.*',
+    run = function() require 'typst-preview'.update() end,
+  })
 
   -- Discord Rich Presence
   use {

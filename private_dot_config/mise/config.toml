@@ -13,9 +13,13 @@ run = "prettier --check ."
 [tasks.lint]
 depends = ["lint:*"]
 
+[tasks."typst:live"]
+description = "Run typst in watch mode with generating pdf automatically"
+run = "~/.config/mise/tasks/typst"
+
 [tasks."todoist"]
 description = "Open todoist api client wrapper cli"
-run = "./tasks/3rdparty/todoist"
+run = "~/.config/mise/tasks/3rdparty/todoist"
 
 [settings]
 experimental = true

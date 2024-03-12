@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+source = ARGV.pop
+
+path = File.expand_path(source)
+rest, _ = path.split(".")
+target = [rest, "pdf"].join(".")
+
+*parent_dirs, _, __ = rest.split("/")
+
+`concurrently --raw --kill-others-on-fail "typst watch #{path} #{target} --root #{parent_dirs.join('/')}" "typst-live -R #{target}"`

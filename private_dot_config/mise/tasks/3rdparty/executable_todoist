@@ -33,6 +33,27 @@ subcommand = ARGV.pop
 exit(0) if subcommand.nil?
 
 case subcommand
+when "estmiate"
+  # TODO - todoist m -L <labels>는 모든 label들을 flush하는 역할도 하기 때문에, 
+  #        기존의 label들을 유지하면서 point/estimate label만 빼놓고 reassign하는 예외처리가 필요함
+when "bulk_add"
+  tasks = []
+  while true
+    task_name = `gum input --placeholder="Leave blank character if you want to quit"`.chomp
+    break if task_name.empty?
+
+    tasks << task_name
+    puts "Added Task [#{task_name}]"
+  end
+
+  puts "Syncing....."
+  tasks.each do |task|
+    system("todoist q #{task}")
+  end
+  
+  # 어떤 프로젝트에 assign할 지 select 하는 UX가 필요함.
+
+  `todoist sync`
 when "bulk_update"
   todolist = fetch_todolist
   rows = select_todolist(todoist)

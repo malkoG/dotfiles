@@ -48,17 +48,25 @@ when "bulk_add"
 
   puts "Syncing....."
   tasks.each do |task|
-    system("todoist q #{task}")
+    system("todoist q '#{task}'")
+  end 
+
+  lines = `todoist --csv l | tail -n #{tasks.size}`.chomp
+  latest_tasks = lines.split("\n").map { |line| line.parse_csv }
+
+  line = `todoist --csv projects | gum choose`
+  project_id, project_name = line.split(',')
+  latest_tasks.each do |task_id, *_, task_name|
+    system("todoist m --project-id #{project_id} #{task_id}")
+    puts "Assigned [Task #{task_name}(##{task_id})] to #{project_name}"
   end
-  
-  # 어떤 프로젝트에 assign할 지 select 하는 UX가 필요함.
 
   `todoist sync`
 when "bulk_update"
   todolist = fetch_todolist
   rows = select_todolist(todoist)
   rows.each_line do |line|
-    todo_id, priority, deadline, project, label, task_name = line.split(',')
+    todo_id, priority, deadline, project, labels, task_name = line.parse_csv
     # content
     # priority 
     # date 

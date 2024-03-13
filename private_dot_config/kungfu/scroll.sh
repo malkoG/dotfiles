@@ -68,6 +68,8 @@ todoist q "Task name"
 todoist list | grep daily
 keyword="task"; task_number="$(todoist list | grep $keyword | ruby -ane 'puts "#{$F[0]})"')"; todoist c $task_number;
 
+todoist cl -f today # today's completed tasks
+
 # already existing filter 
 todoist list -f "##Inbox | ##개인개발 | ##커뮤니티활동" 
 todoist list -f "due:+7days | overdue"

@@ -16,9 +16,9 @@ end
 def complete_todos(csv)
   rows = select_todolist(csv)
   rows.each_line do |line| 
-    todo_id, priority, deadline, project, label, task_name = line.split(',')
-    system("todoist c #{todo_id}")
-    puts "Completed [#{todo_id}] #{project} #{task_name}"
+    task_id, priority, deadline, project, label, task_name = line.split(',')
+    system("todoist c #{task_id}")
+    puts "Completed [#{task_id}] #{project} #{task_name}"
   end
 end
 
@@ -127,7 +127,7 @@ when "estimate"
   estimation_point = `echo '#{ESTIMATION_POINTS.keys.join("\n")}' | gum choose`.chomp
 
   rows.each_line do |line|
-    todo_id, priority, deadline, project, labels, task_name = line.parse_csv
+    task_id, priority, deadline, project, labels, task_name = line.parse_csv
     result = labels.to_s.split(',')&.reject { _1.start_with?("@point:") }.to_a
     result = [*result, ESTIMATION_POINTS[estimation_point]]
 
@@ -143,10 +143,10 @@ when "prioritize"
   priority = `echo 'p1\np2\np3\np4' | gum choose`.chomp
 
   rows.each_line do |line|
-    todo_id, *_, labels, task_name = line.parse_csv
 
     system("todoist m -p #{priority.scan(/\d+/).first.to_i} -L '#{labels.to_s.gsub('@', '')}' #{todo_id}")
-    puts "Assigned [Task #{task_name}(##{todo_id})] to priority #{priority}"
+    task_id, _, deadline, *__, labels, task_name = line.parse_csv
+    puts "Assigned [Task #{task_name}(##{task_id})] to priority #{priority}"
   end
 
   `todoist sync`
@@ -181,12 +181,12 @@ when "bulk_update"
   todolist = fetch_todolist
   rows = select_todolist(todoist)
   rows.each_line do |line|
-    todo_id, priority, deadline, project, labels, task_name = line.parse_csv
+    task_id, priority, deadline, project, labels, task_name = line.parse_csv
     # content
     # priority 
     # date 
-    system("todoist m #{todo_id} --content #{content} --priority #{priority} --date #{date}")
-    puts "Modifies [#{todo_id}] #{project} #{task_name}"
+    system("todoist m #{task_id} --content #{content} --priority #{priority} --date #{date}")
+    puts "Modifies [#{task_id}] #{project} #{task_name}"
   end
 when "bulk_complete"
   todolist = fetch_todolist

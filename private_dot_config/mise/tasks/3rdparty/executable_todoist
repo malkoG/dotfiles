@@ -103,7 +103,7 @@ when "estimate"
     result = labels.to_s.split(',')&.reject { _1.start_with?("@point:") }.to_a
     result = [*result, ESTIMATION_POINTS[estimation_point]]
 
-    system("todoist m -L '#{result.join(',')}' #{todo_id}")
+    system("todoist m -p #{priority.scan(/\d+/).first.to_i} -L '#{result.join(',')}' #{todo_id}")
     puts "Assigned [Task #{task_name}(##{todo_id})] to #{estimation_point}"
   end
 when "prioritize"

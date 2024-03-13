@@ -102,6 +102,8 @@ when "schedule"
     )
     puts "Scheduled [Task #{task_name}(##{task_id})] to #{deadline}"
   end
+
+  `todoist sync`
 when "breakdown"
   todolist = fetch_todolist
   line = `echo '#{todolist}' | gum choose`.chomp
@@ -171,6 +173,8 @@ when "estimate"
     )
     puts "Assigned [Task #{task_name}(##{task_id})] to #{estimation_point}"
   end
+
+  `todoist sync`
 when "prioritize"
   todoist = fetch_todolist 
   rows = select_todolist(todoist)
@@ -240,5 +244,7 @@ when "bulk_update"
 when "bulk_complete"
   todolist = fetch_todolist
   complete_todos(todolist)
+
+  `todoist sync`
 end
 

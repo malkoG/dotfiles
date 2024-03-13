@@ -1,6 +1,12 @@
 vi ~/.config/kungfu/scroll.sh # Editing this file
 
 ####
+# Mise
+####
+
+cd ~/.config/mise/ && vi . # Editing mise tasks
+
+####
 # Tmuxinator
 ####
 

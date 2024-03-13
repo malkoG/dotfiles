@@ -85,6 +85,9 @@ when "bulk_add"
     puts "Added Task [#{task_name}]"
   end
 
+  line = `todoist --csv projects | gum choose`
+  project_id, project_name = line.split(',')
+
   puts "Syncing....."
   tasks.each do |task|
     system("todoist q '#{task}'")
@@ -93,8 +96,6 @@ when "bulk_add"
   lines = `todoist --csv l | tail -n #{tasks.size}`.chomp
   latest_tasks = lines.split("\n").map { |line| line.parse_csv }
 
-  line = `todoist --csv projects | gum choose`
-  project_id, project_name = line.split(',')
   latest_tasks.each do |task_id, *_, task_name|
     system("todoist m --project-id #{project_id} #{task_id}")
     puts "Assigned [Task #{task_name}(##{task_id})] to #{project_name}"

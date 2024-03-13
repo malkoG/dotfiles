@@ -22,13 +22,6 @@ def complete_todos(csv)
   end
 end
 
-PRIORITIES = { 
-  "p1" => 1,
-  "p2" => 2,
-  "p3" => 3,
-  "p4" => 4,
-}
-
 ESTIMATION_POINTS = { 
   "1 point" => "point:1",
   "2 points" => "point:2",
@@ -66,6 +59,22 @@ when "estimate"
     system("todoist m -L '#{result.join(',')}' #{todo_id}")
     puts "Assigned [Task #{task_name}(##{todo_id})] to #{estimation_point}"
   end
+when "prioritize"
+  todoist = fetch_todolist 
+  rows = select_todolist(todoist)
+
+  puts "Assign Priority"
+  puts "======"
+  priority = `echo 'p1\np2\np3\np4' | gum choose`.chomp
+
+  rows.each_line do |line|
+    todo_id, *_, labels, task_name = line.parse_csv
+
+    system("todoist m -p #{priority.scan(/\d+/).first.to_i} -L '#{labels.to_s.gsub('@', '')}' #{todo_id}")
+    puts "Assigned [Task #{task_name}(##{todo_id})] to priority #{priority}"
+  end
+
+  `todoist sync`
 when "bulk_add"
   tasks = []
   while true

@@ -113,7 +113,17 @@ when "breakdown"
   projects = `todoist --csv projects | grep '#{project_name}'`.split("\n").map { |line| line.split(',').reverse }.to_h
 
   latest_tasks.each do |task_id, *_, task_name|
-    system("todoist m -P '#{projects[project_name]}' -d '#{deadline}' -p #{priority.scan(/\d+/).first.to_i} -L '#{labels.to_s.gsub('@', '')}' -c '#{task_name} < #{parent_task_name}' #{task_id}")
+    system(
+      compose_modify_command(
+        deadline:,
+        priority:,
+        project_id: projects[project_name],
+        labels:,
+        task_name: "#{task_name} < #{parent_task_name}",
+        task_id:
+      )
+    )
+
     puts "Assigned [Task #{task_name}(##{task_id})] to [Project #{project_name}]"
   end
 
@@ -131,8 +141,15 @@ when "estimate"
     result = labels.to_s.split(',')&.reject { _1.start_with?("@point:") }.to_a
     result = [*result, ESTIMATION_POINTS[estimation_point]]
 
-    system("todoist m -p #{priority.scan(/\d+/).first.to_i} -L '#{result.join(',')}' #{todo_id}")
-    puts "Assigned [Task #{task_name}(##{todo_id})] to #{estimation_point}"
+    system(
+      compose_modify_command(
+        deadline:,
+        priority:,
+        labels:,
+        task_id:
+      )
+    )
+    puts "Assigned [Task #{task_name}(##{task_id})] to #{estimation_point}"
   end
 when "prioritize"
   todoist = fetch_todolist 
@@ -143,9 +160,16 @@ when "prioritize"
   priority = `echo 'p1\np2\np3\np4' | gum choose`.chomp
 
   rows.each_line do |line|
-
-    system("todoist m -p #{priority.scan(/\d+/).first.to_i} -L '#{labels.to_s.gsub('@', '')}' #{todo_id}")
     task_id, _, deadline, *__, labels, task_name = line.parse_csv
+
+    system(
+      compose_modify_command(
+        deadline:,
+        priority:,
+        labels:,
+        task_id:
+      )
+    )
     puts "Assigned [Task #{task_name}(##{task_id})] to priority #{priority}"
   end
 
@@ -172,7 +196,12 @@ when "bulk_add"
   latest_tasks = lines.split("\n").map { |line| line.parse_csv }
 
   latest_tasks.each do |task_id, *_, task_name|
-    system("todoist m --project-id #{project_id} #{task_id}")
+    system( 
+      compose_modify_command( 
+        project_id:,
+        task_id:,
+      )
+    )
     puts "Assigned [Task #{task_name}(##{task_id})] to #{project_name}"
   end
 

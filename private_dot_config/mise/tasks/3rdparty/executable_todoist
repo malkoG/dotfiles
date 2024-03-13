@@ -44,7 +44,7 @@ def compose_modify_command(deadline: nil, task_name: nil, priority: "p4", projec
   project_id_param = "-P #{project_id}" unless project_id.to_s.empty?
 
   labels_param = ""
-  labels_param = "-L '#{labels.to_s.gsub("@", '')}'" unless labels.to_s.empty?
+  labels_param = "--label-names '#{labels.to_s.gsub("@", "")}'" unless labels.to_s.empty?
 
   task_name_param = ""
   task_name_param = "-c '#{task_name}'" unless task_name.to_s.empty?
@@ -167,7 +167,7 @@ when "estimate"
       compose_modify_command(
         deadline:,
         priority:,
-        labels:,
+        labels: result.join(','),
         task_id:
       )
     )

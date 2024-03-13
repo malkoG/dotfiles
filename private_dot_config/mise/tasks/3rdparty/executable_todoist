@@ -33,6 +33,34 @@ ESTIMATION_POINTS = {
   "34 points" => "point:34",
 }
 
+def compose_modify_command(deadline: nil, task_name: nil, priority: "p4", project_id: nil, labels: "", task_id:)
+  
+  deadline_param = ""
+  deadline_param = "-d '#{deadline}'" unless deadline.to_s.empty?
+
+  priority_param = "-p #{priority.scan(/\d+/).first.to_i}"
+
+  project_id_param = ""
+  project_id_param = "-P #{project_id}" unless project_id.to_s.empty?
+
+  labels_param = ""
+  labels_param = "-L '#{labels.to_s.gsub("@", '')}'" unless labels.to_s.empty?
+
+  task_name_param = ""
+  task_name_param = "-c '#{task_name}'" unless task_name.to_s.empty?
+
+  [
+    "todoist", 
+    "modify", 
+    deadline_param, 
+    priority_param, 
+    project_id_param, 
+    labels_param, 
+    task_name_param,
+    task_id
+  ].join(" ")
+end
+
 options = {}
 OptionParser.new do |opts|
   # opts.on('-sTAG', '--search=TAG', 'Search image tag perfix') { options[:search] = _1 }

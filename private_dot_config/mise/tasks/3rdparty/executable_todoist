@@ -81,7 +81,27 @@ DATE_OPTIONS = <<~HERE
 HERE
 
 case subcommand
-# when "schedule"
+when "schedule"
+  todolist = fetch_todolist 
+  rows = select_todolist(todolist)
+
+  puts "Choose Deadline"
+  puts "======"
+  deadline = `echo '#{DATE_OPTIONS}' | gum choose`.chomp.split.first
+
+  rows.each_line do |line|
+    task_id, priority, _, __, labels, task_name = line.parse_csv
+
+    system(
+      compose_modify_command(
+        deadline:,
+        priority:,
+        labels:,
+        task_id:
+      )
+    )
+    puts "Scheduled [Task #{task_name}(##{task_id})] to #{deadline}"
+  end
 when "breakdown"
   todolist = fetch_todolist
   line = `echo '#{todolist}' | gum choose`.chomp

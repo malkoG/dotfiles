@@ -42,6 +42,8 @@ gh repo create org/repo_name --private
 gh pr list
 gh issue list
 
+gh search issues --created '>2023-12-31' --assignee malkoG --state open --json repository,title,id,number,state
+
 ####
 # Flutter
 ####

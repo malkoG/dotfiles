@@ -69,6 +69,7 @@ end.parse!
 subcommand = ARGV.pop
 
 available_commands = [
+  'all',
   'listup',
   'schedule',
   'estimate',
@@ -91,6 +92,8 @@ DATE_OPTIONS = <<~HERE
 HERE
 
 case subcommand
+when "all"
+  system("todoist --color --namespace --header l")
 when "listup"
   todolist = fetch_todolist 
   rows = select_todolist(todolist)

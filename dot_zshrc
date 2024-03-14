@@ -184,6 +184,8 @@ if command -v rg &>/dev/null; then
   alias rg="rg --hidden --smart-case --context=3"
 fi
 
+alias mr='mise run'
+
 
 ################################
 # Zinit

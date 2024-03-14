@@ -69,6 +69,7 @@ end.parse!
 subcommand = ARGV.pop
 
 available_commands = [
+  'listup',
   'schedule',
   'estimate',
   'breakdown',
@@ -90,6 +91,18 @@ DATE_OPTIONS = <<~HERE
 HERE
 
 case subcommand
+when "listup"
+  todolist = fetch_todolist 
+  rows = select_todolist(todolist)
+
+  table = []
+  rows.each_line do |line|
+    task_id, priority, _, __, labels, task_name = line.parse_csv
+    display_name = task_name.split('<').reverse.map(&:strip).map { "[#{_1}]" }.join(" > ")
+    table << "#{display_name},#{labels.split(',').select { _1.start_with?("@point:") }.first.scan(/\d+/).first.to_s} point"
+  end
+  
+  system "echo '#{table.join("\n")}' | gum table -w 150,10"
 when "schedule"
   todolist = fetch_todolist 
   rows = select_todolist(todolist)

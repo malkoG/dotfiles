@@ -108,7 +108,7 @@ when proc { _1 == 'plan' || _1 == 'listup' }
 
   table = []
   rows.each_line do |line|
-    task_id, priority, _, __, labels, task_name = line.parse_csv
+    task_id, priority, _, project, labels, task_name = line.parse_csv
     display_name = task_name.split('<').reverse.map(&:strip).map { "[#{_1}]" }.join(" > ")
     point_column = "unknown point"
     if labels.to_s.split(',').any? && labels.include?("@point")
@@ -116,10 +116,10 @@ when proc { _1 == 'plan' || _1 == 'listup' }
     end
 
     # Handles edge case of including comma within column
-    table << "\"#{display_name}\",#{point_column}"
+    table << "#{project},\"#{display_name}\",#{point_column}"
   end
   
-  system "echo 'task_name,score\n#{table.join("\n")}' | gum table -w #{[150,(width*1.5).ceil].min},10"
+  system "echo 'project,task_name,score\n#{table.join("\n")}' | gum table -w 15,#{[150,(width*1.5).ceil].min},10"
 when "schedule"
   todolist = fetch_todolist 
   rows = select_todolist(todolist)

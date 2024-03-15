@@ -10,6 +10,10 @@ def fetch_todolist
   `todoist --color --namespace --csv l`
 end
 
+def fetch_donelist
+  `todoist --color --namespace --csv cl`
+end
+
 def select_todolist(csv)
   `echo '#{csv}' | gum choose --height 25 --limit 100`
 end
@@ -102,6 +106,26 @@ HERE
 case subcommand
 when "all"
   system("todoist --color --namespace --header l")
+when proc { _1 == 'finale' }
+  donelist = fetch_donelist
+  rows = select_todolist(donelist)
+
+  table = []
+  rows.each_line do |line|
+    task_id, _date, project, task_name_with_labels = line.parse_csv
+    task_name, point = task_name_with_labels.split("@point:")
+    
+    point_column = "unknown point"
+    if !point.nil? && point.scan(/\d+/).any?
+      point_column = "#{point.scan(/\d+/).first.to_i} point"
+    end
+
+    display_name = task_name.split('<').reverse.map(&:strip).map { "[#{_1}]" }.join(" > ")
+
+    table << "#{project},\"#{display_name}\",#{point_column}"
+  end
+  
+  system "echo 'project,task_name,score\n#{table.join("\n")}' | gum table -w 15,#{[150,(width*1.5).ceil].min},10"
 when proc { _1 == 'plan' || _1 == 'listup' }
   todolist = fetch_todolist 
   rows = select_todolist(todolist)

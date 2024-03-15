@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # mise description="Connect to Todoist API"
 
+require 'io/console'
 require 'optparse'
 require 'csv'
 require 'json'
@@ -21,6 +22,8 @@ def complete_todos(csv)
     puts "Completed [#{task_id}] #{project} #{task_name}"
   end
 end
+
+width, height = IO.console.winsize
 
 ESTIMATION_POINTS = { 
   "1 point" => "point:1",
@@ -116,7 +119,7 @@ when proc { _1 == 'plan' || _1 == 'listup' }
     table << "\"#{display_name}\",#{point_column}"
   end
   
-  system "echo '#{table.join("\n")}' | gum table -w 150,10"
+  system "echo 'task_name,score\n#{table.join("\n")}' | gum table -w #{[150,(width*1.5).ceil].min},10"
 when "schedule"
   todolist = fetch_todolist 
   rows = select_todolist(todolist)

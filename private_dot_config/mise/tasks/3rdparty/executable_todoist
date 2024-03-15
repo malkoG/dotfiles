@@ -107,7 +107,13 @@ when proc { _1 == 'plan' || _1 == 'listup' }
   rows.each_line do |line|
     task_id, priority, _, __, labels, task_name = line.parse_csv
     display_name = task_name.split('<').reverse.map(&:strip).map { "[#{_1}]" }.join(" > ")
-    table << "#{display_name},#{labels.split(',').select { _1.start_with?("@point:") }.first.scan(/\d+/).first.to_s} point"
+    point_column = "unknown point"
+    if labels.to_s.split(',').any? && labels.include?("@point")
+      point_column = "#{labels.split(',').select { _1.start_with?("@point:") }&.first&.scan(/\d+/)&.first&.to_s} point"
+    end
+
+    # Handles edge case of including comma within column
+    table << "\"#{display_name}\",#{point_column}"
   end
   
   system "echo '#{table.join("\n")}' | gum table -w 150,10"

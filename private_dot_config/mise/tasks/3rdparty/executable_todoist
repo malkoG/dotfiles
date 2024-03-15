@@ -71,6 +71,7 @@ subcommand = ARGV.pop
 available_commands = [
   'all',
   'listup',
+  'plan',
   'schedule',
   'estimate',
   'breakdown',
@@ -98,7 +99,7 @@ HERE
 case subcommand
 when "all"
   system("todoist --color --namespace --header l")
-when "listup"
+when proc { _1 == 'plan' || _1 == 'listup' }
   todolist = fetch_todolist 
   rows = select_todolist(todolist)
 

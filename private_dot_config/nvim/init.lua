@@ -11,22 +11,22 @@ require('ftplugins.purescript')
 local scheduler = require('utilities.scheduler')
 
 vim.g.slotted_schedules = {
-	{ message = "Beginning Morning Routine", hour = 07, minute = 30 },
-	{ message = "Finishing Morning Routine", hour = 09, minute = 30 },
+	{ message = "Beginning Morning Routine", hour = 06, minute = 30 },
+	{ message = "Finishing Morning Routine", hour = 08, minute = 00 },
 
-  { message = "Beginning Slot 1", hour = 10, minute = 00 },
-  { message = "Finishing Slot 1", hour = 13, minute = 30 },
+  { message = "Beginning Slot 1", hour =  9, minute = 00 },
+  { message = "Finishing Slot 1", hour = 12, minute = 30 },
 
-  { message = "Beginning Slot 2", hour = 15, minute = 00 },
-  { message = "Finishing Slot 2", hour = 18, minute = 00 },
+  { message = "Beginning Slot 2", hour = 14, minute = 00 },
+  { message = "Finishing Slot 2", hour = 17, minute = 30 },
 
-  { message = "Beginning Slot 3", hour = 19, minute = 30 },
-  { message = "Finishing Slot 3", hour = 23, minute = 00 },
+  { message = "Beginning Slot 3", hour = 19, minute = 00 },
+  { message = "Finishing Slot 3", hour = 22, minute = 30 },
 
-  { message = "Beginning Streaming", hour = 22, minute = 30 },
-  { message = "Finishing Streaming", hour = 23, minute = 45 },
+  { message = "Beginning Streaming", hour = 00, minute = 00 },
+  { message = "Finishing Streaming", hour = 01, minute = 30 },
 
-	{ message = "Time to Bed!!!!", hour = 00, minute = 30 },
+	{ message = "Time to Bed!!!!", hour = 02, minute = 30 },
 }
 
 scheduler.notify_schedule()

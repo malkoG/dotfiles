@@ -10,7 +10,7 @@ def fetch_todolist
 end
 
 def select_todolist(csv)
-  `echo '#{csv}' | gum choose --limit 100`
+  `echo '#{csv}' | gum choose --height 25 --limit 100`
 end
 
 def complete_todos(csv)
@@ -135,7 +135,7 @@ when "schedule"
   `todoist sync`
 when "breakdown"
   todolist = fetch_todolist
-  line = `echo '#{todolist}' | gum choose`.chomp
+  line = `echo '#{todolist}' | gum choose --height 25`.chomp
 
   _, priority, deadline, project_name, labels, parent_task_name = line.parse_csv
   puts "Selected #{parent_task_name}} in #{project_name}"

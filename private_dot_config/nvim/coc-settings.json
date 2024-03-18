@@ -2,11 +2,6 @@
   "codeLens.enable": true,
   "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
 
-  "solargraph.useBundler": true,
-  "solargraph.formatting": true,
-  "solargraph.diagnostics": true,
-  "solargraph.checkGemVersion": true,
-  "snippets.ultisnips.pythonPrompt": false,
   "languageserver": {
     "rescript": {
       "enable": true,
@@ -20,21 +15,6 @@
 	"dart"
   ],
   "dart.lineLength": 120,
-
-  "emmet.includeLanguages": {
-	  "eelixir": "html",
-	  "elixir": "html",
-	  "htmldjango": "html",
-	  "eruby": "html"
-  },
-  "-----comment----": "enables tailwindcss language server even though editing .erb files",
-  "tailwindCSS.includeLanguages": {
-  	"eelixir": "html",
-  	"elixir": "html",
-  	"eruby": "html",
-  	"html.twig": "html",
-	"ruby": "html",
-  },
   "-----comment----": "enables tailwind's autocompletion inside of erb tag ",
   "tailwindCSS.experimental.classRegex": [
     "\\bclass:\\s*'([^']*)'",

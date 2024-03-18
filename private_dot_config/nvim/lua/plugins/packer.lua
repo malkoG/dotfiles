@@ -316,15 +316,6 @@ return require('packer').startup(function(use)
   use { "tpope/vim-fugitive" }
   use { "airblade/vim-gitgutter" }
 
-  -- for neovim plugin development
-  use {
-    'folke/neodev.nvim',
-    requires = { "neovim/nvim-lspconfig" },
-    config = function()
-      require('neodev').setup({})
-    end
-  }
-
   use {
     'rcarriga/nvim-notify',
     config = function()
@@ -401,6 +392,21 @@ return require('packer').startup(function(use)
     },
     disable = false,
   }
+
+  use {
+    'williamboman/mason-lspconfig.nvim',
+    requires = {
+      "williamboman/mason.nvim",
+      "neovim/nvim-lspconfig",
+      "hrsh7th/cmp-nvim-lsp",
+      'folke/neodev.nvim',
+    },
+    config = function()
+      require("config.mason-lspconfig").setup()
+      require("lsp.init")
+    end
+  }
+
   -- languages (ruby)
   use { "tpope/vim-rails" }
   use { "vim-ruby/vim-ruby" }

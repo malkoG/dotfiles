@@ -5,8 +5,6 @@ require('plugins/telescope')
 require('plugins/lualine')
 require('plugins/blamer')
 
-require('ftplugins.stimulus')
-require('ftplugins.purescript')
 
 local scheduler = require('utilities.scheduler')
 
@@ -31,7 +29,7 @@ vim.g.slotted_schedules = {
 
 scheduler.notify_schedule()
 
-require('coc/init')
+-- require('coc/init')
 require('keymap')
 require('abbreviation')
 

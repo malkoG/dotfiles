@@ -48,6 +48,7 @@ gh search issues --created '>2023-12-31' --assignee malkoG --state open --json r
 # Flutter
 ####
 
+flutter pub run build_runner watch --delete-conflicting-outputs # for re-generating the files
 flutter pub run flutter_launcher_icons
 flutter build apk --release
 flutter build appbundle --release

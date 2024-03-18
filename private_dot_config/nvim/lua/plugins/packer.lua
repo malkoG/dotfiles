@@ -407,6 +407,10 @@ return require('packer').startup(function(use)
     end
   }
 
+  use {
+    "folke/trouble.nvim",
+  }
+
   -- languages (ruby)
   use { "tpope/vim-rails" }
   use { "vim-ruby/vim-ruby" }

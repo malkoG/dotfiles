@@ -78,7 +78,7 @@ function M.setup()
       }),
     },
     sources = {
-      { name = 'nvim_lsp', keyword_length = 3 },
+      { name = 'nvim_lsp', keyword_length = 1 },
       { name = "treesitter" },
       { name = "buffer" },
       { name = "mermaid" },

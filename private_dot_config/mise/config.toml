@@ -21,6 +21,10 @@ run = "~/.config/mise/tasks/typst"
 description = "Open todoist api client wrapper cli"
 run = "~/.config/mise/tasks/3rdparty/todoist"
 
+[tasks."gh"]
+description = "Open Github CLI wrapper CLI"
+run = "~/.config/mise/tasks/3rdparty/gh"
+
 [settings]
 experimental = true
 

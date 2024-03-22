@@ -45,6 +45,7 @@ M.setup = function()
       "cssls",
       "biome",
       "tsserver",
+      "terraformls",
     },
   })
 
@@ -92,6 +93,8 @@ M.setup = function()
     single_file_support = true
   }
   require("lspconfig")["tsserver"].setup {}
+  require("lspconfig")["terraformls"].setup{}
+
   if ruby_lsp_local == "true" then
     -- require("lspconfig").solargraph.setup {
     --   cmd = solargraph_command,

@@ -185,6 +185,11 @@ if command -v rg &>/dev/null; then
   alias rg="rg --hidden --smart-case --context=3"
 fi
 
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init zsh)"
+  alias zx="zoxide"
+fi
+
 alias mr='mise run'
 
 

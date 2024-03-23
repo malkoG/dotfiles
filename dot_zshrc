@@ -140,6 +140,7 @@ fi
 
 export PATH="$PATH":"$HOME/.maestro/bin"
 export PATH="$HOME/go/bin:${PATH}"
+export PATH="$HOME/.local/share/mise/shims:${PATH}"
 
 # ============================
 # Custom aliases for my own use 

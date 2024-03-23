@@ -28,3 +28,6 @@ run = "~/.config/mise/tasks/3rdparty/gh"
 [settings]
 experimental = true
 
+[tools]
+zoxide = "0.9.4"
+

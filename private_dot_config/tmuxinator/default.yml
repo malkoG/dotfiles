@@ -11,4 +11,4 @@ windows:
         export ZETTELKASTEN_TARGET="private_wiki" &&
         tmux setenv ZETTELKASTEN_TARGET $ZETTELKASTEN_TARGET
       panes:
-        - vim .
+        - ruby -rdate -e "date = Date.today; year=date.year.to_s; month=date.month.to_s.rjust(2, '0'); monthly=\"#{year}-#{month}\"; system(\"nvim -O planner/#{monthly}.md monthly/#{monthly}.md\")"

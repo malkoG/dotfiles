@@ -17,6 +17,14 @@ depends = ["lint:*"]
 description = "Run typst in watch mode with generating pdf automatically"
 run = "~/.config/mise/tasks/typst"
 
+[tasks."monthly_plan"]
+description = "Open monthly plan markdown file"
+run = "~/.config/mise/tasks/generate_monthly_plan this-month"
+
+[tasks."monthly_plan:next"]
+description = "Open monthly plan markdown file"
+run = "~/.config/mise/tasks/generate_monthly_plan next-month"
+
 [tasks."todoist"]
 description = "Open todoist api client wrapper cli"
 run = "~/.config/mise/tasks/3rdparty/todoist"

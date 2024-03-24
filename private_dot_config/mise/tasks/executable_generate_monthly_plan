@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+import datetime
+
+import click
+
+
+def generate_monthly_plan(date: datetime.date):
+    beginning_of_month = date.replace(day=1)
+    number_of_days = beginning_of_month.replace(month=beginning_of_month.month + 1, day=1) - beginning_of_month
+    # iterates through the days of the month
+    print("     |    |     |")
+    for day in range(1, number_of_days.days + 1):
+        current_date = beginning_of_month.replace(day=day)
+        click.echo(f"  {str(beginning_of_month.month).rjust(2, '0')} | {str(day).rjust(2, '0')} | {current_date.strftime('%a')} |")
+
+
+@click.group(
+    invoke_without_command=True,
+)
+def cli():
+    pass
+
+# use this as default command without passing any arguments
+@click.command()
+def this_month():
+    generate_monthly_plan(datetime.date.today())
+
+
+@click.command()
+def next_month():
+    today = datetime.date.today()
+    next_month = today.replace(month=today.month + 1)
+    generate_monthly_plan(next_month)
+
+cli.add_command(this_month)
+cli.add_command(next_month)
+
+if __name__ == '__main__':
+    cli()

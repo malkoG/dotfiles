@@ -8,10 +8,13 @@ def generate_monthly_plan(date: datetime.date):
     beginning_of_month = date.replace(day=1)
     number_of_days = beginning_of_month.replace(month=beginning_of_month.month + 1, day=1) - beginning_of_month
     # iterates through the days of the month
-    print("     |    |     |")
+    additional_slot = "     |    |     |"
     for day in range(1, number_of_days.days + 1):
         current_date = beginning_of_month.replace(day=day)
-        click.echo(f"  {str(beginning_of_month.month).rjust(2, '0')} | {str(day).rjust(2, '0')} | {current_date.strftime('%a')} |")
+        weekday = current_date.strftime('%a')
+        click.echo(f"  {str(beginning_of_month.month).rjust(2, '0')} | {str(day).rjust(2, '0')} | {weekday} |")
+        if weekday == 'Sun':
+            click.echo(additional_slot)
 
 
 @click.group(

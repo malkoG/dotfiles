@@ -7,7 +7,7 @@ require 'csv'
 require 'json'
 
 def fetch_todolist
-  `todoist --color --namespace --csv l`
+  `todoist --color --namespace --csv l -p`
 end
 
 def fetch_donelist
@@ -105,7 +105,7 @@ HERE
 
 case subcommand
 when "all"
-  system("todoist --color --namespace --header l")
+  system("todoist --color --namespace --header l -p")
 when proc { _1 == 'finale' }
   donelist = fetch_donelist
   rows = select_todolist(donelist)
@@ -191,7 +191,7 @@ when "breakdown"
   puts "Syncing....."
   `todoist sync`
 
-  lines = `todoist --csv l | tail -n #{tasks.size}`.chomp
+  lines = `todoist --csv l -p | tail -n #{tasks.size}`.chomp
   latest_tasks = lines.split("\n").map { |line| line.parse_csv }
 
   project_name = project_name.split('/').first

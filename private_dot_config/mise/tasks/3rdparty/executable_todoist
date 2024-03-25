@@ -102,11 +102,28 @@ DATE_OPTIONS = <<~HERE
   #{(Date.today + 30).strftime("%Y/%m/%d")} (next month)
 HERE
 
+
+def quickadd_with_auto_reminder(task)
+  config_path = File.expand_path("~/.config/todoist/config.json")
+  json = File.read(config_path)
+  todoist_token = JSON.parse(json)['token']
+
+  command = <<~SHELL
+    curl https://api.todoist.com/sync/v9/quick/add \\
+      -H \"Authorization: Bearer #{todoist_token}\" \\
+      -d text='#{task}' \\
+      -d auto_reminder='true' \\
+      -s
+  SHELL
+
+  `#{command}`
+end
+
 case subcommand
 when "import"
   $<.read.lines.each do |line|
     task = line.chomp
-    system("todoist q '#{task}'")
+    quickadd_with_auto_reminder(task)
     puts task
   end
 when "all"

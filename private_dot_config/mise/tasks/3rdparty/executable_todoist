@@ -118,7 +118,7 @@ when proc { _1 == 'finale' }
       point_column = "#{point.scan(/\d+/).first.to_i} point"
     end
 
-    display_name = task_name.split('<').reverse.map(&:strip).map { "[#{_1}]" }.join(" > ")
+    display_name = task_name.split('|>').reverse.map(&:strip).map { "[#{_1}]" }.join(" |> ")
 
     table << "#{project},\"#{display_name}\",#{point_column}"
   end
@@ -132,7 +132,7 @@ when proc { _1 == 'plan' || _1 == 'listup' }
   table = []
   rows.each_line do |line|
     task_id, priority, _, project, labels, task_name = line.parse_csv
-    display_name = task_name.split('<').reverse.map(&:strip).map { "[#{_1}]" }.join(" > ")
+    display_name = task_name.split('|>').reverse.map(&:strip).map { "[#{_1}]" }.join(" |> ")
     point_column = "unknown point"
     if labels.to_s.split(',').any? && labels.include?("@point")
       point_column = "#{labels.split(',').select { _1.start_with?("@point:") }&.first&.scan(/\d+/)&.first&.to_s} point"
@@ -204,7 +204,7 @@ when "breakdown"
         priority:,
         project_id: projects[project_name],
         labels:,
-        task_name: "#{task_name} < #{parent_task_name}",
+        task_name: "#{task_name} |> #{parent_task_name}",
         task_id:
       )
     )

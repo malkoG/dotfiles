@@ -188,6 +188,10 @@ fi
 if command -v zoxide &>/dev/null; then
   eval "$(zoxide init zsh)"
   alias zx="zoxide"
+
+  function zii() {
+	__zoxide_zi "$@"
+  }
 fi
 
 alias mr='mise run'

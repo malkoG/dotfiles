@@ -102,6 +102,12 @@ DATE_OPTIONS = <<~HERE
 HERE
 
 case subcommand
+when "import"
+  $<.read.lines.each do |line|
+    task = line.chomp
+    system("todoist q '#{task}'")
+    puts task
+  end
 when "all"
   system("todoist --color --namespace --header l -p")
 when proc { _1 == 'finale' }

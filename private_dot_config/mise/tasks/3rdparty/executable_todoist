@@ -75,14 +75,15 @@ subcommand = ARGV.pop
 
 available_commands = [
   'all',
-  'listup',
-  'plan',
-  'schedule',
-  'estimate',
   'breakdown',
-  'prioritize',
   'bulk_add',
   'bulk_complete',
+  'estimate',
+  'import',
+  'listup',
+  'plan',
+  'prioritize',
+  'schedule',
 ]
 
 if subcommand.nil?

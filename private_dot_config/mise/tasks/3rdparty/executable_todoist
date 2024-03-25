@@ -27,8 +27,6 @@ def complete_todos(csv)
   end
 end
 
-width, height = IO.console.winsize
-
 ESTIMATION_POINTS = { 
   "1 point" => "point:1",
   "2 points" => "point:2",
@@ -125,6 +123,7 @@ when proc { _1 == 'finale' }
     table << "#{project},\"#{display_name}\",#{point_column}"
   end
   
+  width, height = IO.console.winsize
   system "echo 'project,task_name,score\n#{table.join("\n")}' | gum table -w 15,#{[150,(width*1.5).ceil].min},10"
 when proc { _1 == 'plan' || _1 == 'listup' }
   todolist = fetch_todolist 
@@ -143,6 +142,7 @@ when proc { _1 == 'plan' || _1 == 'listup' }
     table << "#{project},\"#{display_name}\",#{point_column}"
   end
   
+  width, height = IO.console.winsize
   system "echo 'project,task_name,score\n#{table.join("\n")}' | gum table -w 15,#{[150,(width*1.5).ceil].min},10"
 when "schedule"
   todolist = fetch_todolist 

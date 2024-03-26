@@ -33,6 +33,10 @@ run = "~/.config/mise/tasks/3rdparty/todoist"
 description = "Open Github CLI wrapper CLI"
 run = "~/.config/mise/tasks/3rdparty/gh"
 
+[tasks."pomo"]
+description = "Generate pomodoro timer reminder for Todoist"
+run = "~/.config/mise/tasks/pomodoro generate"
+
 [settings]
 experimental = true
 

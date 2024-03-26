@@ -1,0 +1,60 @@
+#!/usr/bin/env python
+
+from datetime import datetime
+import click 
+
+@click.group()
+def cli():
+	pass
+
+@click.command(
+    help="Generate a pomodoro schedule for the day"
+)
+@click.option('--count', default=4, help="Number of pomodoros to generate")
+@click.option('--project', default="", help="Project name")
+def generate(count, project):
+    current_hour = datetime.now().hour
+    current_minute = 35 
+    if datetime.now().minute <= 35:
+        current_minute = 35
+    else:
+        current_hour += 1
+        current_minute = 5
+
+    if project != "": 
+        project = f"#{project}"
+
+    # 25 minutes of work
+    # ex)
+    # 10:35 1 pomo
+    # 11:05 2 pomo
+    # 11:35 3 pomo
+    # 12:05 4 pomo
+    for i in range(count):
+        click.echo(f"{str(current_hour).rjust(2, '0')}:{str(current_minute).rjust(2, '0')} {i + 1} pomo {project}")
+        current_minute += 30
+        if current_minute >= 60:
+            current_hour += 1
+            current_minute -= 60
+
+
+    current_hour = datetime.now().hour
+    current_minute = 40
+    if datetime.now().minute <= 40:
+        current_minute = 40
+    else:
+        current_hour += 1
+        current_minute = 10
+
+    for i in range(count):
+        click.echo(f"{str(current_hour).rjust(2, '0')}:{str(current_minute).rjust(2, '0')}  break")
+        current_minute += 30
+        if current_minute >= 60:
+            current_hour += 1
+            current_minute -= 60
+
+
+cli.add_command(generate)
+
+if __name__ == '__main__': 
+	cli()

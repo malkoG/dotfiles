@@ -162,11 +162,15 @@ alias fladr="$FLUTTER_AUTOMATION android release"
 # Alias commands 
 ######
 if command -v lsd &>/dev/null; then 
-  alias l="lsd -Ah"
-  alias la="lsd -Ah"
-  alias ll="lsd -Alh"
-  alias lla="lsd -lAh"
-  alias lt="l -Ah --tree"
+  # Bypass this problem
+  #
+  # lsd: aliased to command ls -d *(/)
+  alias _lsd="mise x lsd -- lsd"
+  alias l="_lsd -Ah"
+  alias la="_lsd -Ah"
+  alias ll="_lsd -Alh"
+  alias lla="_lsd -lAh"
+  alias lt="_l -Ah --tree"
 elif command -v exa &>/dev/null; then
   alias l="exa -s type"
   alias la="exa -s type -a"

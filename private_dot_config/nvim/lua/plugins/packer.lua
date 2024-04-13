@@ -21,11 +21,13 @@ return require('packer').startup(function(use)
   use { 'wbthomason/packer.nvim' }
 
   use {
-    'kyazdani42/nvim-tree.lua',
+    "stevearc/oil.nvim",
     requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+      "kyazdani42/nvim-web-devicons"
     },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    config = function()
+      require("oil").setup()
+    end,
   }
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.5',

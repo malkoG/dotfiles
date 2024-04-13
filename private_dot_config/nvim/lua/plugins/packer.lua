@@ -402,6 +402,9 @@ return require('packer').startup(function(use)
       'folke/neodev.nvim',
     },
     config = function()
+      if os.getenv("COC_ENABLED") == "true" then
+        return
+      end
       require("config.mason-lspconfig").setup()
       require("lsp.init")
     end

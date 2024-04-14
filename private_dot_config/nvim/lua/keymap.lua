@@ -21,6 +21,13 @@ map('n', '<leader>n', ':NvimTreeFindFile<CR>', default_opts) -- search file
 -- Testing
 map('n', '<leader>t', ':TestNearest<CR>', default_opts)
 
+-- Tab
+map('n', "<leader>=", ":tabnew<CR>", default_opts)
+map('n', "<leader>-", ":tabclose<CR>", default_opts)
+map('n', "<leader><", ":tabprevious<CR>", default_opts)
+map('n', "<leader>>", ":tabnext<CR>", default_opts)
+
+
 -- Telescope
 vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', telescope_builtin.live_grep, {})

@@ -37,6 +37,10 @@ run = "~/.config/mise/tasks/3rdparty/gh"
 description = "Generate pomodoro timer reminder for Todoist"
 run = "~/.config/mise/tasks/pomodoro generate"
 
+[tasks."pip:sync"]
+description = "Sync pip packages from requirements.txt"
+run = "~/.config/mise/tasks/pip-sync"
+
 [settings]
 experimental = true
 

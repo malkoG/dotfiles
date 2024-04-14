@@ -40,6 +40,8 @@ if [ "$(uname)" = "Darwin" ]; then
 	export ANDROID_HOME=$HOME/Library/Android/Sdk
 elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
 	export ANDROID_HOME=$HOME/Android/Sdk
+	export CHROME_EXECUTABLE=google-chrome-stable
+	alias google-chrome='google-chrome-stable'
 fi
 
 plugins=(git zshmarks)
@@ -112,7 +114,6 @@ exenv() {
 export LANG=ko_KR.UTF-8
 export LC_ALL=ko_KR.UTF-8
 
-export CHROME_EXECUTABLE=google-chrome-stable
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '$HOME/tmp/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/tmp/google-cloud-sdk/path.zsh.inc'; fi
@@ -440,4 +441,3 @@ fzf-completion() {
 }
 
 
-alias google-chrome='google-chrome-stable'

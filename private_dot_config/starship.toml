@@ -1,0 +1,67 @@
+add_newline = true
+# prompt_order=[
+#	"package", "python", "nodejs", "line_break", 
+#	"username", "hostname", "directory", "git_branch", "git_status", "character",
+#	"jobs", "time", "battery"]
+
+[aws]
+style = "bold blue"
+symbol = "🅰 "
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "⚡️"
+discharging_symbol = "💀"
+
+
+[[battery.display]]
+threshold = -10
+style = "bold red"
+
+
+[directory]
+truncation_length = 8
+
+[git_branch]
+symbol = "🌱 "
+truncation_length = "4"
+truncation_symbol = ""
+
+[git_commit]
+tag_disabled = false
+
+[git_status]
+conflicted = "🏳"
+ahead = "🏎💨"
+behind = "😰"
+diverged = "😵"
+untracked = "🤷‍"
+stashed = "📦"
+modified = "📝"
+staged = "➕"
+renamed = "👅"
+deleted = "🗑"
+
+
+[hostname]
+ssh_only = false
+prefix = "⟪"
+suffix = "⟫"
+disabled = false
+
+[jobs]
+symbol = "+ "
+threshold = 4
+
+[time]
+disabled = false
+
+[memory_usage]
+disabled = false
+show_percentage = true
+show_swap = true
+threshold = 10
+icon = " "
+style = "bold dimmed green"
+
+

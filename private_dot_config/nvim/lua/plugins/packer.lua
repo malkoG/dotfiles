@@ -21,13 +21,6 @@ return require('packer').startup(function(use)
   use { 'wbthomason/packer.nvim' }
 
   use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icons
-    },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
-  }
-  use {
     'nvim-telescope/telescope.nvim', tag = '0.1.5',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
@@ -196,6 +189,12 @@ return require('packer').startup(function(use)
   }
 
   -- Developer Experience
+  use {
+    "stevearc/oil.nvim",
+    config = function()
+      require("oil").setup()
+    end
+  }
   use { "gpanders/editorconfig.nvim" }
 
   use {

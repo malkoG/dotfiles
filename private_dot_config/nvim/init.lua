@@ -1,6 +1,6 @@
 require('plugins/packer')
+require('plugins/oil')
 require('settings')
-require('plugins/nvim-tree')
 require('plugins/telescope')
 require('plugins/lualine')
 require('plugins/blamer')

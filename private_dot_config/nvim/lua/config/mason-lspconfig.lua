@@ -29,7 +29,7 @@ M.setup = function()
   require("mason-lspconfig").setup({
     ensure_installed = {
       "lua_ls",
-      "ruby_ls",
+      "ruby_lsp",
       "ruff_lsp",
       "rubocop",
       "astro",
@@ -50,7 +50,7 @@ M.setup = function()
   })
 
   require("lspconfig").lua_ls.setup {}
-  require("lspconfig").ruby_ls.setup {
+  require("lspconfig").ruby_lsp.setup {
     cmd = ruby_lsp_command,
   }
   require("lspconfig").ruff_lsp.setup {}

@@ -21,13 +21,11 @@ return require('packer').startup(function(use)
   use { 'wbthomason/packer.nvim' }
 
   use {
-    "stevearc/oil.nvim",
+    'kyazdani42/nvim-tree.lua',
     requires = {
-      "kyazdani42/nvim-web-devicons"
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
     },
-    config = function()
-      require("oil").setup()
-    end,
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.5',
@@ -299,17 +297,6 @@ return require('packer').startup(function(use)
       })
     end
   })
-
-  use {
-    'jinh0/eyeliner.nvim',
-    config = function()
-      require'eyeliner'.setup {
-        highlight_on_key = true, -- show highlights only after keypress
-        dim = false              -- dim all other characters if set to true (recommended!)
-      }
-    end
-  }
-
   -- use({
   --  'sunjon/shade.nvim',
   --  config = function()
@@ -415,9 +402,6 @@ return require('packer').startup(function(use)
       'folke/neodev.nvim',
     },
     config = function()
-      if os.getenv("COC_ENABLED") == "true" then
-        return
-      end
       require("config.mason-lspconfig").setup()
       require("lsp.init")
     end

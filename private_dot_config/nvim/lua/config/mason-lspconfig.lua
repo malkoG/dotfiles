@@ -46,6 +46,7 @@ M.setup = function()
       "biome",
       "tsserver",
       "terraformls",
+      "jinja_lsp",
     },
   })
 
@@ -94,6 +95,7 @@ M.setup = function()
   }
   require("lspconfig")["tsserver"].setup {}
   require("lspconfig")["terraformls"].setup{}
+  require("lspconfig")["jinja_lsp"].setup{}
 
   if ruby_lsp_local == "true" then
     -- require("lspconfig").solargraph.setup {

@@ -473,6 +473,9 @@ return require('packer').startup(function(use)
   -- languages (rescript)
   use { 'rescript-lang/vim-rescript' }
 
+  -- languages (jinja2)
+  use { 'Glench/Vim-Jinja2-Syntax' }
+
   -- Telescope extensions
   use { "nvim-telescope/telescope-file-browser.nvim" }
 end)

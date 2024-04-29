@@ -21,6 +21,7 @@ local postfix = require("luasnip.extras.postfix").postfix
 local dynamicn = ls.dynamic_node
 
 local date = function() return {os.date('%Y-%m-%d')} end
+local thismonth = function() return {os.date('%Y-%m')} end
 local yesterday = function() return { os.date('%Y-%m-%d', os.time() - 60 * 60 * 24) } end
 local tomorrow = function() return { os.date('%Y-%m-%d', os.time() + 60 * 60 * 24) } end
 
@@ -54,6 +55,13 @@ ls.add_snippets(nil, {
       dscr = "Yesterday in the form of YYYY-MM-DD",
     }, {
       func(yesterday, {}),
+    }),
+    snip({
+      trig = "thismonth",
+      namr = "This Month",
+      dscr = "This month in the form of YYYY-MM",
+    }, {
+      func(thismonth, {}),
     }),
     snip({
       trig = "tomorrow",

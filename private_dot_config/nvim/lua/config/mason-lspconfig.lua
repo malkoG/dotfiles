@@ -65,24 +65,32 @@ M.setup = function()
     cmd = solargraph_command,
   }
 
-  -- HTML/CSS/JS
-  require('lspconfig').tailwindcss.setup {
-    userLanguages = {
-      eelixir = "html-eex",
-      eruby = "erb",
-      ruby = "erb",
-      templ = "html"
+  if os.getenv("JAVASCRIPT_ENABLED") == "true" then
+    require('lspconfig').stimulus_ls.setup {
+      filetypes = { "html", "eruby", "blade", "php" },
+      flags = {
+        debounce_text_changes = 150,
+      }
     }
-  }
-  require('lspconfig').stimulus_ls.setup {
-    filetypes = { "html", "eruby", "blade", "php" },
-    flags = {
-      debounce_text_changes = 150,
+    require("lspconfig").biome.setup {
+      single_file_support = true
     }
-  }
+    require("lspconfig")["tsserver"].setup {}
+    -- HTML/CSS/JS
+    require('lspconfig').tailwindcss.setup {
+      userLanguages = {
+        eelixir = "html-eex",
+        eruby = "erb",
+        ruby = "erb",
+        templ = "html",
+		jinja = "html",
+        javascript = "javascriptreact",
+      }
+    }
+  end
   require'lspconfig'.html.setup {
     capabilities = capabilities,
-    filetypes = { "html", "templ", "eruby" },
+    filetypes = { "html", "templ", "eruby" }
   }
   require("lspconfig").yamlls.setup {}
   require("lspconfig").emmet_ls.setup {}
@@ -90,10 +98,6 @@ M.setup = function()
     capabilities = capabilities,
     filetypes = { "html", "templ", "eruby" },
   }
-  require("lspconfig").biome.setup {
-    single_file_support = true
-  }
-  require("lspconfig")["tsserver"].setup {}
   require("lspconfig")["terraformls"].setup{}
   require("lspconfig")["jinja_lsp"].setup{}
 

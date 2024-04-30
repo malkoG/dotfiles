@@ -196,6 +196,7 @@ return require('packer').startup(function(use)
     end
   }
   use { "gpanders/editorconfig.nvim" }
+  use { "echasnovski/mini.files" }
 
   use {
     'nvim-treesitter/nvim-treesitter',

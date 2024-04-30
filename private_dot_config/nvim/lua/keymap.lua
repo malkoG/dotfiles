@@ -22,6 +22,8 @@ map('n', "<leader>-", ":tabclose<CR>", default_opts)
 map('n', "<leader><", ":tabprevious<CR>", default_opts)
 map('n', "<leader>>", ":tabnext<CR>", default_opts)
 
+-- mini.files (Enables tree view)
+map('n', '<C-n>', ":lua require('mini.files').open(vim.api.nvim_buf_get_name(0), false)<CR>", default_opts)
 
 -- Telescope
 vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files, {})

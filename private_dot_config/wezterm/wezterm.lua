@@ -8,8 +8,9 @@ local home_path = os.getenv('HOME')
 return {
 	-- font = wezterm.font_with_fallback({'셈틀체', 'NanumBarunGothic'}),
 	-- font = wezterm.font_with_fallback({'JetBrains Mono', 'NanumBarunGothic'}),
-	font_size = 14.0,
 	font = wezterm.font_with_fallback({'CascadiaCodeNF', 'NanumBarunGothic'}),
+	font_size = 12.0,
+	line_height = 1.2,
 	window_background_opacity = 0.9,
 	keys = keymaps,
 	window_background_gradient = {

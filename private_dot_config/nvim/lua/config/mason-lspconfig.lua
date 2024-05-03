@@ -58,7 +58,15 @@ M.setup = function()
   require("lspconfig").rubocop.setup {}
   require("lspconfig").astro.setup {}
   require("lspconfig").vale_ls.setup {
-    filetypes = { "markdown", "text", "gitcommit", "typst", "rst", "asciidoc", "adoc", "ad" },
+    filetypes = {
+      "markdown",
+      "text",
+      "typst",
+      "rst",
+      "asciidoc",
+      "adoc",
+      "ad"
+    },
   }
   require("lspconfig").pyright.setup {}
   require("lspconfig").solargraph.setup {

@@ -12,6 +12,12 @@ vi ~/.config/nvim/lua/plugins/packer.lua # managing plugins
 
 cd ~/.config/mise/ && vi . # Editing mise tasks
 
+#### 
+# Journaling
+####
+
+export ZETTELKASTEN_TARGET="private_wiki" && ruby -rdate -e "date = Date.today; system(\"cd ~/kojima-wiki && nvim daily/#{date}.md\")" # Open today's journal
+
 ####
 # Tmuxinator
 ####

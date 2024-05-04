@@ -83,29 +83,8 @@ discharging_symbol = "💀"
 threshold = -10
 style = "bold red"
 
-
-[directory]
-truncation_length = 8
-
-[git_branch]
-symbol = "🌱 "
-truncation_length = "4"
-truncation_symbol = ""
-
 [git_commit]
 tag_disabled = false
-
-[git_status]
-conflicted = "🏳"
-ahead = "🏎💨"
-behind = "😰"
-diverged = "😵"
-untracked = "🤷‍"
-stashed = "📦"
-modified = "📝"
-staged = "➕"
-renamed = "👅"
-deleted = "🗑"
 
 
 [hostname]
@@ -117,9 +96,6 @@ disabled = false
 [jobs]
 symbol = "+ "
 threshold = 4
-
-[time]
-disabled = false
 
 [memory_usage]
 disabled = false

@@ -16,6 +16,9 @@ map('i', '<C-J>', '<Plug>copilot#Accept("\\<CR>")', default_opts)
 -- Testing
 map('n', '<leader>t', ':TestNearest<CR>', default_opts)
 
+-- Git
+map('n', '<leader>g', ':Git<CR>', default_opts)
+
 -- Tab
 map('n', "<leader>=", ":tabnew<CR>", default_opts)
 map('n', "<leader>-", ":tabclose<CR>", default_opts)

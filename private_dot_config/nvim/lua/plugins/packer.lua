@@ -111,7 +111,7 @@ return require('packer').startup(function(use)
         models = {
             {
                 name = "openai",
-                model = "gpt-4-1106-preview",
+                model = "gpt-4o",
                 params = nil,
             },
         },

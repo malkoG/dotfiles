@@ -84,18 +84,18 @@ M.setup = function()
       single_file_support = true
     }
     require("lspconfig")["tsserver"].setup {}
-    -- HTML/CSS/JS
-    require('lspconfig').tailwindcss.setup {
-      userLanguages = {
-        eelixir = "html-eex",
-        eruby = "erb",
-        ruby = "erb",
-        templ = "html",
-		jinja = "html",
-        javascript = "javascriptreact",
-      }
-    }
   end
+  -- HTML/CSS/JS
+  require('lspconfig').tailwindcss.setup {
+    userLanguages = {
+      eelixir = "html-eex",
+      eruby = "erb",
+      ruby = "erb",
+      templ = "html",
+      jinja = "html",
+      javascript = "javascriptreact",
+    }
+  }
   require'lspconfig'.html.setup {
     capabilities = capabilities,
     filetypes = { "html", "templ", "eruby" }

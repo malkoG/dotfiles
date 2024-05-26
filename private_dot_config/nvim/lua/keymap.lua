@@ -14,7 +14,8 @@ vim.g.copilot_no_tab_map = true
 map('i', '<C-J>', '<Plug>copilot#Accept("\\<CR>")', default_opts)
 
 -- Testing
-map('n', '<leader>t', ':TestNearest<CR>', default_opts)
+map('n', '<leader>tt', ':TestNearest<CR>', default_opts)
+map('n', '<leader>tf', ':TestFile -strategy=neovim<CR>', default_opts)
 
 -- Git
 map('n', '<leader>g', ':Git<CR>', default_opts)

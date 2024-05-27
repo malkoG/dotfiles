@@ -6,6 +6,10 @@ local opts = default_opts
 
 local augroup = vim.api.nvim_create_augroup('user_cmds', {clear = true})
 
+-- Save
+map('n', '<C-s>', ':w<CR>', opts)
+map('i', '<C-s>', '<ESC>:w<CR>', opts)
+
 -- terminal
 map('n', '<C-w>V', ':vsplit term://zsh<CR>', opts)
 

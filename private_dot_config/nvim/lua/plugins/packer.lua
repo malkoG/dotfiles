@@ -440,6 +440,12 @@ return require('packer').startup(function(use)
     end,
     requires = {
       'nvim-lua/plenary.nvim',
+    },
+    lsp = {
+      settings = {
+        enableSnippets = true,
+        lineLength = 120,
+      }
     }
   }
 

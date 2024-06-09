@@ -34,10 +34,6 @@ vim.g.slotted_schedules = {
 
 scheduler.notify_schedule()
 
-if os.getenv("COC_ENABLED") == "true" then
-	require('coc/init')
-end
-
 require('keymap')
 require('abbreviation')
 

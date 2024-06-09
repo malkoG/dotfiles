@@ -456,6 +456,10 @@ return require('packer').startup(function(use)
     requires = {
       'nvim-lua/plenary.nvim',
     },
+    capabilitties = function(config)
+      config.textDocument.inlayHint.dynamicRegistration = false
+      return config
+    end,
     lsp = {
       settings = {
         enableSnippets = true,

@@ -451,21 +451,30 @@ return require('packer').startup(function(use)
   use {
     'akinsho/flutter-tools.nvim',
     config = function()
-      require("flutter-tools").setup{}
+      require("flutter-tools").setup{
+        lsp = {
+          capabilitties = function(config)
+            config.textDocument.inlayHint.dynamicRegistration = false
+            config.textDocument.formatting.dynamicRegistration = true
+            return config
+          end,
+          on_attach = function(client, bufnr)
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.format({ bufnr = bufnr })
+              end,
+            })
+          end,
+          settings = {
+            lineLength = 120,
+          }
+        }
+      }
     end,
     requires = {
       'nvim-lua/plenary.nvim',
     },
-    capabilitties = function(config)
-      config.textDocument.inlayHint.dynamicRegistration = false
-      return config
-    end,
-    lsp = {
-      settings = {
-        enableSnippets = true,
-        lineLength = 120,
-      }
-    }
   }
 
   -- languages (fennel)

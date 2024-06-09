@@ -426,6 +426,21 @@ return require('packer').startup(function(use)
     end
   }
 
+  use {
+    'scalameta/nvim-metals',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "scala", "sbt", "java" },
+        callback = function()
+          require("metals").initialize_or_attach({})
+        end,
+        group = nvim_metals_group,
+      })
+    end
+  }
+
   -- languages (elixir)
   use { "elixir-editors/vim-elixir" }
 

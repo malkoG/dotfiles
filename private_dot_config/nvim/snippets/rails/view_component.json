@@ -1,0 +1,10 @@
+{
+  "render ViewComponent within ERB": {
+	"scope": "eruby",
+	"prefix": "rvc",
+	"body": [
+	  "<%= render $1Component.new %>"
+	],
+	"description": "render ViewComponent object within erb template"
+  }
+}

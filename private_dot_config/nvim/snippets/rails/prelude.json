@@ -1,0 +1,35 @@
+{
+  "Service object": {
+	"scope": "ruby",
+	"prefix": "srv",
+	"body": [
+	  "class $1 < ApplicationService",
+	  "\tdef initialize($1)",
+	  "\tend",
+	  "\t",
+	  "\tdef call",
+	  "\tend",
+	  "end"
+	],
+	"description": "definition of Service class"
+  },
+  "ViewComponent": {
+	"scope": "ruby",
+	"prefix": "vc",
+	"body": [
+	  "class $1Component < ViewComponent::Base",
+	  "\tdef initialize()",
+	  "\tend",
+	  "end"
+	],
+	"description": "definition of ViewComponent class"
+  },
+  "render ViewComponent": {
+	"scope": "ruby",
+	"prefix": "rvc",
+	"body": [
+	  "render $1Component.new"
+	],
+	"description": "render ViewComponent within ruby object"
+  }
+}

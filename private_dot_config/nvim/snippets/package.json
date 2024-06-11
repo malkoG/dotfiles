@@ -16,7 +16,15 @@
       {
         "language": "dart",
         "path": "./flutter/riverpod.json"
-      }
+      },
+	  {
+		"language": "erb",
+		"path": "./rails/view_component.json"
+	  },
+	  {
+		"language": "ruby",
+		"path": "./rails/prelude.json"
+	  }
     ]
   }
 }

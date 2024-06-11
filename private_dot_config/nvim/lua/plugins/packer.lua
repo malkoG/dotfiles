@@ -366,7 +366,6 @@ return require('packer').startup(function(use)
     event = "InsertEnter",
     opt = true,
     config = function()
-      require("config.snip").setup()
       require("config.cmp").setup()
       require('config.snippets')
     end,

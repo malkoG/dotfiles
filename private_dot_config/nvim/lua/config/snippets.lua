@@ -30,6 +30,18 @@ local ruby_snippets_at_work = require("config.at_work.ruby")
 
 ruby_snippets = prelude.concat(ruby_snippets, ruby_snippets_at_work)
 
+ls.config.set_config {
+  history = true,
+  updateevents = "TextChanged,TextChangedI",
+  enable_autosnippets = true,
+}
+
+require("luasnip/loaders/from_vscode").load {
+  paths = { "~/.config/nvim/snippets" },
+}
+
+ls.filetype_extend("dart", { "flutter" })
+
 local markdown_snippets = {
   postfix({
     trig = ".kb",

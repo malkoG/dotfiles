@@ -78,11 +78,11 @@ function M.setup()
       }),
     },
     sources = {
+      { name = "luasnip" },
       { name = 'nvim_lsp', keyword_length = 1 },
       { name = "treesitter" },
       { name = "buffer" },
       { name = "mermaid" },
-      { name = "luasnip" },
       { name = "nvim_lua" },
       { name = "path" },
       { name = "spell" },

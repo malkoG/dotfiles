@@ -1,0 +1,22 @@
+{
+  "name": "custom snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "dart",
+        "path": "./dart.json"
+      },
+      {
+        "language": "dart",
+        "path": "./flutter/prelude.json"
+      },
+      {
+        "language": "dart",
+        "path": "./flutter/riverpod.json"
+      }
+    ]
+  }
+}

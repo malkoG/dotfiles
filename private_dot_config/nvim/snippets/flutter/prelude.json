@@ -1,0 +1,20 @@
+{
+  "Flutter Row widget snippet": {
+    "prefix": "row",
+    "body": [
+      "Row(",
+      "  children: <Widget>[${0}],",
+      ")"
+    ],
+    "description": "Flutter Row widget snippet"
+  },
+  "Flutter Column widget snippet": {
+    "prefix": "col",
+    "body": [
+      "Column(",
+      "  children: <Widget>[${0}],",
+      ")"
+    ],
+    "description": "Flutter Column widget snippet"
+  }
+}

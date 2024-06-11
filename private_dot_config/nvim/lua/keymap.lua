@@ -21,6 +21,11 @@ map('i', '<C-J>', '<Plug>copilot#Accept("\\<CR>")', default_opts)
 map('n', '<leader>tt', ':TestNearest<CR>', default_opts)
 map('n', '<leader>tf', ':TestFile -strategy=neovim<CR>', default_opts)
 
+-- flutter-tools.nvim
+map('n', '<space>fd', ':FlutterDevices<CR>', default_opts)
+map('n', '<space>fe', ':FlutterEmulators<CR>', default_opts)
+map('n', '<space>fq', ':FlutterQuit<CR>', default_opts)
+
 -- Git
 map('n', '<leader>g', ':Git<CR>', default_opts)
 

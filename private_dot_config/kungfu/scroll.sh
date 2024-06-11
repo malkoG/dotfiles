@@ -5,6 +5,7 @@ vi ~/.config/kungfu/scroll.sh # Editing this file
 ####
 vi ~/.config/nvim/lua/config/mason-lspconfig.lua # LSP configuration
 vi ~/.config/nvim/lua/plugins/packer.lua # managing plugins
+vi ~/.config/nvim/snippets/ # managing snippets
 
 ####
 # Mise

@@ -10,11 +10,12 @@ for _, theme in ipairs({
 	available_themes[theme] = true
 end
 
+local defaualt_theme = "tokyonight"
 if current_theme == nil then 
-	vim.cmd.colorscheme("melange")
+	vim.cmd.colorscheme(defaualt_theme)
 elseif available_themes[current_theme] ~= nil then
 	vim.cmd.colorscheme(current_theme)
 else
-	vim.cmd.colorscheme("melange")
+	vim.cmd.colorscheme(defaualt_theme)
 end
 

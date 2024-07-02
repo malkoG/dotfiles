@@ -181,12 +181,6 @@ return require('packer').startup(function(use)
 	end
   }
 
-  -- Assists developing treesitter-based tools
-  use {
-    "nvim-treesitter/playground",
-    requires = "nvim-treesitter/nvim-treesitter"
-  }
-
   -- Developer Experience
   use {
     "stevearc/oil.nvim",
@@ -197,28 +191,10 @@ return require('packer').startup(function(use)
   use { "gpanders/editorconfig.nvim" }
   use { "echasnovski/mini.files" }
 
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    config = function()
-      require("plugins.treesitter")
-    end,
-  }
-  use({
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    after = "nvim-treesitter",
-    requires = "nvim-treesitter/nvim-treesitter",
-  })
-  use {
-    'nvim-treesitter/nvim-treesitter-context',
-    config = function()
-     require("plugins.treesitter-context")
-    end,
-  } -- sticky scroll
   use { "danilamihailov/beacon.nvim" }
   use { "cappyzawa/trim.nvim" }
   use {
     "folke/paint.nvim",
-    requires = "nvim-treesitter/nvim-treesitter",
     config = function()
       local rules = require("config.painting_rules")
       require("paint").setup(rules)
@@ -355,7 +331,6 @@ return require('packer').startup(function(use)
     "nvim-neotest/neotest",
     requires = {
       "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim"
     }
   }

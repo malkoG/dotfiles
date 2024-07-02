@@ -26,7 +26,7 @@ local yesterday = function() return { os.date('%Y-%m-%d', os.time() - 60 * 60 * 
 local tomorrow = function() return { os.date('%Y-%m-%d', os.time() + 60 * 60 * 24) } end
 
 local ruby_snippets = {}
-local ruby_snippets_at_work = require("config.at_work.ruby")
+local ruby_snippets_at_work = {}
 
 ruby_snippets = prelude.concat(ruby_snippets, ruby_snippets_at_work)
 
@@ -37,7 +37,10 @@ ls.config.set_config {
 }
 
 require("luasnip/loaders/from_vscode").load {
-  paths = { "~/.config/nvim/snippets" },
+  paths = {
+    "~/.config/nvim/snippets",
+    "~/toolbox/snippets"
+  }
 }
 
 ls.filetype_extend("dart", { "flutter" })

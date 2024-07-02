@@ -57,17 +57,17 @@ M.setup = function()
   require("lspconfig").ruff_lsp.setup {}
   require("lspconfig").rubocop.setup {}
   require("lspconfig").astro.setup {}
-  require("lspconfig").vale_ls.setup {
-    filetypes = {
-      "markdown",
-      "text",
-      "typst",
-      "rst",
-      "asciidoc",
-      "adoc",
-      "ad"
-    },
-  }
+  -- require("lspconfig").vale_ls.setup {
+    -- filetypes = {
+      -- "markdown",
+      -- "text",
+      -- "typst",
+      -- "rst",
+      -- "asciidoc",
+      -- "adoc",
+      -- "ad"
+    -- },
+  -- }
   require("lspconfig").pyright.setup {}
   require("lspconfig").solargraph.setup {
     cmd = solargraph_command,

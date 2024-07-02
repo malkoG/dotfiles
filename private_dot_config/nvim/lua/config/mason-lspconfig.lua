@@ -47,6 +47,7 @@ M.setup = function()
       "tsserver",
       "terraformls",
       "jinja_lsp",
+      "volar",
     },
   })
 
@@ -73,18 +74,33 @@ M.setup = function()
     cmd = solargraph_command,
   }
 
-  if os.getenv("JAVASCRIPT_ENABLED") == "true" then
-    require('lspconfig').stimulus_ls.setup {
-      filetypes = { "html", "eruby", "blade", "php" },
-      flags = {
-        debounce_text_changes = 150,
-      }
+  require('lspconfig').stimulus_ls.setup {
+    filetypes = { "html", "eruby", "blade", "php" },
+    flags = {
+      debounce_text_changes = 150,
     }
-    require("lspconfig").biome.setup {
-      single_file_support = true
-    }
-    require("lspconfig")["tsserver"].setup {}
-  end
+  }
+  require("lspconfig").biome.setup {
+    single_file_support = true
+  }
+
+  local mason_registry = require('mason-registry')
+  local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
+  require("lspconfig")["tsserver"].setup {
+    init_options = {
+      plugins = {
+        {
+          name = '@vue/typescript-plugin',
+          location = vue_language_server_path,
+          languages = { 'vue' },
+        },
+      },
+    },
+    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+  }
+
+  require("lspconfig")["volar"].setup{}
+
   -- HTML/CSS/JS
   require('lspconfig').tailwindcss.setup {
     userLanguages = {

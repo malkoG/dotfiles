@@ -29,6 +29,15 @@ map('n', '<space>fq', ':FlutterQuit<CR>', default_opts)
 -- Git
 map('n', '<leader>g', ':Git<CR>', default_opts)
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {'fugitive'},
+  group = augroup,
+  desc = 'Only works on gitcommit files',
+  callback = function(event)
+    map('n', '<leader>gp', ':Git push<CR>', default_opts)
+  end
+})
+
 -- Tab
 map('n', "<leader>=", ":tabnew<CR>", default_opts)
 map('n', "<leader>-", ":tabclose<CR>", default_opts)

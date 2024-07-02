@@ -1,0 +1,94 @@
+#!/bin/bash
+
+source "$CONFIG_DIR/colors.sh"
+# This is a demo config to showcase some of the most important commands.
+# It is meant to be changed and configured, as it is intentionally kept sparse.
+# For a (much) more advanced configuration example see my dotfiles:
+# https://github.com/FelixKratz/dotfiles
+
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+ITEM_DIR="$CONFIG_DIR/items"
+
+##### Bar Appearance #####
+# Configuring the general appearance of the bar.
+# These are only some of the options available. For all options see:
+# https://felixkratz.github.io/SketchyBar/config/bar
+# If you are looking for other colors, see the color picker:
+# https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
+#
+bar_top=(
+  padding_left=0
+  padding_right=0
+  position=top
+  height=30
+  corner_radius=8
+  blur_radius=30
+  margin=12
+  y_offset=2
+  shadow=true
+  color=$BAR_COLOR
+  topmost=window
+)
+
+sketchybar --bar "${bar_top[@]}"
+
+##### Changing Defaults #####
+# We now change some default values, which are applied to all further items.
+# For a full list of all available item properties see:
+# https://felixkratz.github.io/SketchyBar/config/items
+
+default=(
+  padding_left=5
+  padding_right=5
+  icon.font="JetBrains Mono:Semibold:14.0"
+  label.font="JetBrains Mono:Semibold:13.0"
+  icon.color=$WHITE
+  label.color=$WHITE
+  background.color=$ITEM_BG_COLOR
+  background.corner_radius=5
+  background.height=22
+  icon.padding_left=9
+  icon.padding_right=4
+  label.padding_left=4
+  label.padding_right=9
+)
+sketchybar --default "${default[@]}"
+
+sketchybar --add item apple.logo left \
+              --set apple.logo icon=􀣺 \
+              icon.font="JetBrains Mono:Black:16.0" \
+              background.color=$BAR_COLOR \
+              icon.padding_left=0 \
+              icon.padding_right=0 \
+              padding_left=0 \
+              icon.color=$WHITE 
+
+##### Adding Left Items #####
+
+source "$ITEM_DIR/apple_logo.sh"
+source "$ITEM_DIR/front_app.sh"
+# source "$ITEM_DIR/spaces.sh"
+
+##### Adding Right Items #####
+
+source "$ITEM_DIR/calendar.sh"
+source "$ITEM_DIR/battery.sh"
+source "$ITEM_DIR/wifi.sh"
+source "$ITEM_DIR/filler.sh"
+
+sketchybar --add bracket left apple.logo front_app filler.left \
+           --set left background.color=$BRACKET_COLOR \
+                         background.corner_radius=8 \
+                         background.height=26 \
+                         background.border_color=0xffc8c093 \
+                         background.border_width=2      
+
+sketchybar --add bracket right filler.right wifi battery calendar  \
+           --set right background.color=$BRACKET_COLOR \
+                         background.corner_radius=8 \
+                         background.height=26 \
+                         background.border_color=0xffc8c093 \
+                         background.border_width=2
+
+##### Force all scripts to run the first time (never do this in a script) #####
+sketchybar --update

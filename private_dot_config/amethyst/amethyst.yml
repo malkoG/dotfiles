@@ -13,6 +13,15 @@
 # If you experience issues pulling in the changes you can also quit Amethyst and run: `defaults delete com.amethyst.Amethyst.plist`
 # This removes the current preferences and causes Amethyst to restart with default preferences and pull configs from this file.
 
+
+focus-screen-1:
+  mod: mod1
+  key: t
+
+focus-screen-2:
+  mod: mod1
+  key: y
+
 # layouts - Ordered list of layouts to use by layout key (default tall, wide, fullscreen, and column).
 
 # disable screen padding on builtin display
@@ -56,7 +65,7 @@ hide-menu-bar-icon: false
 float-small-windows: true
 
 # true if the mouse should move position to the center of a window when it becomes focused (default false). Note that this is largely incompatible with focus-follows-mouse.
-mouse-follows-focus: false
+mouse-follows-focus: true
 
 # true if the windows underneath the mouse should become focused as the mouse moves (default false). Note that this is largely incompatible with mouse-follows-focus
 focus-follows-mouse: false

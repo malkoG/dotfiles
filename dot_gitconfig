@@ -26,6 +26,7 @@
 
 [alias]
 	navigate = !ruby ~/automation/browse_diff.rb 
+	briefing = log --oneline --graph --decorate --pretty=format:'%h (%cd) - %s' --date=short
 
 [delta "colibri-revised"]
 	# author: https://github.com/malkoG

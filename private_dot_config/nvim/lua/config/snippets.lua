@@ -65,6 +65,13 @@ ls.add_snippets(nil, {
       func(date, {}),
     }),
     snip({
+      trig = "time",
+      namr = "Time",
+      dscr = "Current Time in the form of HH:MM",
+    }, {
+      func(function() return {os.date('%H:%M')} end, {}),
+    }),
+    snip({
       trig = "yesterday",
       namr = "Yesterday",
       dscr = "Yesterday in the form of YYYY-MM-DD",

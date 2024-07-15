@@ -31,7 +31,7 @@ disable-padding-on-builtin-display: false
 window-margins: true
 
 # Boolean flag for whether or not to set window margins if there is only one window on the screen, assuming window margins are enabled (default false).
-smart-window-margins: false
+smart-window-margins: true
 
 # # Add 10px margin between windows
 # window-margins: true
@@ -101,7 +101,7 @@ screen-padding-left: 5
 screen-padding-right: 5
 
 # Padding to apply between windows and the top edge of the screen (in px, default 0).
-screen-padding-top: 40
+screen-padding-top: 10
 
 # Padding to apply between windows and the bottom edge of the screen (in px, default 0).
 screen-padding-bottom: 0

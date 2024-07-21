@@ -48,6 +48,7 @@ M.setup = function()
       "terraformls",
       "jinja_lsp",
       "volar",
+      "ocamllsp",
     },
   })
 
@@ -124,6 +125,7 @@ M.setup = function()
   }
   require("lspconfig")["terraformls"].setup{}
   require("lspconfig")["jinja_lsp"].setup{}
+  require("lspconfig")["ocamllsp"].setup{}
 
   if ruby_lsp_local == "true" then
     -- require("lspconfig").solargraph.setup {

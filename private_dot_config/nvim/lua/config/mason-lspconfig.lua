@@ -33,7 +33,7 @@ M.setup = function()
       "ruff_lsp",
       "rubocop",
       "astro",
-      "vale_ls",
+      -- "vale_ls",
       "pyright",
       "solargraph",
       "tailwindcss",

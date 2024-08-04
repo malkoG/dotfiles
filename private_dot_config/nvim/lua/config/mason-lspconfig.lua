@@ -81,9 +81,6 @@ M.setup = function()
       debounce_text_changes = 150,
     }
   }
-  require("lspconfig").biome.setup {
-    single_file_support = true
-  }
 
   local mason_registry = require('mason-registry')
   local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
@@ -101,6 +98,8 @@ M.setup = function()
   }
 
   require("lspconfig")["volar"].setup{}
+
+  require("lspconfig").biome.setup {}
 
   -- HTML/CSS/JS
   require('lspconfig').tailwindcss.setup {

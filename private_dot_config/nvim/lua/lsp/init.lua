@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- format on save for ruby
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.rb",
+  pattern = "*.{rb,ts,js,vue}",
   callback = function()
     vim.lsp.buf.format()
   end,

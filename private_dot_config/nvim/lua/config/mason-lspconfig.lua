@@ -54,6 +54,7 @@ M.setup = function()
 
   require("lspconfig").lua_ls.setup {}
   require("lspconfig").ruby_lsp.setup {
+    filetypes = { "ruby", "eruby" },
     cmd = ruby_lsp_command,
   }
   require("lspconfig").ruff_lsp.setup {}

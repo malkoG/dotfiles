@@ -32,6 +32,17 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
+-- format on save for erb
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.{erb}",
+  callback = function()
+    -- run "bundle exec htmlbeautifier %" if htmlbeautifier is installed
+    -- and update buffer imeediately
+    vim.cmd("write!")
+    vim.cmd("silent !bundle exec htmlbeautifier %")
+    vim.cmd("edit!")
+  end,
+})
 
 -- require("lsp.config")
 require("lsp.diagnostic")

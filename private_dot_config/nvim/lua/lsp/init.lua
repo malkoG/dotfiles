@@ -24,11 +24,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
--- format on save for ruby
+-- format on save for frontend
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.{rb,ts,js,vue}",
+  pattern = "*.{ts,js,vue}",
   callback = function()
     vim.lsp.buf.format()
+  end,
+})
+
+-- format on save for ruby
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.{rb}",
+  callback = function()
+    vim.lsp.buf.format()
+    vim.cmd("silent !gem list -i rbs-inline && bundle exec rbs-inline --output %")
   end,
 })
 
@@ -39,7 +48,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     -- run "bundle exec htmlbeautifier %" if htmlbeautifier is installed
     -- and update buffer imeediately
     vim.cmd("write!")
-    vim.cmd("silent !bundle exec htmlbeautifier %")
+    vim.cmd("silent !gem list -i htmlbeautifier && bundle exec htmlbeautifier %")
     vim.cmd("edit!")
   end,
 })

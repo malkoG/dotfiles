@@ -21,6 +21,8 @@ else
   solargraph_command = { "solargraph", "stdio" }
 end
 
+local steep_enabled = os.getenv("STEEP_ENABLED")
+
 M.setup = function()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -30,6 +32,7 @@ M.setup = function()
     ensure_installed = {
       "lua_ls",
       "ruby_lsp",
+      "steep",
       "ruff_lsp",
       "rubocop",
       "astro",
@@ -57,6 +60,9 @@ M.setup = function()
     filetypes = { "ruby", "eruby" },
     cmd = ruby_lsp_command,
   }
+  if steep_enabled == "true" then
+    require("lspconfig").steep.setup {}
+  end
   require("lspconfig").ruff_lsp.setup {}
   require("lspconfig").rubocop.setup {}
   require("lspconfig").astro.setup {}

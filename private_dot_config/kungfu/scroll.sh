@@ -8,6 +8,17 @@ vi ~/.config/nvim/lua/plugins/packer.lua # managing plugins
 vi ~/.config/nvim/snippets/ # managing snippets
 
 ####
+# DevContainer commands
+####
+
+devcontainer up --workspace-folder=. --remove-existing-container 
+
+devcontainer exec --workspace-folder=. bin/rails s -b 0.0.0.0 -p 3000
+devcontainer exec --workspace-folder=. bin/rails c
+devcontainer exec --workspace-folder=. bin/rails db:migrate
+devcontainer exec --workspace-folder=. bin/rails tailwindcss:watch
+
+####
 # Mise
 ####
 

@@ -55,6 +55,7 @@ git remote add origin url
 git remote remove origin 
 git commit --allow-empty -m ""
 git log --all --decorate --oneline --graph # Remember a Dog 
+git log --decorate --graph --pretty=format:"%h - %an, %ad : %s" --date=short # For briefing
 
 ####
 # GH Cli

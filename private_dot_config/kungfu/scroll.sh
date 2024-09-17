@@ -80,6 +80,8 @@ flutter build appbundle --release
 flutter build ios --release
 flutter run 
 
+xcrun simctl erase all # Resetting the simulator and clear caches
+
 ####
 # Blogging 
 ####

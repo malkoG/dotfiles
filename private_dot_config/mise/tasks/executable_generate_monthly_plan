@@ -13,6 +13,7 @@ def generate_monthly_plan(date: datetime.date):
         current_date = beginning_of_month.replace(day=day)
         weekday = current_date.strftime('%a')
         click.echo(f"  {str(beginning_of_month.month).rjust(2, '0')} | {str(day).rjust(2, '0')} | {weekday} |")
+        click.echo(additional_slot)
         if weekday == 'Sun':
             click.echo(additional_slot)
 

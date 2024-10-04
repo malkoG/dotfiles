@@ -56,6 +56,7 @@ git remote remove origin
 git commit --allow-empty -m ""
 git log --all --decorate --oneline --graph # Remember a Dog 
 git log --decorate --graph --pretty=format:"%h - %an, %ad : %s" --date=short # For briefing
+git log --decorate --graph --pretty=format:"%h - %an, %ad : %s" --date=short | grep $(date +"%Y-%m-%d") | wc -l # For counting today's commits
 
 ####
 # GH Cli

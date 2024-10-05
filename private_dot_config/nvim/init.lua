@@ -1,8 +1,6 @@
-vim.cmd([[
-	set runtimepath+=~/.config/nvim_common
-	let &packpath = &runtimepath
-]])
+vim.opt.runtimepath:append("~/.config/nvim_common")
 
+require('config.lazy')
 require('plugins/packer')
 require('plugins/oil')
 require('settings')

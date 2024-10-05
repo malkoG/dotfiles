@@ -42,12 +42,11 @@ M.setup = function()
       "tailwindcss",
       "stimulus_ls",
       "html",
-      "tsserver",
+      "ts_ls",
       "yamlls",
       "emmet_ls",
       "cssls",
       "biome",
-      "tsserver",
       "terraformls",
       "jinja_lsp",
       "volar",
@@ -91,7 +90,7 @@ M.setup = function()
 
   local mason_registry = require('mason-registry')
   local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
-  require("lspconfig")["tsserver"].setup {
+  require("lspconfig")["ts_ls"].setup {
     init_options = {
       plugins = {
         {

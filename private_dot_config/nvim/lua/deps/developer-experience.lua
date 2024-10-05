@@ -10,67 +10,74 @@ return {
   { "nvim-pack/nvim-spectre" },
   { "tribela/vim-transparent" },
   { 'github/copilot.vim' },
-  { "stevearc/oil.nvim", },
-  -- {
-  --   "Bryley/neoai.nvim",
-  --   dependencies = { "MunifTanjim/nui.nvim" },
-  --
-  --   opts = {
-  --     -- Below are the default options, feel free to override what you would like changed
-  --     ui = {
-  --         output_popup_text = "NeoAI",
-  --         input_popup_text = "Prompt",
-  --         width = 30, -- As percentage eg. 30%
-  --         output_popup_height = 80, -- As percentage eg. 80%
-  --         submit = "<Enter>", -- Key binding to submit the prompt
-  --     },
-  --     models = {
-  --         {
-  --             name = "openai",
-  --             model = "gpt-4o",
-  --             params = nil,
-  --         },
-  --     },
-  --     register_output = {
-  --         ["g"] = function(output)
-  --             return output
-  --         end,
-  --         ["c"] = require("neoai.utils").extract_code_snippets,
-  --     },
-  --     inject = {
-  --         cutoff_width = 75,
-  --     },
-  --     prompts = {
-  --         context_prompt = function(context)
-  --             return "Hey, I'd like to provide some context for future "
-  --                 .. "messages. Here is the code/text that I want to refer "
-  --                 .. "to in our upcoming conversations:\n\n"
-  --                 .. context
-  --         end,
-  --     },
-  --     mappings = {
-  --         ["select_up"] = "<C-k>",
-  --         ["select_down"] = "<C-j>",
-  --     },
-  --     open_ai = {
-  --         api_key = {
-  --             env = "OPENAI_API_KEY",
-  --             value = nil,
-  --             -- `get` is is a function that retrieves an API key, can be used to override the default method.
-  --             -- get = function() ... end
-  --
-  --             -- Here is some code for a function that retrieves an API key. You can use it with
-  --             -- the Linux 'pass' application.
-  --             -- get = function()
-  --             --     local key = vim.fn.system("pass show openai/mytestkey")
-  --             --     key = string.gsub(key, "\n", "")
-  --             --     return key
-  --             -- end,
-  --         },
-  --     },
-  --   },
-  --   lazy = true
-  -- },
+  {
+    "stevearc/oil.nvim",
+    opts = {},
+    dependencies = { { "echasnovski/mini.icons", opts = {} } },
+  },
+  {
+    "Bryley/neoai.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      require("neoai").setup({
+        -- Below are the default options, feel free to override what you would like changed
+        ui = {
+            output_popup_text = "NeoAI",
+            input_popup_text = "Prompt",
+            width = 30, -- As percentage eg. 30%
+            output_popup_height = 80, -- As percentage eg. 80%
+            submit = "<Enter>", -- Key binding to submit the prompt
+        },
+        models = {
+            {
+                name = "openai",
+                model = "gpt-4o",
+                params = nil,
+            },
+        },
+        register_output = {
+            ["g"] = function(output)
+                return output
+            end,
+            ["c"] = require("neoai.utils").extract_code_snippets,
+        },
+        inject = {
+            cutoff_width = 75,
+        },
+        prompts = {
+            context_prompt = function(context)
+                return "Hey, I'd like to provide some context for future "
+                    .. "messages. Here is the code/text that I want to refer "
+                    .. "to in our upcoming conversations:\n\n"
+                    .. context
+            end,
+        },
+        mappings = {
+            ["select_up"] = "<C-k>",
+            ["select_down"] = "<C-j>",
+        },
+        open_ai = {
+            api_key = {
+                env = "OPENAI_API_KEY",
+                value = nil,
+                -- `get` is is a function that retrieves an API key, can be used to override the default method.
+                -- get = function() ... end
+
+                -- Here is some code for a function that retrieves an API key. You can use it with
+                -- the Linux 'pass' application.
+                -- get = function()
+                --     local key = vim.fn.system("pass show openai/mytestkey")
+                --     key = string.gsub(key, "\n", "")
+                --     return key
+                -- end,
+            },
+        },
+      })
+    end
+  },
   {
     "yetone/avante.nvim",
     dependencies = {
@@ -78,7 +85,25 @@ return {
       "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
       "zbirenbaum/copilot.lua", -- for providers='copilot'
+      {
+        -- support for image pasting
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = {
+          -- recommended settings
+          default = {
+            embed_image_as_base64 = false,
+            prompt_for_file_name = false,
+            drag_and_drop = {
+              insert_mode = true,
+            },
+            -- required for Windows users
+            use_absolute_path = true,
+          },
+        },
+      },
       {
         "MeanderingProgrammer/render-markdown.nvim",
         opts = {
@@ -105,44 +130,6 @@ return {
   },
   {
     "rest-nvim/rest.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    opts = {
-      -- Open request results in a horizontal split
-      result_split_horizontal = false,
-      -- Keep the http file buffer above|left when split horizontal|vertical
-      result_split_in_place = false,
-      -- Skip SSL verification, useful for unknown certificates
-      skip_ssl_verification = false,
-      -- Encode URL before making request
-      encode_url = true,
-      -- Highlight request on run
-      highlight = {
-        enabled = true,
-        timeout = 150,
-      },
-      result = {
-        -- toggle showing URL, HTTP info, headers at top the of result window
-        show_url = true,
-        -- show the generated curl command in case you want to launch
-        -- the same request via the terminal (can be verbose)
-        show_curl_command = false,
-        show_http_info = true,
-        show_headers = true,
-        -- executables or functions for formatting response body [optional]
-        -- set them to false if you want to disable them
-        formatters = {
-          json = "jq",
-          html = function(body)
-            return vim.fn.system({"tidy", "-i", "-q", "-"}, body)
-          end
-        },
-      },
-      -- Jump to request line on run
-      jump_to_request = false,
-      env_file = '.env',
-      custom_dynamic_variables = {},
-      yank_dry_run = true,
-    }
   },
   -- for super fast code navigation
   {

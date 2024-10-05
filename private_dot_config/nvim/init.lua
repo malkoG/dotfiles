@@ -1,8 +1,9 @@
-vim.opt.runtimepath:append("~/.config/nvim_common")
+vim.opt.runtimepath:prepend("~/.config/nvim_common")
 
 require('config.lazy')
-require('plugins/packer')
+
 require('plugins/oil')
+require('plugins/packer')
 require('settings')
 require('plugins/telescope')
 require('plugins/lualine')
@@ -39,4 +40,3 @@ require('zettelkasten')
 
 vim.opt.termguicolors = true
 
-require("common/theme_switcher")

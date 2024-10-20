@@ -104,13 +104,13 @@ return {
           },
         },
       },
-      {
-        "MeanderingProgrammer/render-markdown.nvim",
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      }
+      -- {
+      --   "MeanderingProgrammer/render-markdown.nvim",
+      --   opts = {
+      --     file_types = { "markdown", "Avante" },
+      --   },
+      --   ft = { "markdown", "Avante" },
+      -- }
     },
     run = "make",
     event = "VeryLazy",
@@ -130,6 +130,36 @@ return {
   },
   {
     "rest-nvim/rest.nvim",
+  },
+  {
+    "tris203/precognition.nvim",
+    --event = "VeryLazy",
+    opts = {
+    -- startVisible = true,
+    -- showBlankVirtLine = true,
+    -- highlightColor = { link = "Comment" },
+    -- hints = {
+    --      Caret = { text = "^", prio = 2 },
+    --      Dollar = { text = "$", prio = 1 },
+    --      MatchingPair = { text = "%", prio = 5 },
+    --      Zero = { text = "0", prio = 1 },
+    --      w = { text = "w", prio = 10 },
+    --      b = { text = "b", prio = 9 },
+    --      e = { text = "e", prio = 8 },
+    --      W = { text = "W", prio = 7 },
+    --      B = { text = "B", prio = 6 },
+    --      E = { text = "E", prio = 5 },
+    -- },
+    -- gutterHints = {
+    --     G = { text = "G", prio = 10 },
+    --     gg = { text = "gg", prio = 9 },
+    --     PrevParagraph = { text = "{", prio = 8 },
+    --     NextParagraph = { text = "}", prio = 8 },
+    -- },
+    -- disabled_fts = {
+    --     "startify",
+    -- },
+    },
   },
   -- for super fast code navigation
   {
@@ -161,5 +191,14 @@ return {
     "folke/trouble.nvim",
   },
   { 'brenoprata10/nvim-highlight-colors' },
-  { "malkoG/vim-test", branch = 'master' }
+  { "malkoG/vim-test", branch = 'master' },
+  {
+    "willothy/flatten.nvim",
+    config = true,
+    -- or pass configuration with
+    -- opts = {  }
+    -- Ensure that it runs first to minimize delay when opening file from terminal
+    lazy = false,
+    priority = 1001,
+  },
 }

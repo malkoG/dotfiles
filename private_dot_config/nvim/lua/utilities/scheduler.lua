@@ -1,3 +1,5 @@
+local notifier = require("notify")
+
 local M = {}
 
 M.notify_schedule = function()
@@ -23,7 +25,7 @@ M.notify_schedule = function()
     local now = os.date("*t")
     for _, schedule in ipairs(schedules) do
       if now.hour == schedule.hour and now.min == schedule.minute and now.sec <= 2 then
-        vim.notify(schedule.message, vim.log.levels.INFO)
+        notifier.notify(schedule.message, vim.log.levels.INFO)
       end
     end
 

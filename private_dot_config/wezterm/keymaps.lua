@@ -13,6 +13,15 @@ for _, number in ipairs(numbers) do
 			action = wezterm.action.ActivateTab(number)
 		}
 	)
+
+	table.insert(
+		keymaps,
+		{
+			key = tostring(number + 1),
+			mods = "SHIFT|CTRL",
+			action = wezterm.action.ActivateTab(number)
+		}
+	)
 end
 
 for _, key in ipairs({'[', '{'}) do

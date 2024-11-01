@@ -17,6 +17,7 @@ opt.splitright = true
 -- ex. rub|y_on_rails -- (typing ciw) --> *_on_rails
 opt.iskeyword:remove("-")
 opt.iskeyword:remove("_")
+opt.autoread = true
 
 -- git-gutter settings
 g.gitgutter_set_sign_backgrounds = 1

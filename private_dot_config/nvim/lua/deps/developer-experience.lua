@@ -133,9 +133,9 @@ return {
   },
   {
     "tris203/precognition.nvim",
-    --event = "VeryLazy",
+    event = "VeryLazy",
     opts = {
-    -- startVisible = true,
+      startVisible = false,
     -- showBlankVirtLine = true,
     -- highlightColor = { link = "Comment" },
     -- hints = {
@@ -201,4 +201,11 @@ return {
     lazy = false,
     priority = 1001,
   },
+  {
+    'https://codeberg.org/esensar/nvim-dev-container',
+    dependencies = 'nvim-treesitter/nvim-treesitter',
+    config = function()
+      require('devcontainer').setup {}
+    end
+  }
 }

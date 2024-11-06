@@ -111,7 +111,7 @@ def quickadd_with_auto_reminder(task)
   command = <<~SHELL
     curl https://api.todoist.com/sync/v9/quick/add \\
       -H \"Authorization: Bearer #{todoist_token}\" \\
-      -d text='#{task}' \\
+      -d text='#{task} today' \\
       -d auto_reminder='true' \\
       -s
   SHELL

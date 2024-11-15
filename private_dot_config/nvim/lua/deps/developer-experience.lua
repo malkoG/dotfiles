@@ -207,5 +207,8 @@ return {
     config = function()
       require('devcontainer').setup {}
     end
+  },
+  {
+    'mustache/vim-mustache-handlebars'
   }
 }

@@ -125,3 +125,5 @@ if [ -x /usr/bin/mint-fortune ]; then
 fi
 
 alias emacs=emacs -nw
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

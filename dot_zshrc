@@ -73,6 +73,7 @@ if command -v lsd &>/dev/null; then
   # Bypass this problem
   #
   # lsd: aliased to command ls -d *(/)
+  alias ls='lsd'
   alias _lsd="mise x lsd -- lsd"
   alias l="_lsd -Ah"
   alias la="_lsd -Ah"
@@ -357,3 +358,5 @@ neofetch
 # END opam configuration
 
 eval $(opam env)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

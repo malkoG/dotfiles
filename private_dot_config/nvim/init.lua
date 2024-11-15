@@ -16,6 +16,9 @@ vim.g.slotted_schedules = {
 	{ message = "Beginning Morning Routine", hour = 06, minute = 30 },
 	{ message = "Finishing Morning Routine", hour = 08, minute = 00 },
 
+	{ message = "Time to prepare go out", hour = 07, minute = 45 },
+	{ message = "Time to go out", hour = 08, minute = 30 },
+
   { message = "Beginning Slot 1", hour =  9, minute = 00 },
   { message = "Finishing Slot 1", hour = 12, minute = 30 },
 
@@ -35,6 +38,28 @@ scheduler.notify_schedule()
 
 require('keymap')
 require('abbreviation')
+
+local current_theme = os.getenv("NEOVIM_THEME")
+
+local available_themes = {}
+for _, theme in ipairs({
+	"melange",
+	"catppuccin",
+	"tokyonight",
+	"nordic",
+}) do
+	available_themes[theme] = true
+end
+
+local defaualt_theme = "tokyonight"
+if current_theme == nil then 
+	vim.cmd.colorscheme(defaualt_theme)
+elseif available_themes[current_theme] ~= nil then
+	vim.cmd.colorscheme(current_theme)
+else
+	vim.cmd.colorscheme(defaualt_theme)
+end
+
 
 require('zettelkasten')
 

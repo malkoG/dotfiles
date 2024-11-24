@@ -33,7 +33,7 @@ M.setup = function()
       "lua_ls",
       "ruby_lsp",
       "steep",
-      "ruff_lsp",
+      "ruff",
       "rubocop",
       "astro",
       -- "vale_ls",
@@ -50,7 +50,6 @@ M.setup = function()
       "terraformls",
       "jinja_lsp",
       "volar",
-      "ocamllsp",
     },
   })
 
@@ -62,7 +61,7 @@ M.setup = function()
   if steep_enabled == "true" then
     require("lspconfig").steep.setup {}
   end
-  require("lspconfig").ruff_lsp.setup {}
+  require("lspconfig").ruff.setup {}
   require("lspconfig").rubocop.setup {}
   require("lspconfig").astro.setup {}
   -- require("lspconfig").vale_ls.setup {
@@ -130,7 +129,6 @@ M.setup = function()
   }
   require("lspconfig")["terraformls"].setup{}
   require("lspconfig")["jinja_lsp"].setup{}
-  require("lspconfig")["ocamllsp"].setup{}
 
   if ruby_lsp_local == "true" then
     -- require("lspconfig").solargraph.setup {

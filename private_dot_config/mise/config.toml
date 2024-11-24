@@ -46,6 +46,8 @@ experimental = true
 
 [tools]
 zoxide = "0.9.4"
-exa = "0.10.1"
 lsd = "1.1.2"
+ruby = "3.3.6"
+node = "latest"
+chezmoi = "latest"
 

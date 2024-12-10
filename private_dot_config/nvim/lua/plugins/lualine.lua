@@ -44,7 +44,7 @@ require('lualine').setup {
   },
   tabline = {},
   winbar = {
-    lualine_z = {nvimbattery}
+    -- lualine_z = {nvimbattery}
   },
   inactive_winbar = {},
   extensions = {}

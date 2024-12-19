@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- format on save for frontend
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.{ts,js,vue}",
+  pattern = "*.{ts,js,vue,jsx,tsx}",
   callback = function()
     vim.lsp.buf.format()
   end,

@@ -29,8 +29,8 @@ vim.api.nvim_create_autocmd(
       vim.api.nvim_create_user_command("TermOnCurrentDir", term_on_current_dir, {})
 			vim.api.nvim_create_user_command("AiderTermOnCurrentDir", aider_term_on_current_dir, {})
 
-			vim.keymap.set("n", "<leader>tt", "<Cmd>TermOnCurrentDir<CR>", opts)
-			vim.keymap.set("n", "<leader>ta", "<Cmd>AiderTermOnCurrentDir<CR>", opts)
+			vim.keymap.set("n", "<leader>Tt", "<Cmd>TermOnCurrentDir<CR>", opts)
+			vim.keymap.set("n", "<leader>Ta", "<Cmd>AiderTermOnCurrentDir<CR>", opts)
     end
   }
 )

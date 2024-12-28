@@ -104,13 +104,17 @@ return {
           },
         },
       },
-      -- {
-      --   "MeanderingProgrammer/render-markdown.nvim",
-      --   opts = {
-      --     file_types = { "markdown", "Avante" },
-      --   },
-      --   ft = { "markdown", "Avante" },
-      -- }
+      {
+        "MeanderingProgrammer/render-markdown.nvim",
+        after = { 
+          "nvim-treesitter",
+          'echasnovski/mini.icons'
+        },
+        opts = {
+          file_types = { "Avante", "markdown" },
+        },
+        ft = { "Avante", "markdown" },
+      }
     },
     run = "make",
     event = "VeryLazy",

@@ -2,7 +2,7 @@ return {
   {
     'justinhj/battery.nvim',
     dependencies = {
-      {'kyazdani42/nvim-web-devicons'},
+      {'echasnovski/mini.icons'},
       {'nvim-lua/plenary.nvim'}
     },
     opts = {
@@ -18,15 +18,20 @@ return {
   },
   {
     'romgrk/barbar.nvim',
-    dependencies = {'kyazdani42/nvim-web-devicons'}
+    dependencies = {
+      'echasnovski/mini.icons', 
+      'kyazdani42/nvim-web-devicons',
+    }
   },
   { "ahmedkhalf/project.nvim" },
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'kyazdani42/nvim-web-devicons' }
+    dependencies = {
+      'echasnovski/mini.icons'
+    }
   },
   {
-    'kdheepak/tabline.nvim', 
+    'kdheepak/tabline.nvim',
     opts = { enable = false }
   },
   { "danilamihailov/beacon.nvim" },

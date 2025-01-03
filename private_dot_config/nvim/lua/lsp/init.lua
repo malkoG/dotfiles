@@ -48,7 +48,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     -- run "bundle exec htmlbeautifier %" if htmlbeautifier is installed
     -- and update buffer imeediately
     vim.cmd("write!")
-    vim.cmd("silent !gem list -i htmlbeautifier && bundle exec htmlbeautifier %")
+    vim.cmd("silent !gem list -i htmlbeautifier && htmlbeautifier %")
     vim.cmd("edit!")
   end,
 })

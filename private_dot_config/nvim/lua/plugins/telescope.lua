@@ -1,10 +1,11 @@
 require('telescope').setup {
   defaults = {
+    layout_strategy = "vertical",
     mappings = {
       i = {
         ["<C-h>"] = "which_key"
       }
-    }
+    },
   },
   pickers = {
     find_files = {

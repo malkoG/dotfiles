@@ -57,6 +57,9 @@ vim.keymap.set('n', '<leader>fl', telescope_builtin.git_commits, {})
 vim.keymap.set('n', '<leader>fL', telescope_builtin.git_bcommits, {})
 vim.keymap.set('n', '<leader>fB', telescope_builtin.git_branches, {})
 
+vim.keymap.set('n', '<leader>Ff', require('fzf-lua').files, {})
+vim.keymap.set('n', '<leader>Fg', require('fzf-lua').live_grep, {})
+
 -- Telekasten
 vim.api.nvim_create_autocmd('FileType', {
   pattern = {'markdown'},

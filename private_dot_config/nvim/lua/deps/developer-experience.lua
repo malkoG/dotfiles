@@ -6,6 +6,11 @@ return {
       {'nvim-lua/plenary.nvim'}
     }
   },
+  {
+    "ibhagwan/fzf-lua",
+    dependencies = { "echasnovski/mini.icons" },
+    opts = {}
+  },
   { "nvim-telescope/telescope-file-browser.nvim" },
   { "nvim-pack/nvim-spectre" },
   { "tribela/vim-transparent" },

@@ -219,5 +219,8 @@ return {
   },
   {
     'mustache/vim-mustache-handlebars'
+  },
+  {
+    'Almo7aya/openingh.nvim'
   }
 }

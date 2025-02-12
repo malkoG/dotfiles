@@ -51,6 +51,8 @@ M.setup = function()
       "jinja_lsp",
       "volar",
       "zls",
+
+      "denols",
     },
   })
 
@@ -90,18 +92,22 @@ M.setup = function()
 
   local mason_registry = require('mason-registry')
   local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
-  require("lspconfig")["ts_ls"].setup {
-    init_options = {
-      plugins = {
-        {
-          name = '@vue/typescript-plugin',
-          location = vue_language_server_path,
-          languages = { 'vue' },
+  local deno_root_dir = require('lspconfig').util.root_pattern("deno.json", "deno.jsonc")(vim.fn.expand("%:p:h"))
+  local deno_runtime_enabled = deno_root_dir ~= nil
+  if not deno_runtime_enabled then
+    require("lspconfig")["ts_ls"].setup {
+      init_options = {
+        plugins = {
+          {
+            name = '@vue/typescript-plugin',
+            location = vue_language_server_path,
+            languages = { 'vue' },
+          },
         },
       },
-    },
-    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-  }
+      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+    }
+  end
 
   require("lspconfig")["volar"].setup{}
 
@@ -141,6 +147,8 @@ M.setup = function()
     --   }
     -- }
   end
+
+  require("lspconfig").denols.setup {}
 end
 
 return M

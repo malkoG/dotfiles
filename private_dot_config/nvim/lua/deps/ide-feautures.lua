@@ -28,12 +28,35 @@ return {
     disable = false,
   },
   {
-    'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason-lspconfig.nvim',
     dependencies = {
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
       "neovim/nvim-lspconfig",
       "hrsh7th/cmp-nvim-lsp",
       'folke/neodev.nvim',
+    },
+    opts = {
+      ensure_installed = {
+        "lua_ls",
+        "steep",
+        "ruff",
+        "rubocop",
+        "astro",
+        -- "vale_ls",
+        "pyright",
+        "solargraph",
+        "tailwindcss",
+        "stimulus_ls",
+        "html",
+        "ts_ls",
+        "yamlls",
+        "emmet_ls",
+        "cssls",
+        "biome",
+        "terraformls",
+        "jinja_lsp",
+        "volar",
+      },
     },
     config = function()
       require("config.mason-lspconfig").setup()

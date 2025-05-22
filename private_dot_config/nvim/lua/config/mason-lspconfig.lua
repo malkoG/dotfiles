@@ -28,44 +28,21 @@ M.setup = function()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
 
   require("mason").setup({})
-  require("mason-lspconfig").setup({
-    ensure_installed = {
-      "lua_ls",
-      "ruby_lsp",
-      "steep",
-      "ruff",
-      "rubocop",
-      "astro",
-      -- "vale_ls",
-      "pyright",
-      "solargraph",
-      "tailwindcss",
-      "stimulus_ls",
-      "html",
-      "ts_ls",
-      "yamlls",
-      "emmet_ls",
-      "cssls",
-      "biome",
-      "terraformls",
-      "jinja_lsp",
-      "volar",
-      "zls",
-
-      "denols",
-    },
-  })
 
   require("lspconfig").lua_ls.setup {}
   require("lspconfig").ruby_lsp.setup {
     filetypes = { "ruby", "eruby" },
+    mason = false,
     cmd = ruby_lsp_command,
   }
   if steep_enabled == "true" then
     require("lspconfig").steep.setup {}
   end
   require("lspconfig").ruff.setup {}
-  require("lspconfig").rubocop.setup {}
+  require("lspconfig").rubocop.setup {
+    mason = false,
+    cmd = {"bundle", "exec", "rubocop", "stdin" }
+  }
   require("lspconfig").astro.setup {}
   -- require("lspconfig").vale_ls.setup {
     -- filetypes = {
@@ -80,6 +57,7 @@ M.setup = function()
   -- }
   require("lspconfig").pyright.setup {}
   require("lspconfig").solargraph.setup {
+    mason = false,
     cmd = solargraph_command,
   }
 
@@ -90,23 +68,12 @@ M.setup = function()
     }
   }
 
-  local mason_registry = require('mason-registry')
-  local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
   local deno_root_dir = require('lspconfig').util.root_pattern("deno.json", "deno.jsonc")(vim.fn.expand("%:p:h"))
   local deno_runtime_enabled = deno_root_dir ~= nil
   if not deno_runtime_enabled then
-    require("lspconfig")["ts_ls"].setup {
-      init_options = {
-        plugins = {
-          {
-            name = '@vue/typescript-plugin',
-            location = vue_language_server_path,
-            languages = { 'vue' },
-          },
-        },
-      },
-      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-    }
+	require("lspconfig")["ts_ls"].setup {
+	  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+	}
   end
 
   require("lspconfig")["volar"].setup{}
@@ -139,13 +106,14 @@ M.setup = function()
   require("lspconfig")["zls"].setup{}
 
   if ruby_lsp_local == "true" then
-    -- require("lspconfig").solargraph.setup {
-    --   cmd = solargraph_command,
-    --   filetypes = { "ruby" },
-    --   flags = {
-    --     debounce_text_changes = 150,
-    --   }
-    -- }
+    require("lspconfig").solargraph.setup {
+      mason = false,
+      cmd = solargraph_command,
+      filetypes = { "ruby" },
+      flags = {
+        debounce_text_changes = 150,
+      }
+    }
   end
 
   require("lspconfig").denols.setup {}

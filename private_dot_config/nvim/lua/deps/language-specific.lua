@@ -60,5 +60,8 @@ return {
   { 'Glench/Vim-Jinja2-Syntax' },
 
   -- languages (kotlin)
-  { "udalov/kotlin-vim" }
+  { "udalov/kotlin-vim" },
+
+  -- languages (zig)
+  { "ziglang/zig.vim" }
 }

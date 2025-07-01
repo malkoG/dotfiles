@@ -415,3 +415,5 @@ fancy-input: true
 
 ## Enable/disable terminal bell notifications when LLM responses are ready (default: False)
 notifications: true
+notifications-command: notify_aider
+

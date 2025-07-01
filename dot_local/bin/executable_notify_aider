@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# 알림에 표시될 공통 내용
+title="🤖 [Aider] 작업 완료"
+message="Aider 작업이 성공적으로 끝났습니다."
+
+# 1. osascript (macOS) 명령어 존재 여부 확인
+if command -v osascript &> /dev/null; then
+  osascript -e "display notification \"${message}\" with title \"${title}\""
+fi

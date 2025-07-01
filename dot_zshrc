@@ -360,3 +360,24 @@ neofetch
 eval $(opam env)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# wezterm에 aider 작업 종료 알림을 보내는 함수
+# 사용법: wezterm_aider_notify "작업 완료 메시지"
+wezterm_aider_notify() {
+  # OSC 1337;SetUserVar=KEY=VALUE \007 형식을 사용
+  # VALUE는 Base64로 인코딩해야 함
+  # 쉘 내장 변수인 $RANDOM을 사용하여 난수 생성
+  local random_value=$RANDOM
+
+    # 알림에 표시될 공통 내용
+  local title="🤖 [Aider] 작업 완료"
+  local message="Aider 작업이 성공적으로 끝났습니다."
+
+  # 1. osascript (macOS) 명령어 존재 여부 확인
+  if command -v osascript &> /dev/null; then
+    osascript -e "display notification \"${message}\" with title \"${title}\""
+  fi
+  
+  # 'aider-complete'라는 이름으로 난수 값을 Base64 인코딩하여 전송
+  printf "\033]1337;SetUserVar=%s=%s\007" "aider-task-complete" $(echo -n "$random_value" | base64)
+}

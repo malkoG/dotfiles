@@ -8,3 +8,8 @@ message="Aider 작업이 성공적으로 끝났습니다."
 if command -v osascript &> /dev/null; then
   osascript -e "display notification \"${message}\" with title \"${title}\""
 fi
+
+# 2. notify-send (Linux) 명령어 존재 여부 확인
+if command -v notify-send &> /dev/null; then
+  notify-send "${title}" "${message}"
+fi

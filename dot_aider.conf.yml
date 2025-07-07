@@ -122,6 +122,21 @@ read:
  - docs/ARCHITECTURE.md 
  - CONVENTIONS.md
  - CLAUDE.md
+ - ../docs/TODO.md
+ - ../docs/DESIGN.md 
+ - ../docs/ARCHITECTURE.md 
+ - ../CONVENTIONS.md
+ - ../CLAUDE.md
+ - ../../docs/TODO.md
+ - ../../docs/DESIGN.md 
+ - ../../docs/ARCHITECTURE.md 
+ - ../../CONVENTIONS.md
+ - ../../CLAUDE.md
+ - ../../../docs/TODO.md
+ - ../../../docs/DESIGN.md 
+ - ../../../docs/ARCHITECTURE.md 
+ - ../../../CONVENTIONS.md
+ - ../../../CLAUDE.md
 
 ## Use VI editing mode in the terminal (default: False)
 vim: true

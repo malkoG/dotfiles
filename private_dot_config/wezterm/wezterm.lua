@@ -5,6 +5,9 @@ local keymaps = require("keymaps")
 local os = require('os')
 local home_path = os.getenv('HOME')
 
+
+
+
 return {
 	-- font = wezterm.font_with_fallback({'셈틀체', 'NanumBarunGothic'}),
 	-- font = wezterm.font_with_fallback({'JetBrains Mono', 'NanumBarunGothic'}),
@@ -74,5 +77,15 @@ return {
 			horizontal_align = 'Right',
 			horizontal_offset = '-20'
 		}
+	},
+
+	colors = {
+		visual_bell = '#003355',
+	},
+
+	visual_bell = {
+		fade_in_duration_ms  = 75,
+		fade_out_duration_ms = 75,
+		target               = 'BackgroundColor', -- 또는 'CursorColor'
 	}
 }

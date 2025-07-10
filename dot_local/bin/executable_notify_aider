@@ -11,5 +11,8 @@ fi
 
 # 2. notify-send (Linux) 명령어 존재 여부 확인
 if command -v notify-send &> /dev/null; then
-  notify-send "${title}" "${message}"
+  notify-send -u critical "${title}" "${message}"
 fi
+
+# Wezterm에서는 visual bell을 사용하여 알림
+echo -ne '\007'

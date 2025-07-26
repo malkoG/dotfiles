@@ -68,6 +68,7 @@ architect: true
 
 ## Specify the edit format for the editor model (default: depends on editor model)
 #editor-edit-format: xxx
+editor: nvim
 
 ## Only work with models that have meta-data available (default: True)
 #show-model-warnings: true

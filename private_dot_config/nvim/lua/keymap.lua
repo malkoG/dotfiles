@@ -9,6 +9,7 @@ local augroup = vim.api.nvim_create_augroup('user_cmds', {clear = true})
 -- Clipboard
 map('n', '<C-v>', '"+p', opts)
 map('i', '<C-v>', '<esc>l"+p', opts)
+map('v', '<C-c>', '"+y', opts)
 
 -- Save
 map('n', '<C-s>', ':w<CR>', opts)

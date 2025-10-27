@@ -27,22 +27,6 @@ local language_servers = {
       },
     },
   },
-  {
-    name = 'lua_ls',
-    configuration = {
-      settings = {
-        lua_ls = {
-          diagnostics = {
-            globals = { 'vim' },
-          },
-          workspace = {
-            library = vim.api.nvim_get_runtime_file("", true),
-            checkThirdParty = false,
-          },
-        },
-      }
-    }
-  }
 }
 
 for _, server in ipairs(language_servers) do

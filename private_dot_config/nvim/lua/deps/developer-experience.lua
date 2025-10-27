@@ -85,7 +85,7 @@ return {
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    after = { 
+    after = {
       "nvim-treesitter",
       'echasnovski/mini.icons'
     },
@@ -140,22 +140,6 @@ return {
     dependencies = { "tpope/vim-repeat" },
   },
 
-  -- persistent database for yanks
-  {
-    "gbprod/yanky.nvim",
-    dependencies = { "kkharji/sqlite.lua" },
-    opts = {
-      ring = {
-        history_length = 100,
-        storage = "sqlite",
-        sync_with_numbered_registers = true,
-        cancel_event = "update",
-      },
-      system_clipboard = {
-        sync_with_ring = true,
-      },
-    }
-  },
   -- Git utility
   { "APZelos/blamer.nvim" },
   { "tpope/vim-fugitive" },

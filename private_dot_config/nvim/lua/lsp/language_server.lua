@@ -1,16 +1,35 @@
 local language_servers = {
+  -- {
+  --   name = 'ty',
+  --   configuration = {
+  --     cmd = { 'uv', 'run', 'ty', 'server' },
+  --     filetypes = { 'python' },
+  --     settings = {
+  --       ty = {
+  --         lint = {
+  --           enabled = true,
+  --         },
+  --         experimental = {
+  --           autoImport = true,
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
   {
-    name = 'ty',
+    name = 'basedpyright',
     configuration = {
-      cmd = { 'uv', 'run', 'ty', 'server' },
+      cmd = { 'uv', 'run', 'basedpyright-langserver', '--stdio' },
+      root_markers = { 'pyproject.toml' },
       filetypes = { 'python' },
       settings = {
-        ty = {
-          lint = {
-            enabled = true,
-          },
-          experimental = {
-            autoImport = true,
+        basedpyright = {
+          -- Using Ruff's import organizer
+          disableOrganizeImports = true,
+        },
+        python = {
+          analysis = {
+            -- Ignore all files for analysis to exclusively use Ruff for linting
           },
         },
       },
@@ -21,8 +40,10 @@ local language_servers = {
     configuration = {
       cmd = { 'uv', 'run', 'ruff', 'server' },
       filetypes = { 'python' },
+      root_markers = { 'pyproject.toml', 'setup.cfg', 'tox.ini', '.ruff.toml' },
       settings = {
         ruff = {
+          logLevel = 'debug',
         },
       },
     },

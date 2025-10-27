@@ -26,3 +26,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- require("lsp.config")
 require("lsp.diagnostic")
+require("lsp.language_server")

@@ -48,6 +48,19 @@ local language_servers = {
       },
     },
   },
+  {
+    name = "ts_ls",
+    configuration = {
+      cmd = { "typescript-language-server", "--stdio" },
+      filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+      root_markers = { "package.json", ".git" },
+      settings = {
+        tsserver = {
+          logLevel = "info",
+        },
+      }
+    },
+  }
 }
 
 for _, server in ipairs(language_servers) do

@@ -9,6 +9,9 @@ require('plugins/telescope')
 require('plugins/lualine')
 require('plugins/blamer')
 
+require("lsp/init")
+require("lsp/language_server")
+
 
 local scheduler = require('utilities.scheduler')
 

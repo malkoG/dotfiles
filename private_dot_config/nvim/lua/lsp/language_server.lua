@@ -97,6 +97,27 @@ local language_servers = {
     },
   },
   {
+    name = "tailwindcss",
+    configuration = {
+      cmd = { "tailwindcss-language-server", "--stdio" },
+      filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
+      root_markers = { "tailwind.config.js", "tailwind.config.cjs", "tailwind.config.ts", "postcss.config.js", "postcss.config.cjs", "postcss.config.ts", ".git" },
+      settings = {
+        tailwindcss = {
+          experimental = {
+            classRegex = {
+              "tw`([^`]*)",
+              'tw="([^"]*)',
+              'tw={"([^"}]*)',
+              'className="([^"]*)',
+              'className={"([^"}]*)',
+            },
+          },
+        },
+      }
+    }
+  },
+  {
     name = "denols",
     disable_on_deno_runtime = false,
     configuration = {

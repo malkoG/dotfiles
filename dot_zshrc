@@ -38,12 +38,6 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '$HOME/tmp/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/tmp/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '$HOME/tmp/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/tmp/google-cloud-sdk/completion.zsh.inc'; fi
-
 export FLYCTL_INSTALL="$HOME/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
@@ -381,3 +375,9 @@ wezterm_aider_notify() {
   # 'aider-complete'라는 이름으로 난수 값을 Base64 인코딩하여 전송
   printf "\033]1337;SetUserVar=%s=%s\007" "aider-task-complete" $(echo -n "$random_value" | base64)
 }
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/kodingwarrior/temp/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kodingwarrior/temp/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/kodingwarrior/temp/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kodingwarrior/temp/google-cloud-sdk/completion.zsh.inc'; fi

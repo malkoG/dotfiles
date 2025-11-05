@@ -32,6 +32,18 @@ do
   end
 end
 
+local poetry_enabled = os.getenv("POETRY_ACTIVE") == "true"
+
+ruff_cmd = { "uv", "run", "ruff", "server" }
+if poetry_enabled then
+  ruff_cmd = { "poetry", "run", "ruff", "server" }
+end
+
+basedpyright_cmd = { "uv", "run", "basedpyright-langserver", "--stdio" }
+if poetry_enabled then
+  basedpyright_cmd = { "poetry", "run", "basedpyright-langserver", "--stdio" }
+end
+
 local language_servers = {
   -- {
   --   name = 'ty',
@@ -53,7 +65,7 @@ local language_servers = {
   {
     name = 'basedpyright',
     configuration = {
-      cmd = { 'uv', 'run', 'basedpyright-langserver', '--stdio' },
+      cmd = basedpyright_cmd,
       root_markers = { 'pyproject.toml' },
       filetypes = { 'python' },
       settings = {
@@ -72,7 +84,7 @@ local language_servers = {
   {
     name = 'ruff',
     configuration = {
-      cmd = { 'uv', 'run', 'ruff', 'server' },
+      cmd = ruff_cmd,
       filetypes = { 'python' },
       root_markers = { 'pyproject.toml', 'setup.cfg', 'tox.ini', '.ruff.toml' },
       settings = {

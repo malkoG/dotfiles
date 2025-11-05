@@ -28,8 +28,9 @@ window-theme = ghostty
 
 background-opacity = 0.9
 
+font-family = "NanumBarunGothic"
 font-family = "Cascadia Code NF"
-font-size = 16
+font-size = 14
 adjust-cell-height = 20%
 
 
@@ -47,3 +48,6 @@ keybind = ctrl+shift+physical:three=goto_tab:3
 keybind = ctrl+shift+physical:four=goto_tab:4
 keybind = ctrl+shift+physical:five=goto_tab:5
 keybind = ctrl+shift+physical:six=goto_tab:6
+
+# ENVIRONMENT_VARIABLE
+env=POETRY_ACTIVE=true

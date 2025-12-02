@@ -17,7 +17,6 @@ vim.diagnostic.config({
       local lines = vim.split(diagnostic.message, '\n')
       return lines[1]
     end,
-    virt_text_pos = 'right_align',
     suffix = ' ',
   },
   severity_sort = true,

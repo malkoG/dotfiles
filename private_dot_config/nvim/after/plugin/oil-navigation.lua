@@ -15,10 +15,6 @@ local term_on_current_dir = function()
   end
 end
 
-local aider_term_on_current_dir = function()
-	term_on_current_dir()
-	vim.fn.chansend(vim.b.terminal_job_id, "aider --subtree-only\n")
-end
 
 vim.api.nvim_create_autocmd(
   'FileType',
@@ -27,10 +23,7 @@ vim.api.nvim_create_autocmd(
     desc = 'Open current directory in terminal mode',
     callback = function(event)
       vim.api.nvim_create_user_command("TermOnCurrentDir", term_on_current_dir, {})
-			vim.api.nvim_create_user_command("AiderTermOnCurrentDir", aider_term_on_current_dir, {})
-
-			vim.keymap.set("n", "<leader>Tt", "<Cmd>TermOnCurrentDir<CR>", opts)
-			vim.keymap.set("n", "<leader>Ta", "<Cmd>AiderTermOnCurrentDir<CR>", opts)
+	  vim.keymap.set("n", "<leader>Tt", "<Cmd>TermOnCurrentDir<CR>", opts)
     end
   }
 )

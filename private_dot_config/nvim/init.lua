@@ -8,6 +8,7 @@ require('settings')
 require('plugins/telescope')
 require('plugins/lualine')
 require('plugins/blamer')
+require('plugins/conform')
 
 require("lsp/init")
 require("lsp/language_server")
@@ -62,7 +63,14 @@ elseif available_themes[current_theme] ~= nil then
 else
 	vim.cmd.colorscheme(defaualt_theme)
 end
-
+--
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = "*",
+--   callback = function(args)
+-- 		print(args)
+--     require("conform").format({ bufnr = args.buf })
+--   end,
+-- })
 
 require('zettelkasten')
 

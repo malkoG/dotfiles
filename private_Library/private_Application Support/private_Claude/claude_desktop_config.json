@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "kojima-wiki": {
+      "command": "/Users/kodingwarrior/.local/share/mise/shims/npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/kodingwarrior/kojima-wiki"
+      ]
+    },
+	"linear": {
+      "command": "/Users/kodingwarrior/.local/share/mise/shims/npx",
+      "args": ["-y", "mcp-remote", "https://mcp.linear.app/mcp"]
+    },
+	"repomix": {
+      "command": "/Users/kodingwarrior/.local/share/mise/shims/npx",
+      "args": [
+        "-y",
+        "repomix",
+        "--mcp"
+      ]
+    }
+  }
+}
+

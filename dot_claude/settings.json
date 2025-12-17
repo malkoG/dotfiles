@@ -1,0 +1,19 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~kodingwarrior/.claude/statusline-enhanced.sh"
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo -ne '\\007'"
+          }
+        ]
+      }
+    ]
+  }
+}

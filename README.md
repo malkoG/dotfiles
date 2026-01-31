@@ -13,9 +13,10 @@ Personal dotfiles managed with [chezmoi](https://www.chezmoi.io/).
 Highly customized Neovim setup with 80+ plugins using Lazy.nvim:
 - LSP support for Python, TypeScript, Ruby, Rust, Go, and more
 - Treesitter for syntax highlighting
-- Telescope for fuzzy finding
-- AI assistance (Copilot, NeoAI with OpenAI)
+- Snacks.nvim for fuzzy finding, file explorer, and notifications
+- AI assistance (GitHub Copilot)
 - Oil.nvim for file navigation
+- conform.nvim for code formatting
 - Multiple colorschemes (tokyonight, catppuccin, melange, nordic)
 
 ### Development Tools
@@ -42,7 +43,7 @@ Highly customized Neovim setup with 80+ plugins using Lazy.nvim:
 │   │   │   ├── deps/        # Plugin dependencies by category
 │   │   │   ├── lsp/         # Language server configurations
 │   │   │   ├── plugins/     # Individual plugin configs
-│   │   │   └── utilities/   # Custom utilities (scheduler, zettelkasten)
+│   │   │   └── utilities/   # Custom utilities (scheduler)
 │   │   └── snippets/        # Code snippets
 │   ├── wezterm/             # Wezterm terminal config
 │   ├── ghostty/             # Ghostty terminal config
@@ -55,7 +56,7 @@ Highly customized Neovim setup with 80+ plugins using Lazy.nvim:
 ## Key Features
 
 - **Multi-language LSP** - Intelligent language server switching with support for Deno, Python (Ruff, BasedPyright), Ruby, and more
-- **Productivity Tools** - Pomodoro timer, monthly planning, Zettelkasten note-taking
+- **Productivity Tools** - Pomodoro timer, monthly planning
 - **Time-based Notifications** - Scheduler for work slots and routine reminders
 - **Git Workflow Tools** - Interactive diff browsing, repository comparison scripts
 - **Custom FZF Completions** - Enhanced completions for make, git, docker

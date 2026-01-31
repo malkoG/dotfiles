@@ -5,7 +5,6 @@ require('config.lazy')
 require('plugins/oil')
 require('plugins/packer')
 require('settings')
-require('plugins/telescope')
 require('plugins/lualine')
 require('plugins/blamer')
 require('plugins/conform')
@@ -56,7 +55,7 @@ for _, theme in ipairs({
 end
 
 local defaualt_theme = "tokyonight"
-if current_theme == nil then 
+if current_theme == nil then
 	vim.cmd.colorscheme(defaualt_theme)
 elseif available_themes[current_theme] ~= nil then
 	vim.cmd.colorscheme(current_theme)
@@ -71,8 +70,6 @@ end
 --     require("conform").format({ bufnr = args.buf })
 --   end,
 -- })
-
-require('zettelkasten')
 
 vim.opt.termguicolors = true
 

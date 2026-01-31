@@ -27,4 +27,7 @@ return {
     },
     disable = false,
   },
+  {
+    "stevearc/conform.nvim",
+  },
 }

@@ -97,7 +97,6 @@ ls.add_snippets(nil, {
   ruby = ruby_snippets,
 
   markdown = markdown_snippets,
-  telekasten = markdown_snippets,
 
   kotlin = {
     snip({

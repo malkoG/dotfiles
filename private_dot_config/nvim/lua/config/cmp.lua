@@ -92,10 +92,6 @@ function M.setup()
     window = {
       documentation = cmp.config.window.bordered(),
     },
-    -- documentation = {
-    --  border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-    --  winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",
-    -- },
   }
 
   -- Use buffer source for `/`

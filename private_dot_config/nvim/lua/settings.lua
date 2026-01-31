@@ -22,6 +22,4 @@ opt.autoread = true
 -- git-gutter settings
 g.gitgutter_set_sign_backgrounds = 1
 
-vim.treesitter.language.register('markdown', 'telekasten')
-
 vim.cmd [[ source ~/.config/nvim/lua/copilot.vim ]]

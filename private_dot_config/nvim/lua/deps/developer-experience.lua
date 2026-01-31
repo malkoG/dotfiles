@@ -1,17 +1,72 @@
 return {
   { 'nvim-treesitter/nvim-treesitter' },
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.5',
-    dependencies = {
-      {'nvim-lua/plenary.nvim'}
-    }
+    "folke/snacks.nvim",
+    opts = {
+      picker = {
+        enabled = true,
+        patterns = {
+          ".git",
+        },
+      },
+      explorer = {},
+    },
+    keys = {
+      -- Top Pickers & Explorer
+      { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+      { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
+      { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
+      { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
+      { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+      -- find
+      { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+      { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
+      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
+      { "<leader>fg", function() Snacks.picker.grep() end, desc = "Grep" },
+      { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
+      { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
+      -- git
+      { "<leader>fB", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
+      { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+      { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
+      { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+      { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
+      { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
+      { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
+      -- Grep
+      { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+      { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
+      { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+      -- search
+      { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
+      { '<leader>s/', function() Snacks.picker.search_history() end, desc = "Search History" },
+      { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
+      { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+      { "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
+      { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
+      { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
+      { "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
+      { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
+      { "<leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
+      { "<leader>si", function() Snacks.picker.icons() end, desc = "Icons" },
+      { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
+      { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
+      { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
+      { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
+      { "<leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
+      { "<leader>sp", function() Snacks.picker.lazy() end, desc = "Search for Plugin Spec" },
+      { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
+      { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
+      { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
+      { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
+    },
   },
   {
     "ibhagwan/fzf-lua",
     dependencies = { "echasnovski/mini.icons" },
     opts = {}
   },
-  { "nvim-telescope/telescope-file-browser.nvim" },
   { "nvim-pack/nvim-spectre" },
   { "tribela/vim-transparent" },
   { 'github/copilot.vim' },
@@ -19,69 +74,6 @@ return {
     "stevearc/oil.nvim",
     opts = {},
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
-  },
-  {
-    "Bryley/neoai.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    config = function()
-      require("neoai").setup({
-        -- Below are the default options, feel free to override what you would like changed
-        ui = {
-            output_popup_text = "NeoAI",
-            input_popup_text = "Prompt",
-            width = 30, -- As percentage eg. 30%
-            output_popup_height = 80, -- As percentage eg. 80%
-            submit = "<Enter>", -- Key binding to submit the prompt
-        },
-        models = {
-            {
-                name = "openai",
-                model = "gpt-4o",
-                params = nil,
-            },
-        },
-        register_output = {
-            ["g"] = function(output)
-                return output
-            end,
-            ["c"] = require("neoai.utils").extract_code_snippets,
-        },
-        inject = {
-            cutoff_width = 75,
-        },
-        prompts = {
-            context_prompt = function(context)
-                return "Hey, I'd like to provide some context for future "
-                    .. "messages. Here is the code/text that I want to refer "
-                    .. "to in our upcoming conversations:\n\n"
-                    .. context
-            end,
-        },
-        mappings = {
-            ["select_up"] = "<C-k>",
-            ["select_down"] = "<C-j>",
-        },
-        open_ai = {
-            api_key = {
-                env = "OPENAI_API_KEY",
-                value = nil,
-                -- `get` is is a function that retrieves an API key, can be used to override the default method.
-                -- get = function() ... end
-
-                -- Here is some code for a function that retrieves an API key. You can use it with
-                -- the Linux 'pass' application.
-                -- get = function()
-                --     local key = vim.fn.system("pass show openai/mytestkey")
-                --     key = string.gsub(key, "\n", "")
-                --     return key
-                -- end,
-            },
-        },
-      })
-    end
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",

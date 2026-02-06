@@ -28,7 +28,7 @@ return {
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
       -- git
       { "<leader>fB", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
-      { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+      { "<leader>fl", function() Snacks.picker.git_log() end, desc = "Git Log" },
       { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
       { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
       { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
@@ -60,6 +60,10 @@ return {
       { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
       { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
       { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
+
+      --- LSP
+      { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+      { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
     },
   },
   {

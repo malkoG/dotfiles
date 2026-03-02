@@ -200,6 +200,19 @@ minimize questions:
 4. Show the draft and ask for confirmation
 5. File on confirmation
 
+## Umbrella Issues
+
+When the user wants to file an **umbrella issue** (also known as a tracking issue, epic, or parent issue that groups related sub-issues), the title **MUST** include a prefix in the format `[Category]`.
+
+- Force the user to provide a prefix category. Do not allow filing an umbrella issue without one.
+- Suggest `[Admin]` as the default prefix if the user does not specify one.
+- Examples of valid umbrella issue titles:
+  - `[Admin] Set up CI/CD pipeline`
+  - `[Auth] Implement OTP login flow`
+  - `[Federation] ActivityPub compliance improvements`
+- If the user tries to file an umbrella issue without a prefix, ask them to choose or provide one before proceeding.
+- Detect umbrella issues by keywords like "umbrella", "tracking issue", "epic", "parent issue", or when the user explicitly mentions grouping multiple sub-tasks/issues.
+
 ## Error Handling
 
 - If `gh auth status` fails: suggest `gh auth login`

@@ -126,8 +126,6 @@ Never generate placeholder text like "[TODO]" in the filed issue.
 [What actually happens]
 
 ## Context
-- **Project**: [repo name]
-- **Tech stack**: [detected from Phase 2]
 - **Relevant area**: [detected from description + codebase structure]
 ```
 
@@ -144,8 +142,6 @@ Never generate placeholder text like "[TODO]" in the filed issue.
 [If the user provided one, otherwise omit]
 
 ## Context
-- **Project**: [repo name]
-- **Tech stack**: [detected from Phase 2]
 - **Relevant area**: [detected from description + codebase structure]
 ```
 
@@ -156,7 +152,6 @@ Never generate placeholder text like "[TODO]" in the filed issue.
 [Description]
 
 ## Context
-- **Project**: [repo name]
 - **Area**: [relevant area if identifiable]
 ```
 

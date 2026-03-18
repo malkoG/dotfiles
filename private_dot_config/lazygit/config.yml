@@ -1,0 +1,5 @@
+gui:
+  mainPanelSplitMode: horizontal
+git:
+  pagers:
+    - externalDiffCommand: difft --color=always --display=side-by-side-show-both --syntax-highlight=on --context=10

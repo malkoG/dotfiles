@@ -49,5 +49,6 @@ keybind = ctrl+shift+physical:four=goto_tab:4
 keybind = ctrl+shift+physical:five=goto_tab:5
 keybind = ctrl+shift+physical:six=goto_tab:6
 
-# ENVIRONMENT_VARIABLE
-env=POETRY_ACTIVE=true
+
+custom-shader = shaders/cursor_warp.glsl
+

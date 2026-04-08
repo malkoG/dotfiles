@@ -1,5 +1,4 @@
 return {
-  { 'nvim-treesitter/nvim-treesitter' },
   {
     "hedyhli/outline.nvim",
     lazy = true,
@@ -89,17 +88,6 @@ return {
     "stevearc/oil.nvim",
     opts = {},
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
-  },
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    after = {
-      "nvim-treesitter",
-      'echasnovski/mini.icons'
-    },
-    opts = {
-      file_types = { "Avante", "markdown" },
-    },
-    ft = { "Avante", "markdown" },
   },
   { "gpanders/editorconfig.nvim" },
   { "echasnovski/mini.files" },
@@ -198,13 +186,6 @@ return {
     -- Ensure that it runs first to minimize delay when opening file from terminal
     lazy = false,
     priority = 1001,
-  },
-  {
-    'https://codeberg.org/esensar/nvim-dev-container',
-    dependencies = 'nvim-treesitter/nvim-treesitter',
-    config = function()
-      require('devcontainer').setup {}
-    end
   },
   {
     'mustache/vim-mustache-handlebars'

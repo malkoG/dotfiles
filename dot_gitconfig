@@ -4,7 +4,7 @@
 
 [core]
     pager = delta --pager cat
-    excludesfile = ~/.gitignore
+	excludesfile = /Users/kodingwarrior/.gitignore
 
 [interactive]
     diffFilter = delta --color-only
@@ -58,3 +58,11 @@
     whitespace-error-style = "#80002a" reverse
     zero-style = syntax
     blame-format = "{author:<18} ({commit:>7}) ┊{timestamp:^16}┊ "
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[gtr "ai"]
+	default = claude
+	editor = nvim

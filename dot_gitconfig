@@ -4,6 +4,7 @@
 
 [core]
     pager = delta --pager cat
+    excludesfile = ~/.gitignore
 
 [interactive]
     diffFilter = delta --color-only

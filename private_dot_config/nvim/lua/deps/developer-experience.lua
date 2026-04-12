@@ -136,6 +136,13 @@ return {
   },
 
   -- Git utility
+  {
+    dir = "~/personal/gtr.nvim",
+    opts = {},
+    keys = {
+      { "<leader>gw", function() require("gtr").list() end, desc = "Git Worktrees (gtr)" },
+    },
+  },
   { "APZelos/blamer.nvim" },
   { "tpope/vim-fugitive" },
   { "airblade/vim-gitgutter" },

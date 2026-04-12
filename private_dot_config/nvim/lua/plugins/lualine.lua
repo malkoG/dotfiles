@@ -25,7 +25,7 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_b = {'branch', 'gtr_worktree', 'diff', 'diagnostics'},
     lualine_x = {
       'encoding',
       'fileformat',

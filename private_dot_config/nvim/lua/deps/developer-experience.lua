@@ -147,6 +147,29 @@ return {
   { "tpope/vim-fugitive" },
   { "airblade/vim-gitgutter" },
   {
+    "dlyongemallo/diffview.nvim",
+    version = "*",
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewToggle",
+      "DiffviewFileHistory",
+      "DiffviewClose",
+    },
+    opts = {
+      file_panel = {
+        win_config = {
+          position = "bottom",
+          height = 10,
+        },
+      },
+    },
+    keys = {
+      { "<leader>gv", "<cmd>DiffviewOpen origin/HEAD...HEAD<cr>", desc = "Diff vs default branch (Diffview)" },
+      { "<leader>gH", "<cmd>DiffviewFileHistory %<cr>", desc = "File History (Diffview)" },
+      { "<leader>gx", "<cmd>DiffviewClose<cr>", desc = "Close Diffview" },
+    },
+  },
+  {
     "folke/trouble.nvim",
     opts = {}, -- for default options, refer to the configuration section for custom setup.
     cmd = "Trouble",

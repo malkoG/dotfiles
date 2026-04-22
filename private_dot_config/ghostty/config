@@ -28,11 +28,10 @@ window-theme = ghostty
 
 background-opacity = 0.9
 
-font-family = "NanumBarunGothic"
 font-family = "Cascadia Code NF"
+font-family = "NanumBarunGothic"
 font-size = 14
 adjust-cell-height = 20%
-
 
 
 # keybinding

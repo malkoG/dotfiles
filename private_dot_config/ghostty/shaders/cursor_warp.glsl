@@ -120,12 +120,12 @@ float getSdfConvexQuad(in vec2 p, in vec2 v1, in vec2 v2, in vec2 v3, in vec2 v4
     return s * sqrt(d);
 }
 
-vec2 normalize(vec2 value, float isPosition) {
+vec2 toGhosttyUv(vec2 value, float isPosition) {
     return (value * 2.0 - (iResolution.xy * isPosition)) / iResolution.y;
 }
 
 float antialising(float distance, float blurAmount) {
-  return 1. - smoothstep(0., normalize(vec2(blurAmount, blurAmount), 0.).x, distance);
+  return 1. - smoothstep(0., toGhosttyUv(vec2(blurAmount, blurAmount), 0.).x, distance);
 }
 
 // Determines animation duration based on a corner's alignment with the move direction(dot product)
@@ -150,11 +150,11 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord){
     #endif
 
     // normalization & setup(-1, 1 coords)
-    vec2 vu = normalize(fragCoord, 1.);
+    vec2 vu = toGhosttyUv(fragCoord, 1.);
     vec2 offsetFactor = vec2(-.5, 0.5);
 
-    vec4 currentCursor = vec4(normalize(iCurrentCursor.xy, 1.), normalize(iCurrentCursor.zw, 0.));
-    vec4 previousCursor = vec4(normalize(iPreviousCursor.xy, 1.), normalize(iPreviousCursor.zw, 0.));
+    vec4 currentCursor = vec4(toGhosttyUv(iCurrentCursor.xy, 1.), toGhosttyUv(iCurrentCursor.zw, 0.));
+    vec4 previousCursor = vec4(toGhosttyUv(iPreviousCursor.xy, 1.), toGhosttyUv(iPreviousCursor.zw, 0.));
 
     vec2 centerCC = currentCursor.xy - (currentCursor.zw * offsetFactor);
     vec2 halfSizeCC = currentCursor.zw * 0.5;
@@ -166,9 +166,155 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord){
     float lineLength = distance(centerCC, centerCP);
     float minDist = currentCursor.w * THRESHOLD_MIN_DISTANCE;
 
-    vec4 newColor = vec4(fragColor);
-
     float baseProgress = iTime - iTimeCursorChange;
+    float sparkAlpha = 0.0;
+    float sparkCoreAlpha = 0.0;
+    float sparkParticleAlpha = 0.0;
+    vec3 sparkColor = iCurrentCursorColor.rgb;
+    vec3 sparkParticleColor = vec3(0.0);
+    vec2 sparkDelta = centerCC - centerCP;
+    float sparkActive = step(0.0, sparkDelta.x);
+    sparkActive *= 1.0 - step(0.18, baseProgress);
+    sparkActive *= step(currentCursor.w * 0.02, sparkDelta.x);
+    sparkActive *= 1.0 - step(currentCursor.w * 1.80, sparkDelta.x);
+    sparkActive *= 1.0 - step(currentCursor.w * 0.55, abs(sparkDelta.y));
+
+    if (sparkActive > 0.5) {
+        float sparkProgress = clamp(baseProgress / 0.18, 0.0, 1.0);
+        float sparkFade = pow(1.0 - sparkProgress, 1.18);
+        vec2 sparkCenter = centerCC + vec2(currentCursor.z * 0.10, 0.0);
+        vec2 sparkUpper = sparkCenter + vec2(0.0, currentCursor.w * 0.24);
+        vec2 sparkLower = sparkCenter - vec2(0.0, currentCursor.w * 0.24);
+        vec2 streakDir = normalize(vec2(1.0, -0.32));
+        vec2 streakDir2 = normalize(vec2(1.0, 0.24));
+        vec2 streakDir3 = normalize(vec2(1.0, -0.04));
+        vec2 streakStart = sparkCenter + vec2(currentCursor.w * 0.05, 0.0);
+        vec2 streakStart2 = sparkCenter + vec2(currentCursor.w * 0.02, currentCursor.w * 0.04);
+        vec2 streakStart3 = sparkCenter + vec2(currentCursor.w * 0.08, -currentCursor.w * 0.03);
+        vec2 streakVec = vu - streakStart;
+        vec2 streakVec2 = vu - streakStart2;
+        vec2 streakVec3 = vu - streakStart3;
+        float streakAlong = clamp(dot(streakVec, streakDir), 0.0, currentCursor.w * mix(0.8, 2.4, sparkProgress));
+        float streakAlong2 = clamp(dot(streakVec2, streakDir2), 0.0, currentCursor.w * mix(0.5, 1.8, sparkProgress));
+        float streakAlong3 = clamp(dot(streakVec3, streakDir3), 0.0, currentCursor.w * mix(0.7, 2.1, sparkProgress));
+        vec2 streakClosest = streakStart + streakDir * streakAlong;
+        vec2 streakClosest2 = streakStart2 + streakDir2 * streakAlong2;
+        vec2 streakClosest3 = streakStart3 + streakDir3 * streakAlong3;
+        float streakDist = length(vu - streakClosest);
+        float streakDist2 = length(vu - streakClosest2);
+        float streakDist3 = length(vu - streakClosest3);
+        vec2 particleDir1 = normalize(vec2(0.95, -0.82));
+        vec2 particleDir2 = normalize(vec2(1.00, -0.22));
+        vec2 particleDir3 = normalize(vec2(0.82, 0.72));
+        vec2 particleDir4 = normalize(vec2(-0.88, 0.86));
+        vec2 particleDir5 = normalize(vec2(-1.00, 0.12));
+        vec2 particleDir6 = normalize(vec2(-0.72, -0.92));
+        vec2 particleCurve1 = vec2(0.20, 0.42);
+        vec2 particleCurve2 = vec2(0.12, 0.18);
+        vec2 particleCurve3 = vec2(-0.18, -0.36);
+        vec2 particleCurve4 = vec2(0.24, -0.34);
+        vec2 particleCurve5 = vec2(0.08, -0.16);
+        vec2 particleCurve6 = vec2(-0.22, 0.40);
+        float particleProg1 = pow(sparkProgress, 0.70);
+        float particleProg2 = pow(sparkProgress, 0.88);
+        float particleProg3 = pow(sparkProgress, 1.02);
+        float particleProg4 = pow(sparkProgress, 0.76);
+        float particleProg5 = pow(sparkProgress, 0.94);
+        float particleProg6 = pow(sparkProgress, 1.12);
+        vec2 particlePos1 = sparkCenter
+            + particleDir1 * (currentCursor.w * mix(0.08, 1.95, particleProg1))
+            + particleCurve1 * (currentCursor.w * particleProg1 * particleProg1);
+        vec2 particlePos2 = sparkCenter
+            + particleDir2 * (currentCursor.w * mix(0.06, 1.62, particleProg2))
+            + particleCurve2 * (currentCursor.w * particleProg2 * particleProg2);
+        vec2 particlePos3 = sparkCenter
+            + particleDir3 * (currentCursor.w * mix(0.08, 1.84, particleProg3))
+            + particleCurve3 * (currentCursor.w * particleProg3 * particleProg3);
+        vec2 particlePos4 = sparkCenter
+            + particleDir4 * (currentCursor.w * mix(0.08, 1.88, particleProg4))
+            + particleCurve4 * (currentCursor.w * particleProg4 * particleProg4);
+        vec2 particlePos5 = sparkCenter
+            + particleDir5 * (currentCursor.w * mix(0.06, 1.56, particleProg5))
+            + particleCurve5 * (currentCursor.w * particleProg5 * particleProg5);
+        vec2 particlePos6 = sparkCenter
+            + particleDir6 * (currentCursor.w * mix(0.08, 1.92, particleProg6))
+            + particleCurve6 * (currentCursor.w * particleProg6 * particleProg6);
+        float particleDist1 = length(vu - particlePos1);
+        float particleDist2 = length(vu - particlePos2);
+        float particleDist3 = length(vu - particlePos3);
+        float particleDist4 = length(vu - particlePos4);
+        float particleDist5 = length(vu - particlePos5);
+        float particleDist6 = length(vu - particlePos6);
+
+        float coreRadius = currentCursor.w * mix(0.72, 0.32, sparkProgress);
+        float sideRadius = currentCursor.w * mix(0.64, 0.20, sparkProgress);
+        float streakRadius = currentCursor.w * mix(0.16, 0.06, sparkProgress);
+        float glowRadius = currentCursor.w * mix(1.05, 0.48, sparkProgress);
+        float particleRadius1 = currentCursor.w * mix(0.24, 0.08, sparkProgress);
+        float particleRadius2 = currentCursor.w * mix(0.20, 0.07, sparkProgress);
+        float particleRadius3 = currentCursor.w * mix(0.18, 0.06, sparkProgress);
+        float particleRadius4 = currentCursor.w * mix(0.20, 0.06, sparkProgress);
+        float particleRadius5 = currentCursor.w * mix(0.18, 0.05, sparkProgress);
+        float particleRadius6 = currentCursor.w * mix(0.17, 0.05, sparkProgress);
+
+        float core = 1.0 - smoothstep(coreRadius * 0.20, coreRadius, length(vu - sparkCenter));
+        float upper = 1.0 - smoothstep(sideRadius * 0.18, sideRadius, length(vu - sparkUpper));
+        float lower = 1.0 - smoothstep(sideRadius * 0.18, sideRadius, length(vu - sparkLower));
+        float streak = 1.0 - smoothstep(streakRadius * 0.35, streakRadius, streakDist);
+        float streak2 = 1.0 - smoothstep(streakRadius * 0.30, streakRadius * 0.82, streakDist2);
+        float streak3 = 1.0 - smoothstep(streakRadius * 0.32, streakRadius * 0.90, streakDist3);
+        float glow = 1.0 - smoothstep(glowRadius * 0.28, glowRadius, length(vu - sparkCenter));
+        float particle1 = 1.0 - smoothstep(particleRadius1 * 0.25, particleRadius1, particleDist1);
+        float particle2 = 1.0 - smoothstep(particleRadius2 * 0.25, particleRadius2, particleDist2);
+        float particle3 = 1.0 - smoothstep(particleRadius3 * 0.25, particleRadius3, particleDist3);
+        float particle4 = 1.0 - smoothstep(particleRadius4 * 0.25, particleRadius4, particleDist4);
+        float particle5 = 1.0 - smoothstep(particleRadius5 * 0.25, particleRadius5, particleDist5);
+        float particle6 = 1.0 - smoothstep(particleRadius6 * 0.25, particleRadius6, particleDist6);
+        float particleFade1 = pow(1.0 - particleProg1, 1.05);
+        float particleFade2 = pow(1.0 - particleProg2, 1.30);
+        float particleFade3 = pow(1.0 - particleProg3, 1.60);
+        float particleFade4 = pow(1.0 - particleProg4, 1.18);
+        float particleFade5 = pow(1.0 - particleProg5, 1.75);
+        float particleFade6 = pow(1.0 - particleProg6, 2.00);
+        float p1 = particle1 * 0.86 * particleFade1;
+        float p2 = particle2 * 0.72 * particleFade2;
+        float p3 = particle3 * 0.72 * particleFade3;
+        float p4 = particle4 * 0.76 * particleFade4;
+        float p5 = particle5 * 0.64 * particleFade5;
+        float p6 = particle6 * 0.74 * particleFade6;
+        sparkCoreAlpha = (glow * 0.16 + core * 0.88 + upper * 0.54 + lower * 0.54 + streak * 0.38 + streak2 * 0.26 + streak3 * 0.18) * sparkFade;
+        sparkParticleAlpha = (p1 + p2 + p3 + p4 + p5 + p6) * sparkFade;
+
+        sparkAlpha = clamp(sparkCoreAlpha + sparkParticleAlpha, 0.0, 1.0);
+
+        float particleMax = p1;
+        sparkParticleColor = vec3(1.00, 0.18, 0.18);
+        if (p2 > particleMax) {
+            particleMax = p2;
+            sparkParticleColor = vec3(1.00, 0.55, 0.12);
+        }
+        if (p3 > particleMax) {
+            particleMax = p3;
+            sparkParticleColor = vec3(1.00, 0.92, 0.18);
+        }
+        if (p4 > particleMax) {
+            particleMax = p4;
+            sparkParticleColor = vec3(0.18, 0.95, 0.32);
+        }
+        if (p5 > particleMax) {
+            particleMax = p5;
+            sparkParticleColor = vec3(0.20, 0.55, 1.00);
+        }
+        if (p6 > particleMax) {
+            particleMax = p6;
+            sparkParticleColor = vec3(0.78, 0.28, 1.00);
+        }
+        vec3 sparkCoreColor = mix(iCurrentCursorColor.rgb, vec3(1.0, 0.95, 0.78), 0.72);
+        sparkParticleAlpha = particleMax * sparkFade;
+        sparkColor = sparkCoreColor;
+    }
+
+    vec4 newColor = vec4(fragColor);
 
     if (lineLength > minDist && baseProgress < DURATION - 0.001) {
         // defining corners of cursors
@@ -297,6 +443,13 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord){
         // punch hole on the trail, so current cursor is drawn on top
         newColor = mix(newColor, fragColor, step(sdfCurrentCursor, 0.));
 
+    }
+
+    if (sparkCoreAlpha > 0.0) {
+        newColor = mix(newColor, vec4(sparkColor, newColor.a), clamp(sparkCoreAlpha, 0.0, 1.0));
+    }
+    if (sparkParticleAlpha > 0.0) {
+        newColor.rgb += sparkParticleColor;
     }
 
     fragColor = newColor;

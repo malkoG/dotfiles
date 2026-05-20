@@ -1,0 +1,11 @@
+matches:
+  - trigger: ":espanso"
+    replace: "Hi there!"
+
+  - trigger: ";;time"
+    replace: "{{current_time}}"
+    vars:
+      - name: current_time
+        type: date
+        params:
+          format: "%H:%M"

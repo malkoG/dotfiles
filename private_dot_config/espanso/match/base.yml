@@ -9,3 +9,12 @@ matches:
         type: date
         params:
           format: "%H:%M"
+
+  - trigger: ";;weekly"
+    replace: "{{weekly_schedule}}"
+    vars:
+      - name: weekly_schedule
+        type: shell
+        params:
+          cmd: |
+            python3 -c "from datetime import date, timedelta; today = date.today(); monday = today - timedelta(days=today.weekday()); print('\n\n'.join(f'## {(monday + timedelta(days=i)).isoformat()} ({(monday + timedelta(days=i)).strftime(\"%A\")})\n---' for i in range(7)))"
